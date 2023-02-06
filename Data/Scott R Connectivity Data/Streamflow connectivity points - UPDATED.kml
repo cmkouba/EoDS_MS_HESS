@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Streamflow connectivity points - UPDATED.kml</name>
+	<Style id="sh_blu-blank">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<StyleMap id="msn_ltblu-blank0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ltblu-blank</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ltblu-blank0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sn_blu-blank0">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Style id="sn_ltblu-blank">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Style id="sh_ltblu-blank0">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl0">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin00</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_blu-blank0">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Style id="sn_blu-blank">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_blu-blank0">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_blu-blank0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_blu-blank</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/ltblu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin0</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<StyleMap id="msn_blu-blank">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_blu-blank</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_blu-blank0</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin0">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin_hl1">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="s_ylw-pushpin00">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank.png</href>
+			</Icon>
+			<hotSpot x="32" y="1" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<ListStyle>
+			<ItemIcon>
+				<href>http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png</href>
+			</ItemIcon>
+		</ListStyle>
+	</Style>
+	<Folder>
+		<name>Streamflow connectivity points</name>
+		<Placemark>
+			<name>Mill W</name>
+			<LookAt>
+				<longitude>-122.9764887591924</longitude>
+				<latitude>41.56427461571788</latitude>
+				<altitude>0</altitude>
+				<heading>-0.1644235888501276</heading>
+				<tilt>30.00138776027515</tilt>
+				<range>308.971874583515</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.976901947516,41.56365305315853,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Mill N</name>
+			<LookAt>
+				<longitude>-122.9593718749364</longitude>
+				<latitude>41.58793348457666</latitude>
+				<altitude>0</altitude>
+				<heading>-0.152816445483719</heading>
+				<tilt>30.00175694374132</tilt>
+				<range>391.1390774277311</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9606213945751,41.58735969970125,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Shackleford W</name>
+			<LookAt>
+				<longitude>-122.9782323731353</longitude>
+				<latitude>41.59294530930677</latitude>
+				<altitude>0</altitude>
+				<heading>-0.1659032823930874</heading>
+				<tilt>30.00096178224388</tilt>
+				<range>213.9849074037374</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9782950282049,41.592555450158,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Shackleford N</name>
+			<LookAt>
+				<longitude>-122.9645987162402</longitude>
+				<latitude>41.61732116976124</latitude>
+				<altitude>0</altitude>
+				<heading>-0.1538689868375952</heading>
+				<tilt>29.66124024457116</tilt>
+				<range>482.2589019402247</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.965473843864,41.61665205482027,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Shackleford Confluence</name>
+			<LookAt>
+				<longitude>-122.9626698120299</longitude>
+				<latitude>41.63426645386168</latitude>
+				<altitude>0</altitude>
+				<heading>-0.02261619450734308</heading>
+				<tilt>18.3149521470476</tilt>
+				<range>478.7362905587523</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9630637131113,41.63382114542213,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Big Slough Confluence</name>
+			<LookAt>
+				<longitude>-122.8570463603644</longitude>
+				<latitude>41.59846458346328</latitude>
+				<altitude>0</altitude>
+				<heading>0.05210433659125008</heading>
+				<tilt>29.0060987936537</tilt>
+				<range>498.1072680681001</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8567643303693,41.59801890687325,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Moffett Confluence</name>
+			<LookAt>
+				<longitude>-122.8591299499771</longitude>
+				<latitude>41.60663189149533</latitude>
+				<altitude>0</altitude>
+				<heading>-0.08951598102811636</heading>
+				<tilt>28.27526563064973</tilt>
+				<range>349.8926178215888</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.860289574317,41.60615515904367,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Moffett N</name>
+			<LookAt>
+				<longitude>-122.8312693921081</longitude>
+				<latitude>41.6246679325723</latitude>
+				<altitude>0</altitude>
+				<heading>0.004577807503106532</heading>
+				<tilt>29.2968808403566</tilt>
+				<range>830.0578188116281</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8314422216478,41.62306390306132,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Kidder Confluence</name>
+			<LookAt>
+				<longitude>-122.8655617747969</longitude>
+				<latitude>41.55440788977465</latitude>
+				<altitude>0</altitude>
+				<heading>-0.09726439009072724</heading>
+				<tilt>30.00219853031016</tilt>
+				<range>489.459142454204</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8658801421677,41.55376461121288,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Kidder West</name>
+			<LookAt>
+				<longitude>-122.9020696245057</longitude>
+				<latitude>41.54579325290359</latitude>
+				<altitude>0</altitude>
+				<heading>-0.1226446312910526</heading>
+				<tilt>30.00302660645123</tilt>
+				<range>673.7809244758669</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9017572346616,41.54466246990886,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Patterson Confluence</name>
+			<LookAt>
+				<longitude>-122.8646963914399</longitude>
+				<latitude>41.51716567080813</latitude>
+				<altitude>0</altitude>
+				<heading>-0.09722670861155325</heading>
+				<tilt>30.00239647450782</tilt>
+				<range>533.5539423949228</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8642359075158,41.51625526853218,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Patterson West</name>
+			<LookAt>
+				<longitude>-122.9046779417223</longitude>
+				<latitude>41.50352633361171</latitude>
+				<altitude>0</altitude>
+				<heading>-0.1237323580745521</heading>
+				<tilt>30.00254761995303</tilt>
+				<range>567.0125413322186</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9044150837896,41.50279942967011,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Etna Confluence</name>
+			<LookAt>
+				<longitude>-122.8493850291265</longitude>
+				<latitude>41.47746186144042</latitude>
+				<altitude>0</altitude>
+				<heading>-0.07763935884722384</heading>
+				<tilt>27.37537588559948</tilt>
+				<range>474.3021919032182</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8504731084853,41.4765199072249,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Etna W</name>
+			<LookAt>
+				<longitude>-122.8657682558946</longitude>
+				<latitude>41.46579426402126</latitude>
+				<altitude>0</altitude>
+				<heading>-0.08553250494375665</heading>
+				<tilt>25.6824309562269</tilt>
+				<range>454.8946540768805</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8661335114457,41.46524622248933,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>French Confluence</name>
+			<LookAt>
+				<longitude>-122.8487459978834</longitude>
+				<latitude>41.41600000065576</latitude>
+				<altitude>0</altitude>
+				<heading>-0.08266974209772185</heading>
+				<tilt>30.00071629272353</tilt>
+				<range>159.4206095972424</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8490752042384,41.41559230840507,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>French W</name>
+			<LookAt>
+				<longitude>-122.8653897844349</longitude>
+				<latitude>41.407609696667</latitude>
+				<altitude>0</altitude>
+				<heading>-0.09327040108878121</heading>
+				<tilt>30.00164211787739</tilt>
+				<range>365.5789209898009</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_blu-blank</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8657690512203,41.40737983530768,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Miners</name>
+			<LookAt>
+				<longitude>-122.8709301749422</longitude>
+				<latitude>41.38655582563621</latitude>
+				<altitude>0</altitude>
+				<heading>-18.01585917020598</heading>
+				<tilt>26.32245271864166</tilt>
+				<range>129.6147064700384</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8711313262999,41.38658404747618,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sugar Confluence 1</name>
+			<LookAt>
+				<longitude>-122.8241365615267</longitude>
+				<latitude>41.34230662706568</latitude>
+				<altitude>0</altitude>
+				<heading>0.009656740637320298</heading>
+				<tilt>30.0011024806367</tilt>
+				<range>245.3877455014652</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8241050340123,41.34193180719411,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sugar Confluence 2</name>
+			<LookAt>
+				<longitude>-122.8269952729573</longitude>
+				<latitude>41.33669048331578</latitude>
+				<altitude>0</altitude>
+				<heading>0.007768543334406791</heading>
+				<tilt>30.00082116894927</tilt>
+				<range>182.697634772972</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8271520438477,41.33641945803343,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sugar Creek W</name>
+			<LookAt>
+				<longitude>-122.8309339138995</longitude>
+				<latitude>41.33257050436909</latitude>
+				<altitude>0</altitude>
+				<heading>0.005248056497040325</heading>
+				<tilt>30.00060913777488</tilt>
+				<range>135.2688547693131</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.83115632164,41.33233564776165,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Wildcat Confluence</name>
+			<LookAt>
+				<longitude>-122.8112255350999</longitude>
+				<latitude>41.32060306934375</latitude>
+				<altitude>0</altitude>
+				<heading>0.01888732075909313</heading>
+				<tilt>30.00079505660751</tilt>
+				<range>176.8530765056797</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8112224029093,41.32033164566477,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>South Fork Confluence</name>
+			<LookAt>
+				<longitude>-122.8019897335164</longitude>
+				<latitude>41.31166910092265</latitude>
+				<altitude>0</altitude>
+				<heading>0.02380821062455303</heading>
+				<tilt>29.17637040248356</tilt>
+				<range>306.1462275311535</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8019685764969,41.31158178993584,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>South Fork E</name>
+			<LookAt>
+				<longitude>-122.8009071702819</longitude>
+				<latitude>41.30230229683843</latitude>
+				<altitude>0</altitude>
+				<heading>0.02455432878156289</heading>
+				<tilt>28.73825120351201</tilt>
+				<range>282.5903369718806</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8015398948958,41.30225071618692,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>South Fork W</name>
+			<LookAt>
+				<longitude>-122.8163631234322</longitude>
+				<latitude>41.29489148928199</latitude>
+				<altitude>0</altitude>
+				<heading>0.01413080990763802</heading>
+				<tilt>30.00109509726923</tilt>
+				<range>243.8185833974104</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8165100018263,41.29467819119339,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>East Fork Confluence</name>
+			<LookAt>
+				<longitude>-122.7998899354449</longitude>
+				<latitude>41.31225196350217</latitude>
+				<altitude>0</altitude>
+				<heading>0.0250098686906038</heading>
+				<tilt>23.47123803510888</tilt>
+				<range>362.2032364893248</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8014732315728,41.31219481794602,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>East Fork E</name>
+			<LookAt>
+				<longitude>-122.7870470025212</longitude>
+				<latitude>41.30522868437227</latitude>
+				<altitude>0</altitude>
+				<heading>0.03419326868076825</heading>
+				<tilt>29.17135181950806</tilt>
+				<range>477.3334931848652</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.7872891477621,41.30463786132604,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott Reach 14</name>
+			<LookAt>
+				<longitude>-122.8435251044495</longitude>
+				<latitude>41.48171128270059</latitude>
+				<altitude>0</altitude>
+				<heading>0.008500067744692716</heading>
+				<tilt>11.37273281525206</tilt>
+				<range>15420.01302444926</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_ltblu-blank0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8571149378873,41.44785768322435,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott Reach 13</name>
+			<LookAt>
+				<longitude>-122.8435251044495</longitude>
+				<latitude>41.48171128270059</latitude>
+				<altitude>0</altitude>
+				<heading>0.008500067744692716</heading>
+				<tilt>11.37273281525206</tilt>
+				<range>15420.01302444926</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_ltblu-blank0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8515928676292,41.46791495671989,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott Reach 12</name>
+			<LookAt>
+				<longitude>-122.8435251044495</longitude>
+				<latitude>41.48171128270059</latitude>
+				<altitude>0</altitude>
+				<heading>0.008500067744692716</heading>
+				<tilt>11.37273281525206</tilt>
+				<range>15420.01302444926</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_ltblu-blank0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8471367188258,41.48860538156502,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott Reach 15</name>
+			<LookAt>
+				<longitude>-122.8141103501654</longitude>
+				<latitude>41.40551474129118</latitude>
+				<altitude>0</altitude>
+				<heading>0.02829706332882723</heading>
+				<tilt>12.61462366807635</tilt>
+				<range>17336.68586957792</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_ltblu-blank0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.843725658383,41.4085557926548,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott Reach 16 N</name>
+			<LookAt>
+				<longitude>-122.7929689456973</longitude>
+				<latitude>41.37203967527564</latitude>
+				<altitude>0</altitude>
+				<heading>0.04225213825232497</heading>
+				<tilt>12.61462366807629</tilt>
+				<range>17336.68586957843</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_ltblu-blank0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.828796494459,41.38789427350105,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott Reach 16 S (Tailings)</name>
+			<LookAt>
+				<longitude>-122.8202193390503</longitude>
+				<latitude>41.36038872431568</latitude>
+				<altitude>0</altitude>
+				<heading>0.03333644530435157</heading>
+				<tilt>30.00393375457929</tilt>
+				<range>875.7990107484172</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_ltblu-blank0</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.823815073822,41.36075387775217,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott River S of Ft Jones</name>
+			<LookAt>
+				<longitude>-122.8429232612727</longitude>
+				<latitude>41.58537011556869</latitude>
+				<altitude>0</altitude>
+				<heading>-0.007940729478992081</heading>
+				<tilt>14.70675492769942</tilt>
+				<range>5416.567928602636</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.843807284117,41.58731311770114,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott River S of Hamlin Gulch</name>
+			<LookAt>
+				<longitude>-122.8366688186539</longitude>
+				<latitude>41.54503636997084</latitude>
+				<altitude>0</altitude>
+				<heading>-0.004382704008537869</heading>
+				<tilt>17.76540676028761</tilt>
+				<range>5546.892066637768</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8421025856219,41.54035874663884,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Scott River W of Moffett</name>
+			<LookAt>
+				<longitude>-122.9041525184397</longitude>
+				<latitude>41.62225193302565</latitude>
+				<altitude>0</altitude>
+				<heading>-0.0466892146080362</heading>
+				<tilt>18.87104753693407</tilt>
+				<range>1812.473435016288</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9038187026393,41.62303782602443,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel Reference point 1</name>
+			<LookAt>
+				<gx:TimeStamp><when>2014-07-12</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.8223414583292</longitude>
+				<latitude>41.35698278886476</latitude>
+				<altitude>0</altitude>
+				<heading>6.932395713549013</heading>
+				<tilt>7.259602595851223</tilt>
+				<range>2688.648128254762</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8228841203102,41.36607242446651,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel reference point 2</name>
+			<LookAt>
+				<gx:TimeStamp><when>2014-07-12</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.825643831924</longitude>
+				<latitude>41.38441851188261</latitude>
+				<altitude>0</altitude>
+				<heading>6.931136828069995</heading>
+				<tilt>7.259621261065762</tilt>
+				<range>1899.211228748198</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8283465011885,41.38042988521236,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel Reference point 3</name>
+			<LookAt>
+				<gx:TimeStamp><when>2014-07-12</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.8396620507578</longitude>
+				<latitude>41.40251466343823</latitude>
+				<altitude>0</altitude>
+				<heading>-16.83156644744231</heading>
+				<tilt>8.483576000155871</tilt>
+				<range>3543.839269693513</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8382656960085,41.40743107230651,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel reference point 4</name>
+			<LookAt>
+				<gx:TimeStamp><when>2014-07-12</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.8564671527506</longitude>
+				<latitude>41.44592546115092</latitude>
+				<altitude>0</altitude>
+				<heading>-16.84126446130837</heading>
+				<tilt>6.852475266546112</tilt>
+				<range>1062.460243036744</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8563528367101,41.44679111169043,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel Reference Point 5</name>
+			<LookAt>
+				<gx:TimeStamp><when>2014-07-12</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.849611241066</longitude>
+				<latitude>41.46500407722265</latitude>
+				<altitude>0</altitude>
+				<heading>8.42205955352355</heading>
+				<tilt>0.6997865716242178</tilt>
+				<range>636.537607235924</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8490574003287,41.46432842030845,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel reference point 6</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.8456583569428</longitude>
+				<latitude>41.49120876969121</latitude>
+				<altitude>0</altitude>
+				<heading>10.19705446118987</heading>
+				<tilt>6.631983578490308</tilt>
+				<range>1147.001400078254</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8469080717176,41.49225778902027,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel Reference Point 7</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.845895787921</longitude>
+				<latitude>41.54120036676964</latitude>
+				<altitude>0</altitude>
+				<heading>10.19288483715437</heading>
+				<tilt>3.342253604902865</tilt>
+				<range>1696.795404807579</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.845924209292,41.53837449734552,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name> Sentinel reference point 8</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.8441757384155</longitude>
+				<latitude>41.58689771296181</latitude>
+				<altitude>0</altitude>
+				<heading>10.18705121110366</heading>
+				<tilt>3.345703611029174</tilt>
+				<range>420.0244362189895</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8446156549236,41.5891922053411,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel reference point 9</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.940160520839</longitude>
+				<latitude>41.62680813545205</latitude>
+				<altitude>0</altitude>
+				<heading>10.14796356138197</heading>
+				<tilt>2.695999565134286</tilt>
+				<range>651.5024772136304</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9424126519823,41.62696925686062,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel reference point 10</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.9709859651626</longitude>
+				<latitude>41.63012196742256</latitude>
+				<altitude>0</altitude>
+				<heading>9.898570405573064</heading>
+				<tilt>3.463517348638612</tilt>
+				<range>3939.710362297782</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9625171628698,41.63325562300951,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel refernece point 11</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.9700850098289</longitude>
+				<latitude>41.5942133728441</latitude>
+				<altitude>0</altitude>
+				<heading>10.14834728093921</heading>
+				<tilt>9.650842997230853</tilt>
+				<range>666.4432953303476</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9697504850425,41.5953911723251,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel reference point 12</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.9110369722177</longitude>
+				<latitude>41.54210405124001</latitude>
+				<altitude>0</altitude>
+				<heading>8.081878460939182</heading>
+				<tilt>0.7968489504911292</tilt>
+				<range>1944.129064576168</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9111865163311,41.54049710281551,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel Reference Point 13</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.903944122835</longitude>
+				<latitude>41.5025189246986</latitude>
+				<altitude>0</altitude>
+				<heading>8.081960680277675</heading>
+				<tilt>0.5245249827193276</tilt>
+				<range>426.7577218939891</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.9038207459922,41.50313741409138,0</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Sentinel reference point 14</name>
+			<LookAt>
+				<gx:TimeStamp><when>2016-08-24</when>
+</gx:TimeStamp>
+				<gx:ViewerOptions>
+					<gx:option name="historicalimagery"></gx:option>
+					<gx:option enabled="0" name="sunlight"></gx:option>
+					<gx:option enabled="0" name="streetview"></gx:option>
+				</gx:ViewerOptions>
+				<longitude>-122.8697613366631</longitude>
+				<latitude>41.46310698494986</latitude>
+				<altitude>0</altitude>
+				<heading>8.104174743211992</heading>
+				<tilt>0.04097373050750376</tilt>
+				<range>2191.565343494324</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#m_ylw-pushpin1</styleUrl>
+			<Point>
+				<gx:drawOrder>1</gx:drawOrder>
+				<coordinates>-122.8695745067714,41.46220972506608,0</coordinates>
+			</Point>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>

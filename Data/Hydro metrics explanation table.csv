@@ -1,0 +1,15 @@
+Abbreviation,Full Name,Description
+BY,Brood Year,September-December window in which spawning occurs (by the parents of the designated cohort).
+RY,Rearing Year,January-December window during which a cohort hatches and rears in freshwater.
+SY,Smolt Year,January-July window during which a cohort grows in freshwater and outmigrates to the ocean.
+Recon. Day,River Reconnection Day,"The day, usually in the fall, on which the Scott River gains a certain degree of connectivity. Defined as the first day on which FJ Gauge flow rises above a designated threshold (e.g., 10 or 100 cfs) (units of days after Aug. 31)."
+Discon. Day,River Disconnection Day,"The day, usually in the spring or early summer, on which the Scott River loses a certain degree of connectivity. Defined as the first day on which FJ Gauge flow drops below a designated threshold (e.g., 10 or 100 cfs) (units of days after Aug. 31)."
+Min. Flow,Minimum Flow,Minimum average daily flowrate recorded in the relevant period.
+CFLP,Coho Freshwater Life Period,"The (conservatively wide) 21-month window, September through July, in which members of a cohort or the cohort's spawning parents are present in the freshwater system."
+Tot. Flow,Total Flow,Sum of all daily flow volumes recorded in the relevant period.
+FA_Mag,Fall Pulse Magnitude,Peak magnitude of fall pulse event (maximum daily peak flow during event) (cfs)
+Wet_Tim,Wet Season Onset Timing,Start date of wet-season in water year days
+Wet_BFL_Dur,Wet Season Baseflow Duration,Wet-season baseflow duration (# of days from start of wet-season to start of spring season)
+SP_ROC,Spring Recession Rate of Change,Spring flow recession rate (median daily rate of change over decreasing periods during the recession)
+DS_Mag_50,Dry Season Flow Magnitude (50th percentile),50th percentile of daily flow within dry season
+DS_Mag_90,Dry Season Flow Magnitude (90th percentile),90th percentile of daily flow within dry season

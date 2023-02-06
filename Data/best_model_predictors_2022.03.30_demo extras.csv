@@ -1,0 +1,11 @@
+model_id,x1,x2,x3,x4
+lm1a,BY_recon_10,,,
+lm1b,BY_recon_100,,,
+lm1c,RY_Wet_Tim,,,
+lm1d,RY_Wet_BFL_Dur,,,
+lm2a,BY_recon_10,BY_recon_100,,
+lm2b,BY_recon_10,RY_Wet_Tim,,
+lm2c,BY_recon_10,RY_Wet_BFL_Dur,,
+lm2d,BY_recon_10,SY_SP_ROC,,
+lm2e,BY_recon_10,SY_Wet_Tim,,
+lm2f,BY_recon_10,RY_discon_10,,

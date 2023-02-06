@@ -1,0 +1,57 @@
+Landuse Code,Landuse Description,Category
+D1,Apples,Deciduous
+D10,Deciduous-Misc.,Deciduous
+F**,Field Crops,Field
+F6,Corn (field),Field
+F8,Sudan,Field
+G**,Grain and Hay Crops,Grain
+G2,Wheat,Grain
+G6,Grain - Misc.,Grain
+G7,Grain and Hay - Mixed,Grain
+I1,Idle  Lands-being prepared for crop production,Idle
+I2,Idle Lands-cropped w/last 3 yrs (not cultivated),Idle
+NB1,Native Barren-Dry Stream Channels,Native Barren
+NB2,Native Barren-Mine Tailing,Native Barren
+NR1,"Native Riparian-Marsh Lands, Tules and Sedges",Native Barren
+NR2,Native Riparian-Natural High Water Table Meadow,Native Barren
+NR3,"Native Riparian-Trees, Shrubs (larger stream-side)",Native Barren
+NV**,Native Veg,Native Vegetation
+NW1,Native Water-River or Stream,Native Water
+NW2,Native Water-Channel / Delivering,Native Water
+NW4,"Native Water-Freshwater Lake, Reservoir or Pond",Native Water
+NW6,Native Water-Wastewater pond,Native Water
+P**,Pasture,Pasture
+P1,Alfalfa,Alfalfa
+P3,Pasture-Mixed,Pasture
+P4,Pasture-Native Improved,Pasture
+P6,Pasture-Miscellaneous Grasses,Pasture
+R2,Rice R2 (Wild),Rice
+S1,Semi-Ag-Farmsteads (w/residence),Semi-Ag
+S2,Livestock Feedlots,Semi-Ag
+S3,Dairies,Semi-Ag
+S5,Semi-Ag-Farmsteads (wo/residence),Semi-Ag
+S6,Semi-Ag-Misc.,Semi-Ag
+T16,"Flowers, Nursery, & X-Mas Tree",Truck
+T18,Truck - Misc.,Truck
+T19,Bushberries,Truck
+UC**,Urban Comm,Urban
+UC1,"Urban Comm-Offices, Retailers, etc.",Urban
+UC3,Urban Comm-Motels,Urban
+UC4,Urban Comm-Recreation Vehicle Parking and Campers,Urban
+UC5,"Urban Comm-Institutions (Hospitals, Prisons, etc.)",Urban
+UC6,Urban Comm-Schools,Urban
+UC7,"Urban Comm-Municipal Auditoriums, Theaters, etc.",Urban
+UI13,Urban Industr-Sewage Treatment Plant,Urban
+UI14,Urban Industr-Waste Accumulation Sites,Urban
+UI2,Urban Industr-Extractive Industries,Urban
+UI3,Urban Industr-Storage and Distribution,Urban
+UI7,Urban Industr-Oil Refineries,Urban
+UL1,Urban Landscape-Lawn Area-Irrigated,Urban
+UL4,Urban Landscape-Cemeteries-Irrigated,Urban
+UL5,Urban Landscape-Cemeteries-Not Irrigated,Urban
+UR**,Urban Res- Single and Multiple,Urban
+UV**,Urban Vacant,Urban
+UV1,Urban Vacant-Unpaved Area,Urban
+UV4,Urban Vacant-Paved Areas,Urban
+UV6,Urban Vacant-Airport Runways,Urban
+V2,Wine Grapes,Vineyard

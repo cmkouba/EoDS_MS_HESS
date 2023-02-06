@@ -1,0 +1,60 @@
+Scott River - Flow Tracking ,,,,,,,,
+,,,,,,,,
+Coordinates (UTM),River/Tributary name,Data source,Estimated tansition date: Dry to Wet,,Estimated transition date: Wet to Dry,,Comments,Certainty
+,,,Year,Day - Month,Year,Day - Month,,
+10 T 514809.36 m E 4578758.26 m N,Scott Reach 16 S (Tailings),Sentinel II,2019,Dec 9th,2019,Jul 27th,,
+10 T 514809.36 m E 4578758.26 m N,Scott Reach 16 S (Tailings),Sentinel II,2018,Nov 24th,2018,Jun 12th,,
+10 T 514809.36 m E 4578758.26 m N,Scott Reach 16 S (Tailings),Sentinel II,2017,Nov 14th,2017,Jul 22nd,,
+10 T 514809.36 m E 4578758.26 m N,Scott Reach 16 S (Tailings),Sentinel II,2016,Nov 4th,2016,Jul 27th,,
+10 T 514272.85 m E 4581868.6 m N,Scott Reach 16 N,Sentinel II,2019,?,2019,?,Wet year-round,
+10 T 514272.85 m E 4581868.6 m N,Scott Reach 16 N,Sentinel II,2018,Sept 20th,2018,Aug 26th,,
+10 T 514272.85 m E 4581868.6 m N,Scott Reach 16 N,Sentinel II,2017,?,2017,?,Wet year-round,
+10 T 514272.85 m E 4581868.6 m N,Scott Reach 16 N,Sentinel II,2016,?,2016,?,Wet year-round,
+10 T 513033.53 m E 4584150.79 m N,Scott Reach 15,Sentinel II,2019,?,2019,?,Wet year-round,Uncertain
+10 T 513033.53 m E 4584150.79 m N,Scott Reach 15,Sentinel II,2018,?,2018,?,Wet year-round,Uncertain
+10 T 513033.53 m E 4584150.79 m N,Scott Reach 15,Sentinel II,2017,?,2017,?,Wet year-round,
+10 T 513033.53 m E 4584150.79 m N,Scott Reach 15,Sentinel II,2016,?,2016,?,Wet year-round,
+10 T 511927.14 m E 4588513.29 m N,Scott Reach 14,Sentinel II,2019,?,2019,?,Wet year-round,Uncertain
+10 T 511927.14 m E 4588513.29 m N,Scott Reach 14,Sentinel II,2018,?,2018,?,Wet year-round,Uncertain
+10 T 511927.14 m E 4588513.29 m N,Scott Reach 14,Sentinel II,2017,?,2017,?,Wet year-round,
+10 T 511927.14 m E 4588513.29 m N,Scott Reach 14,Sentinel II,2016,?,2016,?,Wet year-round,
+10 T 512392.88 m E 4590771.81 m N,Scott Reach 13,Sentinel II,2019,?,2019,?,Wet year-round,
+10 T 512392.88 m E 4590771.81 m N,Scott Reach 13,Sentinel II,2018,Sept 25th,2018,Aug 26th,,
+10 T 512392.88 m E 4590771.81 m N,Scott Reach 13,Sentinel II,2017,?,2017,?,Wet year-round,
+10 T 512392.88 m E 4590771.81 m N,Scott Reach 13,Sentinel II,2016,?,2016,?,Wet year-round,
+10 T 512750.11 m E 4593023.98 m N,Scott Reach 12,Sentinel II,2019,?,2019,?,Wet year-round,
+10 T 512750.11 m E 4593023.98 m N,Scott Reach 12,Sentinel II,2018,Oct 10th,2018,Jul 27th,,
+10 T 512750.11 m E 4593023.98 m N,Scott Reach 12,Sentinel II,2017,?,2017,?,Wet year-round,
+10 T 512750.11 m E 4593023.98 m N,Scott Reach 12,Sentinel II,2016,?,2016,?,Wet year-round,
+10 T 513159.71 m E 4598797.08 m N,Scott S of Hamlin Gulch,Sentinel II,2019,?,2019,?,,
+10 T 513159.71 m E 4598797.08 m N,Scott S of Hamlin Gulch,Sentinel II,2018,Sept 5th,2018,Aug 6th,,
+10 T 513159.71 m E 4598797.08 m N,Scott S of Hamlin Gulch,Sentinel II,2017,?,2017,?,Wet year-round,
+10 T 513159.71 m E 4598797.08 m N,Scott S of Hamlin Gulch,Sentinel II,2016,?,2016,?,Dry in Sept,Uncertain
+10 T 513009.19 m E 4603981.17 m N,Scott S of Ft Jones,Sentinel II,2019,?,2019,?,Wet year-round,
+10 T 513009.19 m E 4603981.17 m N,Scott S of Ft Jones,Sentinel II,2018,Oct 15th,2018,Aug 6th,,
+10 T 513009.19 m E 4603981.17 m N,Scott S of Ft Jones,Sentinel II,2017,?,2017,?,Wet year-round,
+10 T 513009.19 m E 4603981.17 m N,Scott S of Ft Jones,Sentinel II,2016,Sept 25th,2016,Sept 5th,,
+10 T 507993.84 m E 467911.63 m N,Scott W of Moffett,Sentinel II,2019,Sept 5th,2019,Aug 26th,,A litte uncertain
+10 T 507993.84 m E 467911.63 m N,Scott W of Moffett,Sentinel II,2018,Oct 20th,2018,Jul 27th,,A litte uncertain
+10 T 507993.84 m E 467911.63 m N,Scott W of Moffett,Sentinel II,2017,?,2017,?,,A litte uncertain
+10 T 507993.84 m E 467911.63 m N,Scott W of Moffett,Sentinel II,2016,Sept 25th,2016,Aug 16th,,A litte uncertain
+10 T 503057.80 m E 4609124.97 m N ,Shackleford Confluence,Sentinel II,2019,?,2019,Jul 22nd,Dry through december,
+10 T 503057.80 m E 4609124.97 m N ,Shackleford Confluence,Sentinel II,2018,Dec 14th,2018,Jun 22nd,,
+10 T 503057.80 m E 4609124.97 m N ,Shackleford Confluence,Sentinel II,2017,Nov 14th,2017,Aug 6th,,
+10 T 503057.80 m E 4609124.97 m N ,Shackleford Confluence,Sentinel II,2016,Nov 4th,2016,NA,Not enough satellite captures for summer months,Uncertain
+10 T 501933.41 m E 4604950.51 m N,Shackleford W,Sentinel II,2019,Dec 24th,2019,Jul 12th,,Uncertain
+10 T 501933.41 m E 4604950.51 m N,Shackleford W,Sentinel II,2018,Dec 14th,2018,Jun 22nd,,
+10 T 501933.41 m E 4604950.51 m N,Shackleford W,Sentinel II,2017,Nov 14th,2017,Aug 11th,,Uncertain
+10 T 501933.41 m E 4604950.51 m N,Shackleford W,Sentinel II,2016,Nov 4th,2016,Jul 7th,,Uncertain
+10 T 508187.91 m E 4599248.88 m N,Kidder West,Sentinel II,2019,?,2019,Jul 2nd,Dry through december,
+10 T 508187.91 m E 4599248.88 m N,Kidder West,Sentinel II,2018,Dec 18th,2018,Jun 7th,,
+10 T 508187.91 m E 4599248.88 m N,Kidder West,Sentinel II,2017,Nov 14th,2017,Jul 17th,,
+10 T 508187.91 m E 4599248.88 m N,Kidder West,Sentinel II,2016,Nov 4th,2016,Jul 7th,,Uncertain
+10 T 507975.26 m E 4594597.92 m N ,Patterson West,Sentinel II,2019,?,2019,Jun 22nd,Dry through december,
+10 T 507975.26 m E 4594597.92 m N ,Patterson West,Sentinel II,2018,NA,2018,Jun 2nd,Not enough satellite captures for winter months,
+10 T 507975.26 m E 4594597.92 m N ,Patterson West,Sentinel II,2017,?,2017,Jul 17th,Dry through december,
+10 T 507975.26 m E 4594597.92 m N ,Patterson West,Sentinel II,2016,Nov 4th,2016,Jul 7th,,Uncertain
+10 T 511174.73 m E 4590423.05 m N,Etna W,Sentinel II,2019,NA,2019,Jun 27th,December is cloudy,
+10 T 511174.73 m E 4590423.05 m N,Etna W,Sentinel II,2018,Nov 24th,2018,Jun 7th,,Uncertain
+10 T 511174.73 m E 4590423.05 m N,Etna W,Sentinel II,2017,Nov 14th,2017,Jul 17th,,
+10 T 511174.73 m E 4590423.05 m N,Etna W,Sentinel II,2016,Nov 4th,2016,Jul 7th,,Uncertain
