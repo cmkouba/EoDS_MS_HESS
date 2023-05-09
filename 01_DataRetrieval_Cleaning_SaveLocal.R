@@ -1447,6 +1447,7 @@ get_noaa_stations = function(cmk_token = "scKXkYaFjbbLtxmSnNYjWKBKXDvOCoeU", #re
 }
 
 get_noaa_data = function(station_list){
+  # More info: https://www.ncei.noaa.gov/products/land-based-station/global-historical-climatology-network-daily
   
   base_url = "https://www.ncei.noaa.gov/access/services/data/v1"
   dataset = "daily-summaries"

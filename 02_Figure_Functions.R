@@ -3178,3 +3178,53 @@ linear_model_forward_selection = function(){
 }
 
 
+predict_fall_vmin_pspill = function(num_days_missing = 7){
+  # load and update data
+  # first: load libraries from top of data retrieval script
+  
+  
+  # From Data Retrieval script:
+  # Update NOAA data and isolate FJRS record for relevant water year, Oct 1-April 30
+  fjrs = get_noaa_data(station_list = "USC00043182")
+  str(fjrs)
+  
+  wy = 2023 # set water year
+  
+  rain_bracket_dates = as.Date(c(paste0(wy-1,"-10-01"), paste0(wy, "-04-30")))
+  # check that those bracket dates aren't in gaps in the record
+  if(sum(fjrs$DATE==rain_bracket_dates[1])==0){ # If this date does not exist in the record
+    # first check starting date
+    last_date_with_data = max(fjrs$DATE[fjrs$DATE<rain_bracket_dates[1]]) # find the next date back with data
+    if(as.numeric(diff(c(last_date_with_data, rain_bracket_dates[1])))<=num_days_missing){ # If it's a week off or less
+      rain_bracket_dates[1]=last_date_with_data # reset the bracket date to be the last date with data
+    }
+    
+    # next, check ending date
+    next_date_with_data = min(fjrs$DATE[fjrs$DATE>rain_bracket_dates[2]]) # find the next date in time with data
+    if(as.numeric(diff(c(next_date_with_data, rain_bracket_dates[2])))<=num_days_missing){ # If it's a week off or less
+      rain_bracket_dates[2]=next_date_with_data # reset the bracket date to be the last date with data
+    }
+  }
+  fjrs_wy = fjrs[fjrs$DATE>=rain_bracket_dates[1] &
+                   fjrs$DATE<=rain_bracket_dates[2],]
+  tail(fjrs_wy)
+  # fjrs_wy
+  # Finally, find cumulative precip in this wet season
+  fjrs_cum_wy = sum(fjrs_wy$PRCP, na.rm=T)
+  
+  # Snow data: if cdec retrieve still isn't working, re-download the new snow records.
+  # save in snow data folder.
+  unique(snow_cdec$Station_code)
+  swj = snow_cdec[snow_cdec$Station_code=="SWJ" ,]
+  swj$Date=as.Date(swj$Date, format = "%d-%b-%Y")
+  
+  swj_max_mm_wy = max(swj$Water_Content_in[year(swj$Date)==wy]) * in_to_mm
+  
+  # Calculate Pspill and Vmin
+  vmin_i = -1.33+.00525*fjrs_cum_wy + .00267*swj_max_mm_wy
+  vmin_i_cfs = vmin_i * Mm3month_30day_to_cfs
+  
+  pspill_i = 123 - 0.111*fjrs_cum_wy - .0274*swj_max_mm_wy
+  pspill_i_in = pspill_i * mm_to_in
+}
+
