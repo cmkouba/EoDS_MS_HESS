@@ -1,117 +1,167 @@
-%% Copernicus Publications Manuscript Preparation Template for LaTeX Submissions
-%% ---------------------------------
-%% This template should be used for copernicus.cls
-%% The class file and some style files are bundled in the Copernicus Latex Package, which can be downloaded from the different journal webpages.
-%% For further assistance please contact Copernicus Publications at: production@copernicus.org
-%% https://publications.copernicus.org/for_authors/manuscript_preparation.html
-
-%% copernicus_rticles_template (flag for rticles template detection - do not remove!)
-
-%% Please use the following documentclass and journal abbreviations for discussion papers and final revised papers.
-
-%% 2-column papers and discussion papers
-\documentclass[hess, manuscript]{copernicus}
-
-
-
-%% Journal abbreviations (please use the same for preprints and final revised papers)
-
-% Advances in Geosciences (adgeo)
-% Advances in Radio Science (ars)
-% Advances in Science and Research (asr)
-% Advances in Statistical Climatology, Meteorology and Oceanography (ascmo)
-% Annales Geophysicae (angeo)
-% Archives Animal Breeding (aab)
-% Atmospheric Chemistry and Physics (acp)
-% Atmospheric Measurement Techniques (amt)
-% Biogeosciences (bg)
-% Climate of the Past (cp)
-% DEUQUA Special Publications (deuquasp)
-% Drinking Water Engineering and Science (dwes)
-% Earth Surface Dynamics (esurf)
-% Earth System Dynamics (esd)
-% Earth System Science Data (essd)
-% E&G Quaternary Science Journal (egqsj)
-% EGUsphere (egusphere) | This is only for EGUsphere preprints submitted without relation to an EGU journal.
-% European Journal of Mineralogy (ejm)
-% Fossil Record (fr)
-% Geochronology (gchron)
-% Geographica Helvetica (gh)
-% Geoscience Communication (gc)
-% Geoscientific Instrumentation, Methods and Data Systems (gi)
-% Geoscientific Model Development (gmd)
-% History of Geo- and Space Sciences (hgss)
-% Hydrology and Earth System Sciences (hess)
-% Journal of Bone and Joint Infection (jbji)
-% Journal of Micropalaeontology (jm)
-% Journal of Sensors and Sensor Systems (jsss)
-% Magnetic Resonance (mr)
-% Mechanical Sciences (ms)
-% Natural Hazards and Earth System Sciences (nhess)
-% Nonlinear Processes in Geophysics (npg)
-% Ocean Science (os)
-% Polarforschung - Journal of the German Society for Polar Research (polf)
-% Primate Biology (pb)
-% Proceedings of the International Association of Hydrological Sciences (piahs)
-% Safety of Nuclear Waste Disposal (sand)
-% Scientific Drilling (sd)
-% SOIL (soil)
-% Solid Earth (se)
-% The Cryosphere (tc)
-% Weather and Climate Dynamics (wcd)
-% Web Ecology (we)
-% Wind Energy Science (wes)
-
-% Pandoc citation processing
-
-% The "Technical instructions for LaTex" by Copernicus require _not_ to insert any additional packages.
-% 
-% tightlist command for lists without linebreak
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
 
+\author{}
+\date{\vspace{-2.5em}}
 
-%
 \begin{document}
 
-
-\title{Seasonal prediction of end-of-dry season watershed behavior in a
-highly interconnected alluvial watershed, northern California}
-
-
-\Author[1]{Claire}{Kouba}
-\Author[1]{Thomas}{Harter}
-
-
-\affil[1]{Department of Land, Air and Water Resources, University of
-California, Davis, One Shields Avenue, Davis, CA, United States}
-
-\runningtitle{Seasonal prediction of end-of-dry season watershed
-behavior in a highly interconnected alluvial watershed, northern
-California}
-
-\runningauthor{Kouba and Harter}
-
-
-\correspondence{Claire\ Kouba\ (cmkouba@ucdavis.edu)}
-
-
-
-\received{}
-\pubdiscuss{} %% only important for two-stage journals
-\revised{}
-\accepted{}
-\published{}
-
-%% These dates will be inserted by Copernicus Publications during the typesetting process.
-
-
-\firstpage{1}
-
-\maketitle
-
-
-\begin{abstract}
+\begin{longtable}[]{@{}l@{}}
+\toprule()
+\endhead
+title: Seasonal prediction of end-of-dry season watershed behavior in a
+highly interconnected alluvial watershed, northern California \\
+journal: ``hess'' \\
+author: \\
+\# authors can have multiple affiliations, which can also be used to
+mark deceased coauthors \\
+- given\_name: Claire \\
+surname: Kouba \\
+affiliation: ``1'' \\
+email:
+\href{mailto:cmkouba@ucdavis.edu}{\nolinkurl{cmkouba@ucdavis.edu}} \\
+corresponding: true \\
+- given\_name: Thomas \\
+surname: Harter \\
+affiliation: 1 \\
+email:
+\href{mailto:thharter@ucdavis.edu}{\nolinkurl{thharter@ucdavis.edu}} \\
+\# If you have more than one corresponding author, add them manually
+using the following structure (note the commas): \\
+\# Two authors: Daniel Nüst
+(\href{mailto:daniel.nuest@uni-muenster.de}{\nolinkurl{daniel.nuest@uni-muenster.de}})
+and Josiah Carberry
+(\href{mailto:j.carberry@orcid.org}{\nolinkurl{j.carberry@orcid.org}}) \\
+\# Three authors or more: Daniel Nüst
+(\href{mailto:daniel.nuest@uni-muenster.de}{\nolinkurl{daniel.nuest@uni-muenster.de}}),
+Josiah Carberry
+(\href{mailto:j.carberry@orcid.org}{\nolinkurl{j.carberry@orcid.org}}),
+and Markus Konkol
+(\href{mailto:m.konkol@wwu.de}{\nolinkurl{m.konkol@wwu.de}}) \\
+\# If the following line is uncommented, the ``corresponding: true''
+above are ignored \\
+\#correspongdingauthors: Daniel Nüst
+(\href{mailto:daniel.nuest@uni-muenster.de}{\nolinkurl{daniel.nuest@uni-muenster.de}})
+and Josiah Carberry
+(\href{mailto:j.carberry@orcid.org}{\nolinkurl{j.carberry@orcid.org}}) \\
+\# If authors contributed equally, please mark the respective author
+names with an asterisk '*' and add a further affiliation: `These authors
+contributed equally to this work.'``, see template. \\
+affiliation: \\
+- code: 1 \\
+address: Department of Land, Air and Water Resources, University of
+California, Davis, One Shields Avenue, Davis, CA, United States \\
+abstract: \textbar{} \\
 In undammed watersheds in Mediterranean climates, the timing and
 abruptness of the transition from the dry season to the wet season have
 major implications for aquatic ecosystems. Of particular concern for
@@ -120,103 +170,171 @@ provide sufficient flows at the right time to allow passage for spawning
 anadromous fish, which is determined by dry season baseflow rates and
 the timing of the onset of the rainy season. In (semi-) ephemeral
 watershed systems, the dry season baseflow and rainy season onset timing
-also dictate the timing of full reconnection of the stream system. In
-this study, we propose methods to predict, approximately five months in
-advance, two key hydrometeorologic metrics in the undammed rural Scott
-River watershed in northern California. Both metrics are intended to
-quantify the transition from the dry to the wet season, to characterize
-the severity of a dry year and support seasonal adaptive management. The
-first metric is the minimum 30-day dry season baseflow volume, which
-occurs at the end of the dry season (September-October). The second
-metric is the cumulative precipitation, starting Sept.~1st, necessary to
-bring the watershed to a ``full'' or ``spilling'' condition
+also dictate the timing of full reconnection of the stream system. \\
+In this study, we propose methods to predict, approximately five months
+in advance, two key hydrometeorologic metrics in the undammed rural
+Scott River watershed in northern California. Both metrics are intended
+to quantify the transition from the dry to the wet season, to
+characterize the severity of a dry year and support seasonal adaptive
+management. The first metric is the minimum 30-day dry season baseflow
+volume, which occurs at the end of the dry season (September-October).
+The second metric is the cumulative precipitation, starting Sept.~1st,
+necessary to bring the watershed to a ``full'' or ``spilling'' condition
 (i.e.~initiate the onset of wet season storm- or baseflows) after the
 end of the dry season. As potential predictors of these two values, we
 assess maximum snowpack, cumulative precipitation, the timing of the
 snowpack and precipitation, spring groundwater levels, spring river
-flows, reference ET, and a subset of these metrics from the previous
-water year. We find that, though many of these predictors are correlated
-with the two metrics of interest, of the predictors considered here, the
-best prediction for both metrics is a linear combination of the maximum
+flows, evapotranspiration of a reference crop, and a subset of these
+metrics from the previous water year. \\
+We find that, though many of these predictors are correlated with the
+two metrics of interest, of the predictors considered here, the best
+prediction for both metrics is a linear combination of the maximum
 snowpack water content and total October-April precipitation.
 \textbf{These two linear models could reproduce historic values of
-\(V_{min,~30~days}\) and \(P_{spill}\) with an average model error
-(RMSE) of 1.4 Mm\textsuperscript{3} / 30 days (19.4 cfs) and 20.7 mm
-(0.8 inches), respectively.-REVISE after new analysis } Although these
-predictive indices could be used by governance entities to support local
-water management, careful consideration of baseline conditions used as a
-basis for prediction is necessary.
-\end{abstract}
+\(V_{min}\) and \(P_{spill}\) with an average model error (RMSE) of 1.4
+Mm\textsuperscript{3} / 30 days (19.4 cfs) and 20.7 mm (0.8 inches),
+respectively.-REVISE after new analysis } Although these predictive
+indices could be used by governance entities to support local water
+management, careful consideration of baseline conditions used as a basis
+for prediction is necessary. \\
+bibliography: library.bib \\
+running: \\
+title: Seasonal prediction of end-of-dry season watershed behavior in a
+highly interconnected alluvial watershed, northern California \\
+author: Kouba and Harter \\
+competinginterests: \textbar{} \\
+The authors declare no competing interests. \\
+\# See
+\url{https://publications.copernicus.org/for_authors/licence_and_copyright.html},
+normally used for transferring the copyright, if needed. \\
+\# Note: additional copyright statements for affiliated software or data
+need to be placed in the data availability section. \\
+copyrightstatement: \textbar{} \\
+The authors retain copyright for this publication. \\
+\#\#\# Note: unless stated otherwise, software and data affiliated with
+the manuscript are assumed to be published under the same licence as the
+article (currently Creative Commons 4.0) \\
+availability: \\
+\# use this to add a statement when having only software code
+available \\
+\# use this to add a statement when having only data sets available \\
+\#code: \textbar{} \\
+\#data: \textbar{} \\
+codedata: \textbar{} \\
+Analyses and figures in this manuscript were drafted in RMarkdown. The
+RMarkdown scripts are available on the corresponding author's GitHub
+page. All data used in this manuscript are publicly available on local,
+state or federal data portals. \\
+\#sample: \textbar{} \\
+\#use this section when having geoscientific samples available \\
+\#videosupplement: \textbar{} \\
+\#use this section when having video supplements available \\
+\# authorcontribution: \textbar{} \\
+\# disclaimer: \textbar{} \\
+acknowledgements: \textbar{} \\
+This manuscript emerged from dissertation work funded by Siskiyou County
+SGMA planning grants, with funding from California water bonds. \\
+\# appendix: \textbar{} \\
+\# \\
+\# \\
+\# If you sorted all figures and tables into the sections of the text,
+please also sort the appendix figures and appendix tables into the
+respective appendix sections. \\
+\# They will be correctly named automatically. \\
+\# \\
+\# If you put all figures after the reference list, please insert
+appendix tables and figures after the normal tables and figures. \\
+\# \\
+\# \texttt{\textbackslash{}appendixfigures} needs to be added in front
+of appendix figures \\
+\# \texttt{\textbackslash{}appendixtables} needs to be added in front of
+appendix tables \\
+\# \\
+\# Please add \texttt{\textbackslash{}clearpage} between each table
+and/or figure. Further guidelines on figures and tables can be found
+below. \\
+\# Regarding figures and tables in appendices, the following two options
+are possible depending on your general handling of figures and tables in
+the manuscript environment: \\
+\# To rename them correctly to A1, A2, etc., please add the following
+commands in front of them: \\
+output: \\
+rticles::copernicus\_article: \\
+highlight: NULL \\
+keep\_tex: true \\
+bookdown::pdf\_book: \\
+base\_format: rticles::copernicus\_article \# for using bookdown
+features like @ref() \\
+\bottomrule()
+\end{longtable}
 
-
-\copyrightstatement{The authors retain copyright for this publication.}
-
-
-\section{Introduction}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
 In regions that experience periodic drought, such as the western United
 States, indices summarizing hydroclimate or surface water supply
 conditions are often critical decision-support tools for water managers
-\citep[e.g.,][]{Garen1993}. An index can be forward-looking, such as
-those that forecast near-term seasonal water supplies
-\citep[e.g.,][]{Null2013, Verley2020}, or backward-looking, such as ones
-that evaluate drought severity
-\citep[e.g.,][]{Palmer1965, Guttman1998a, McKee1993, Wilhite1985, Wilhite2000}.
-In California, forward-looking seasonal indices are used extensively by
-water agencies to inform adaptive management decisions. The principal
-examples are the Sacramento Valley Index (SVI) and San Joaquin Index
-(SJI), which are seasonal forecasts used to determine water allocations
-through the State Water Project
-\citetext{\citealp{Null2013}; \citeyear[DWR][]{DWR2022}}. The state has
-more recently published a retroactive categorical water year type (WYT)
-dataset for sub-county level regions throughout California, based on a
-weighted combination of the cumulative precipitation of the two
-preceding water years (effectively, a partial one-year-holdover
-provision), and assigning categorical types using percentiles within a
-30-year ranking window \citeyearpar[DWR][]{DWR2021a}.
+{[}e.g., @Garen1993{]}. An index can be forward-looking, such as those
+that forecast near-term seasonal water supplies {[}e.g., @Null2013;
+@Verley2020{]}, or backward-looking, such as ones that evaluate drought
+severity {[}e.g., @Palmer1965; @Guttman1998a; @McKee1993; @Wilhite1985;
+@Wilhite2000{]}. In California, forward-looking seasonal indices are
+used extensively by water agencies to inform adaptive management
+decisions. The principal examples are the Sacramento Valley Index (SVI)
+and San Joaquin Index (SJI), which are seasonal forecasts used to
+determine water allocations through the State Water Project
+{[}@Null2013; DWR -@DWR2022{]}. The state has more recently published a
+retroactive categorical water year type (WYT) dataset for sub-county
+level regions throughout California, based on a weighted combination of
+the cumulative precipitation of the two preceding water years
+(effectively, a partial one-year-holdover provision), and assigning
+categorical types using percentiles within a 30-year ranking window
+{[}DWR -@DWR2021a{]}.
 
 Complementing such summary indices, the functional flows approach is a
 framework for providing a more detailed picture of the hydrologic
 effects of water year type, climate change, human water use, and other
-factors \citep[e.g.,][]{Poff1997, Bunn2002, Poff2010, Wheeler2018}. The
+factors {[}e.g., @Poff1997; @Bunn2002; @Poff2010; @Wheeler2018{]}. The
 flows are ``functional'' because they serve an ecological purpose, such
 as wet season flood flows, needed to disperse cottonwood seeds
-\citep{Mahoney1998} and fall pulse flows, needed to provide passage for
-spawning fall-run anadromous fish \citep{Moyle2002a}. A
+{[}@Mahoney1998{]} and fall pulse flows, needed to provide passage for
+spawning fall-run anadromous fish {[}@Moyle2002a{]}. A
 California-specific functional flows framework has been developed to
 assess the degree of hydrologic alteration between current and
-unimpaired conditions \citep{Yarnell2020, Patterson2020}.
+unimpaired conditions {[}@Yarnell2020; @Patterson2020{]}.
 
 In this study, to test the utility of locally-tailored predictive
 methods for hydrologic indices that incorporate functional flows, we
 focus on a single basin, the Scott River watershed in northern
-California (HUC8 18010208). We review the hydrologic indices and methods
-currently used in decision-making, such as agricultural cropping choices
-or regulatory water use restrictions, and propose two additional
-decision-support metrics, both designed as quantitative forecasts. The
-first is \(V_{min,~30~days}\), the minimum 30-day dry season baseflow
-volume in a given water year, which typically occurs in September or
-October. The second is a prediction of the cumulative rainffall needed
-to wet up the watershed after the dry season such that subsequent
-rainfall results in clear runoff events. This cumulative precipitation
-depth is referred to as \(P_{spill}\). Both of these metrics have
-significance for environmental flows and could support near-term
-(seasonal) adaptive management, similar to the SVI and SJI in
-California's Central Valley. Specifically, the magnitude of the minimum
-baseflow rate sets the spatial extent of the aquatic ecosystem during
-the dry season and influences rearing conditions for oversummering
-juvenile salmonids \citep{Gorman2016}, while \(P_{spill}\) is related to
-the timing of flows necessary for fall-run salmon passage: a greater
-amount of rain needed to generate stormflow is correlated with
+California (which in the USGS National Hydrography Dataset is denoted
+with the 8-digit Hydrologic Unit Code {[}HUC8{]} 18010208). We review
+the hydrologic indices and methods currently used in decision-making,
+such as agricultural cropping choices or regulatory water use
+restrictions, and propose two additional decision-support metrics, both
+designed as quantitative forecasts. The first is \(V_{min}\), the
+minimum 30-day dry season baseflow volume in a given water year, which
+typically occurs in September or October. The second is a prediction of
+the cumulative rainffall needed to wet up the watershed after the dry
+season such that subsequent rainfall results in clear runoff events.
+This cumulative precipitation depth is referred to as \(P_{spill}\).
+Both of these metrics have significance for environmental flows and
+could support near-term (seasonal) adaptive management, similar to the
+SVI and SJI in California's Central Valley. Specifically, the magnitude
+of the minimum baseflow rate sets the spatial extent of the aquatic
+ecosystem during the dry season and influences rearing conditions for
+oversummering juvenile salmonids {[}@Gorman2016{]}, while \(P_{spill}\)
+is related to the timing of flows necessary for fall-run salmon passage:
+a greater amount of rain needed to generate stormflow is correlated with
 \textbf{to do: insert citation for this claim} a prolonged dry season,
 which has delayed salmon access to spawning habitat in recent years
-\citeyearpar[CDFW][]{CDFW2015a}. After defining and developing seasonal
-predictions for \(V_{min,~30~days}\) and \(P_{spill}\), we then evaluate
-trends over time and consider the effects that climate change and
-changing water use patterns may have on the metrics considered in this
-study, and the decisions they support.
+{[}CDFW -@CDFW2015a{]}. After defining and developing seasonal
+predictions for \(V_{min}\) and \(P_{spill}\), we then evaluate trends
+over time and consider the effects that climate change and changing
+water use patterns may have on the metrics considered in this study, and
+the decisions they support.
 
-\section{Methods}
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
 
 In this study we used linear regression modeling to predict watershed
 behavior at the end of the dry season (the response) using data
@@ -228,15 +346,15 @@ snowpack melts, and a low-flow dry season after the snowpack is depleted
 (e.g., \autoref{fig:watershed_4states_illustration}). Water supplies for
 agricultural and domestic use are relatively reliable in the Scott River
 system {[}although some reports of dry wells occur in dry years;
-Siskiyou County -\citet{SiskiyouCounty2021}{]}, and a key management
-challenge is persistent low environmental flows during the dry season
-baseflow period. In dry years, the lowest annual flowrates can overlap
-with the spawning periods for fall-run anadromous fish, potentially
-restricting fish passage and imperiling the long-term viability of the
-Scott River fishery \citeyearpar[Siskiyou County][]{SiskiyouCounty2021}.
-Post-1970s minimum dry season baseflows have been lower than pre-1977,
-and very low minimums (\textless{} 10 cfs or 0.7 Mm\textsuperscript{3} /
-30 days) have been more frequent in the past two decades
+Siskiyou County -@SiskiyouCounty2021{]}, and a key management challenge
+is persistent low environmental flows during the dry season baseflow
+period. In dry years, the lowest annual flowrates can overlap with the
+spawning periods for fall-run anadromous fish, potentially restricting
+fish passage and imperiling the long-term viability of the Scott River
+fishery {[}Siskiyou County -@SiskiyouCounty2021{]}. Post-1970s minimum
+dry season baseflows have been lower than pre-1977, and very low
+minimums (\textless{} 10 cfs or 0.7 Mm\textsuperscript{3} / 30 days)
+have been more frequent in the past two decades
 (\autoref{fig:fall_flows_data_exp}), making the management of these
 flows more urgent.
 
@@ -252,35 +370,36 @@ counted starting on September 1st of the preceding water year. This
 September 1st start date is also used in some graphs of climate and flow
 data (e.g.~\autoref{fig:time_v_fall_rains_v_flow_fig}), to establish and
 visualize baseline dry season conditions. Additionally, all flows in
-this study are observed or simulated at the USGS Fort Jones streamflow
-gauge (ID 11519500), a key monitoring location downstream of nearly all
-water use and cultivated land in the HUC8 watershed
-(\autoref{fig:watershed_fig_ch3}), with an observation record covering
-water years 1942-2021.
+this study are observed or simulated at the U.S. Geological Survey's
+(USGS) Fort Jones streamflow gauge (ID 11519500), a key monitoring
+location downstream of nearly all water use and cultivated land in the
+HUC8 watershed (\autoref{fig:watershed_fig_ch3}), with an observation
+record covering water years 1942-2021.
 
+\hypertarget{scott-river-watershed-precipitation-runoff-behavior-and-q_spill}{%
 \subsection{\texorpdfstring{Scott River watershed precipitation-runoff
 behavior and
-\(Q_{spill}\)}{Scott River watershed precipitation-runoff behavior and Q\_\{spill\}}}
+\(Q_{spill}\)}{Scott River watershed precipitation-runoff behavior and Q\_\{spill\}}}\label{scott-river-watershed-precipitation-runoff-behavior-and-q_spill}}
 
 To establish the context and meaning of the two proposed predictive
-indices \(V_{min,~30~days}\) and \(P_{spill}\), a brief description of
-the behavior of the watershed is necessary. In an undammed catchment,
-the runoff response to one (or a series of) precipitation event(s) is
+indices \(V_{min}\) and \(P_{spill}\), a brief description of the
+behavior of the watershed is necessary. In an undammed catchment, the
+runoff response to one (or a series of) precipitation event(s) is
 dependent on multiple factors, including antecedent soil moisture
 conditions, the intensity and magnitude of the precipitation, and the
-volume of water in aquifer storage \citep{Tarboton2003}. At a hillslope
+volume of water in aquifer storage {[}@Tarboton2003{]}. At a hillslope
 scale, in areas where soil directly overlays (relatively) impermeable
 bedrock and aquifer storage is not appreciably present, a threshold
 runoff response to individual storm events has been observed: after a
 certain quantity of rainfall, subsurface flow increases dramatically
-\citep{Tromp-VanMeerveld2006}. The proposed mechanism is the filling and
+{[}@Tromp-VanMeerveld2006{]}. The proposed mechanism is the filling and
 connecting of various distributed storage volumes, such as soil pores
 and microtopographic relief in the bedrock surface
-\citep{Tromp-VanMeerveld2006}. Recently this concept has been extended
-to the watershed or basin scale: relative to the beginning of a storm
+{[}@Tromp-VanMeerveld2006{]}. Recently this concept has been extended to
+the watershed or basin scale: relative to the beginning of a storm
 event, a much higher flow response is possible only when a critical
 number of storage volumes throughout a basin fill to a threshold level
-and become connected \citep{McDonnell2021}.
+and become connected {[}@McDonnell2021{]}.
 
 In this study we expand this concept of a basin-scale, threshold-based
 runoff response to the temporal scale of a season, rather than a single
@@ -296,7 +415,7 @@ functionally as storage that is sufficiently connected to the stream
 system as to influence stream reactions to storm inflows. In this study
 area only soil water and groundwater meet this definition. More
 generally, water in the Scott River watershed is stored in five primary
-reservoirs \citep{Harter2008}:
+reservoirs {[}@Harter2008{]}:
 
 \begin{itemize}
 \tightlist
@@ -316,7 +435,7 @@ Accumulating snowpack is present only in the mountainous areas of the
 upper watershed, while the alluvial aquifer is present only within the
 bounds of the groundwater basin underlying the flat valley floor; water
 stored in fractured rock emerges as springs in the upper watershed
-\citep{Mack1958} (\autoref{fig:watershed_fig_ch3}). In conditions with
+{[}@Mack1958{]} (\autoref{fig:watershed_fig_ch3}). In conditions with
 sufficiently high soil water content or groundwater elevations, soil
 moisture/subflow and groundwater become hydrologically connected to the
 surface water system. Conversely, water in the snowpack and fractured
@@ -349,7 +468,9 @@ High & Yes & (D) Watershed spilling from a high storage level, with rapid respon
 \includegraphics[width=1\linewidth]{f01} \caption{\label{fig:watershed_4states_illustration} Illustration of four categories of Scott River watershed behavior. The hydrograph in the highlighted periods demonstrates the following watershed behavior: A, dry season baseflow -- watershed draining from a low-to-medium storage level; B, moderate flow increase  -- muted hydraulic response to new precipitation; C, winter baseflow and early spring recession -- watershed draining from a high storage level; and D, winter stormflow -- rapid hydraulic response to new precipitation (storm spikes).}\label{fig:watershed_4states_illustration}
 \end{figure}
 
-\subsubsection{Rainfall-runoff response and functional flows}
+\hypertarget{rainfall-runoff-response-and-functional-flows}{%
+\subsubsection{Rainfall-runoff response and functional
+flows}\label{rainfall-runoff-response-and-functional-flows}}
 
 At the end of the dry season, the watershed is in a ``draining from low
 storage'' condition, which is reflected in a slowly declining or flat
@@ -404,15 +525,14 @@ response to minor precipitation at the end of the dry season.
 
 Given the regular behavior observed during the dry season-to-wet season
 transition in the Fort Jones hydrograph, and the physical structure of
-this highly inter-connected basin, we expect to find a flowrate
+this highly inter-connected basin, we expected to find a flowrate
 threshold at the Fort Jones gauge approximately defining the lower limit
-of the ``full'' or ``spilling'' basin condition. This flowrate,
-\(Q_{spill}\), was estimated to be 100 cfs based on visual inspection of
-annual September-March hydrographs
-(\autoref{fig:time_v_fall_rains_v_flow_fig}, panel A). \textbf{Insert
-other analysis of QSpill}
+of the ``full'' or ``spilling'' basin condition (referred to here as
+\(Q_{spill}\); see Results, section 3.1).
 
-\subsubsection{Stream-aquifer interaction}
+\hypertarget{stream-aquifer-interaction}{%
+\subsubsection{Stream-aquifer
+interaction}\label{stream-aquifer-interaction}}
 
 In the groundwater basin portion of the watershed, the alluvial aquifer
 is the largest storage reservoir. Groundwater-surface water interactions
@@ -427,7 +547,7 @@ occurring on the upper alluvial fans of the tributary streams (see
 discussion below).
 
 We can use the Scott Valley Integrated Hydrologic Model {[}SVIHM;
-\citet{Tolley2019}{]} to obtain the estimated volume of water exchanged
+@Tolley2019{]} to obtain the estimated volume of water exchanged
 monthly, in water years 1991-2018, between the surface stream network
 and the underlying aquifer. All positive fluxes and all negative fluxes
 (corresponding to gaining and losing stream reaches) were summed
@@ -437,23 +557,24 @@ These net monthly groundwater-to-stream flux values were then compared
 to simulated monthly flow volumes in the Scott River, measured at the
 Fort Jones gauge (\autoref{fig:flow_to_aq_and_stream}, lower panel).
 
-\subsection{\texorpdfstring{Observed response variables
-(\(V_{min,~30~days}\) and
-\(P_{spill}\))}{Observed response variables (V\_\{min,\textasciitilde30\textasciitilde days\} and P\_\{spill\})}}
+\hypertarget{observed-response-variables-v_min-and-p_spill}{%
+\subsection{\texorpdfstring{Observed response variables (\(V_{min}\) and
+\(P_{spill}\))}{Observed response variables (V\_\{min\} and P\_\{spill\})}}\label{observed-response-variables-v_min-and-p_spill}}
 
 The Scott River is an undammed watershed, in which estimates of annual
 precipitation are an order of magnitude greater than the estimated
 combined volume of water stored in surface water bodies or aquifers and
-water pumped or diverted for agriculture \citep{Tolley2019}. In this
+water pumped or diverted for agriculture {[}@Tolley2019{]}. In this
 study we tested whether fundamental hydrologic characteristics,
 specifically dry-season draining behavior and hydraulic response to
 early wet season cumulative precipitation, can be predicted using
 observable hydroclimate data. The first step is quantification of the
 two response variables.
 
+\hypertarget{dry-season-baseflow-quantities-v_min-and-timing}{%
 \subsubsection{\texorpdfstring{Dry season baseflow quantities
-(\(V_{min,~30~days}\)) and
-timing}{Dry season baseflow quantities (V\_\{min,\textasciitilde30\textasciitilde days\}) and timing}}
+(\(V_{min}\)) and
+timing}{Dry season baseflow quantities (V\_\{min\}) and timing}}\label{dry-season-baseflow-quantities-v_min-and-timing}}
 
 Multiple numerical summaries of dry season baseflows were evaluated for
 suitability as the response variables in this prediction exercise (e.g.,
@@ -472,14 +593,14 @@ and in some years with a late rainy season onset, the October flow
 volume may be lower. To capture these dynamics, for each calendar year,
 we calculated a rolling 30-day sum of daily flow volumes in the period
 July-December to identify the 30-day period with the minimum flow,
-referred to as \(V_{min,~30~days}\) (\autoref{fig:fall_flows_data_exp}).
-For consistency, each annual \(V_{min,~30~days}\) value was assigned to
-the water year ending in September of that calendar year, even if the
-minimum flow window included days in October of the following water
-year.
+referred to as \(V_{min}\) (\autoref{fig:fall_flows_data_exp}). For
+consistency, each annual \(V_{min}\) value was assigned to the water
+year ending in September of that calendar year, even if the minimum flow
+window included days in October of the following water year.
 
+\hypertarget{cumulative-precipitation-p_spill}{%
 \subsubsection{\texorpdfstring{Cumulative precipitation
-\(P_{spill}\)}{Cumulative precipitation P\_\{spill\}}}
+\(P_{spill}\)}{Cumulative precipitation P\_\{spill\}}}\label{cumulative-precipitation-p_spill}}
 
 \(P_{spill}\) was calculated for each water year as the cumulative
 rainfall at the end of a dry season, starting September 1st, recorded on
@@ -491,16 +612,16 @@ precipitation.
 
 A dry season can have negative effects on an aquatic ecosystem if it
 produces extraordinarily low flows or if it lasts for an extraordinarily
-long time \citeyearpar[e.g., delayed salmon habitat access documented in
-CDFW][]{CDFW2015a}. The quantity \(P_{spill}\) is correlated with both a
+long time {[}e.g., delayed salmon habitat access documented in CDFW
+-@CDFW2015a{]}. The quantity \(P_{spill}\) is correlated with both a
 lower minimum flow volume and a later river reconnection
 (\autoref{fig:p_spill_vs_baseflow_and_recon_timing}). If predicted in
 advance, a forecasted value of \(P_{spill}\) would be an indicator of
 the risk of a severe dry season. The timing of the increase in dry
-season baseflows has trended later over the past several decades
-\citeyearpar[see Siskiyou County][]{SiskiyouCounty2021}, and there could
-be demand for seasonal predictions of onset of the coming rainy season.
-However, predicting the timing of the onset of the rainy season or of
+season baseflows has trended later over the past several decades {[}see
+Siskiyou County -@SiskiyouCounty2021{]}, and there could be demand for
+seasonal predictions of onset of the coming rainy season. However,
+predicting the timing of the onset of the rainy season or of
 \(Q_{spill}\) would likely rely on uncertain long-term weather forecasts
 and is beyond the scope of this paper. In other words, due to randomness
 in rainfall timing, the exact dry season baseflow extension caused by a
@@ -510,12 +631,14 @@ higher \(P_{spill}\) is highly variable and, hence, unpredictable.
 \includegraphics[width=1\linewidth]{f02} \caption{\label{fig:p_spill_vs_baseflow_and_recon_timing} The quantity P spill (i.e., the amount of rainfall needed to 'fill' the watershed such that it 'spills', or responds rapidly to new precipitation) is correlated with both a lower minimum dry season baseflow volume (top panel) and a later date of river reconnection (lower panel).}\label{fig:p_spill_vs_baseflow_and_recon_timing}
 \end{figure}
 
-\subsection{Potential predictors and selected formulations}
+\hypertarget{potential-predictors-and-selected-formulations}{%
+\subsection{Potential predictors and selected
+formulations}\label{potential-predictors-and-selected-formulations}}
 
 To evaluate candidate predictors of dry season baseflows, Pearson's
 correlation coefficient, \(R\), was calculated between observed response
-variables \(V_{min,~30~days}\) and \(P_{spill}\), and the following
-categories of observed predictor data (\autoref{fig:corr_matrix}):
+variables \(V_{min}\) and \(P_{spill}\), and the following categories of
+observed predictor data (\autoref{fig:corr_matrix}):
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -541,8 +664,8 @@ categories of observed predictor data (\autoref{fig:corr_matrix}):
   northern ends of the valley, respectively), and referred to as
   ``cal\_fj\_interp''. To generate the composite record, missing values
   in the Callahan and Fort Jones station records were interpolated based
-  on observations at neighboring stations \citep[see method
-  in][]{Foglia2013a}.
+  on observations at neighboring stations {[}see method in
+  @Foglia2013a{]}.
 \item
   The flow volumes observed at the Fort Jones gauge (USGS ID 11519500)
   during the preceding March and April
@@ -577,31 +700,31 @@ monitoring observation are shown in \autoref{fig:corr_matrix}.
 \includegraphics[width=1\linewidth]{f03} \caption{\label{fig:watershed_fig_ch3} Scott River HUC8 watershed and groundwater basin boundaries, stream network, and key monitoring locations: the Fort Jones stream gauge (USGS ID 11519500), weather stations, snow observation locations, and CIMIS station. Selected locations are highlighted with an enlarged symbol and an abbreviated label.}\label{fig:watershed_fig_ch3}
 \end{figure}
 
-\subsubsection{\texorpdfstring{Prediction formulae for
-\(V_{min,~30~days}\) and
-\(P_{spill}\)}{Prediction formulae for V\_\{min,\textasciitilde30\textasciitilde days\} and P\_\{spill\}}}
+\hypertarget{prediction-formulae-for-v_min-and-p_spill}{%
+\subsubsection{\texorpdfstring{Prediction formulae for \(V_{min}\) and
+\(P_{spill}\)}{Prediction formulae for V\_\{min\} and P\_\{spill\}}}\label{prediction-formulae-for-v_min-and-p_spill}}
 
 With a sample size of 80 years of dry season baseflow volumes, a one- or
-two-predictor model is best to avoid overfitting \citep{James2013}. To
-predict \(V_{min,~30~days}\), a set of six one-predictor models were
-generated using the observation location from each category with the
-highest \(R\), and model fit was evaluated using Leave One Out Cross
-Validation {[}LOOCV; \citet{James2013}{]}
-(\autoref{fig:one_predictor_model}). For a dataset with \(n\)
-observations, the LOOCV error of a predictive model is obtained by
-recalculating the model coefficients \(n\) times, each time leaving out
-one observation, and comparing the resulting prediction to the single
-left-out observation. The root mean square of these \(n\) errors is the
-LOOCV error used to evaluate model performance in Results.
+two-predictor model is best to avoid overfitting {[}@James2013{]}. To
+predict \(V_{min}\), a set of six one-predictor models were generated
+using the observation location from each category with the highest
+\(R\), and model fit was evaluated using Leave One Out Cross Validation
+{[}LOOCV; @James2013{]} (\autoref{fig:one_predictor_model}). For a
+dataset with \(n\) observations, the LOOCV error of a predictive model
+is obtained by recalculating the model coefficients \(n\) times, each
+time leaving out one observation, and comparing the resulting prediction
+to the single left-out observation. The root mean square of these \(n\)
+errors is the LOOCV error used to evaluate model performance in Results.
 
-The single predictors with the lowest LOOCV error (excluding Reference
-ET, due to insufficient observation record length) were used to produce
-a set of four two-predictor models (\autoref{fig:two_predictor_model})
-for \(V_{min,~30~days}\), including two that incorporate a partial
-one-year holdover term, to test the validity of the DWR Water Year Type
-index method in this local setting. A similar approach was used to
-assess two-predictor models for \(P_{spill}\), though no one-year
-holdovers were included, and several additional two-predictor
+The single predictors with the lowest LOOCV error (excluding
+evapotranspiration of a reference crop, {[}ET\_\{ref\}{]}, due to
+insufficient observation record length) were used to produce a set of
+four two-predictor models (\autoref{fig:two_predictor_model}) for
+\(V_{min}\), including two that incorporate data from a full calendar
+year prior, to test the validity of the DWR Water Year Type index method
+in this local setting. A similar approach was used to assess
+two-predictor models for \(P_{spill}\), though no predictors from a
+prior year were included, and several additional two-predictor
 combinations were evaluated. In both cases, the best-performing model
 took the following form:
 
@@ -612,7 +735,7 @@ Where:
 \begin{itemize}
 \tightlist
 \item
-  \(Predicted_i\) is the predicted value (either \(V_{min,~30~days}\) or
+  \(Predicted_i\) is the predicted value (either \(V_{min}\) or
   \(P_{spill}\)) in calendar year \(i\) (i.e., at the end of water year
   \(i\)).
 \item
@@ -622,31 +745,72 @@ Where:
   \(Int.,~m_A,~m_B\) are the coefficients of the selected linear model.
 \end{itemize}
 
-\section{Results}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
-\subsection{Scott River precipitation-runoff behavior}
+\hypertarget{scott-river-precipitation-runoff-behavior}{%
+\subsection{Scott River precipitation-runoff
+behavior}\label{scott-river-precipitation-runoff-behavior}}
 
 Visual inspection of 80 years of Fort Jones hydrograph behavior during
-the transition from the dry season to the rainy season indicates that
+the transition from the dry season to the rainy season
+(\autoref{fig:time_v_fall_rains_v_flow_fig}, panel A) indicated that
 there are two distinct domains of flow: one in which flow is relatively
 flat (dry season baseflow), and one in which the flowrate is an order of
-magnitude higher, and it is highly responsive to rain events (wet season
-baseflow and stormflow; \autoref{fig:time_v_fall_rains_v_flow_fig},
-panel A). By visual inspection, and corroborating local observations
-(see discussion below), the approximate boundary between these domains,
-denoted as \(Q_{spill}\), is 100 cfs (approximately 7.5
-Mm\textsuperscript{3} per month). The intermediate hydrologic state,
-``filling from low storage'', is visible in some fall-winter hydrographs
-(\autoref{fig:time_v_fall_rains_v_flow_fig}, panel A), but tends to last
-a relatively short time before the filling rate overwhelms the draining
-rate and produces a responsive ``full'' condition.
+magnitude higher, and it is highly responsive to rain events . The
+intermediate hydrologic state, ``filling from low storage'', is visible
+in some fall-winter hydrographs
+(\autoref{fig:watershed_4states_illustration}), but tends to last a
+relatively short time before the filling rate overwhelms the draining
+rate and produces a responsive ``spilling'' condition.
+
+The approximate boundary between these domains, denoted as
+\(Q_{spill}\), is 120 cfs (294 thousand m\textsuperscript{3}/day or
+approximately 9 Mm\textsuperscript{3} per month).
+
+This value was determined by testing a range of potential \(Q_{spill}\)
+values (10 to 500 cfs {[}24 to 1223 thousand
+m\textsuperscript{3}/day{]}) as a dividing threshold between dry- and
+wet-season flow behavior, and calculating the difference in
+rainfall-runoff response on either side of the dry season-wet season
+divide (\autoref{fig:qspill_figs}, Panel A). In a large number of water
+years, flows in the range of 105-135 cfs (257 to 330 thousand
+m\textsuperscript{3}/day) range are preceded by a dry season
+flow-response regime and followed by a distinct, flashier flow regime
+regime.
+
+The difference between the wet and dry season rainfall-runoff responses
+is approximately the same (113 cfs {[}275 m\textsuperscript{3}/day{]} of
+increased flow per mm of precipitation) for spill thresholds from
+105-135 cfs (256-330 10\textsuperscript{3} m\textsuperscript{3}/day)
+(\autoref{fig:qspill_figs}, Panel A). This indicates that in a large
+number of water years, flows in this range are preceded by one
+flow-response regime and followed by a distincte regime. Though higher
+wet-dry flow response differences were calculated at higher threshold
+values (i.e., up to 500 cfs {[}1,223 10\textsuperscript{3}
+m\textsuperscript{3}/day{]}), we interpret these higher wet-season flow
+responses to reflect the falling limb of a large storm rather than
+distinct watershed behavior.
+
+Additionally, in visual inspection of 78 years of Fort Jones
+hydrographs, the 120 cfs (294 10\textsuperscript{3}
+m\textsuperscript{3}/day ) Q\_\{spill\} threshold generated a plausible
+breakpoint between dry and wet season river behavior in all water years
+(e.g., water year 2018 {[}Figure \textbf{X}, Panel B{]}). Furthermore,
+this value corroborates local observations that an approximate value of
+100 cfs represents ``fully connected'' river conditions (see discussion
+below).
 
 \begin{figure}
 \includegraphics[width=1\linewidth]{f04} \caption{\label{fig:time_v_fall_rains_v_flow_fig} In all three panels, 80 years of data series from September 1 to March 31 are overplotted to illustrate dynamics during the transition from the dry to the wet season: observed Fort Jones hydrographs in Panel A; cumulative rainfall and Fort Jones flow values on fall and winter days in Panel B; and cumulative rainfall over time in Panel C.}\label{fig:time_v_fall_rains_v_flow_fig}
 \end{figure}
 
+\begin{figure}
+\includegraphics[width=1\linewidth]{f05} \caption{\label{fig:qspill_figs} CAPTION}\label{fig:qspill_figs}
+\end{figure}
+
 Monthly volume of stream-aquifer exchange, estimated using SVIHM
-\citep{Tolley2019}, can be used to further investigate baseflow
+{[}@Tolley2019{]}, can be used to further investigate baseflow
 generation and the boundaries between the draining and spilling flow
 domains. In most months, the aquifer discharge and stream leakage
 components of the exchange tend to be of equivalent volume, and net
@@ -674,13 +838,16 @@ elevation of the proximate groundwater
 (\autoref{fig:flow_to_aq_and_stream}, lower panel).
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f05} \caption{\label{fig:flow_to_aq_and_stream} Both stream leakage and aquifer discharge increase in the rainy season, while net flux to the stream remains relatively close to 0 (top panel). Strong seasonal trends are evident in net flux to the stream (lower panel; described further in text).}\label{fig:flow_to_aq_and_stream}
+\includegraphics[width=1\linewidth]{f06} \caption{\label{fig:flow_to_aq_and_stream} Both stream leakage and aquifer discharge increase in the rainy season, while net flux to the stream remains relatively close to 0 (top panel). Strong seasonal trends are evident in net flux to the stream (lower panel; described further in text).}\label{fig:flow_to_aq_and_stream}
 \end{figure}
 
-\subsection{Observed response variables}
+\hypertarget{observed-response-variables}{%
+\subsection{Observed response
+variables}\label{observed-response-variables}}
 
+\hypertarget{dry-season-baseflow-quantity-and-timing-and-scott-river-eras}{%
 \subsubsection{Dry season baseflow quantity and timing, and Scott River
-eras}
+eras}\label{dry-season-baseflow-quantity-and-timing-and-scott-river-eras}}
 
 Minimum 30-day dry season baseflow volumes, denoted here as
 \(V_{min, ~30~days}\), have ranged from 0.3 to 7.5 Mm\textsuperscript{3}
@@ -689,8 +856,8 @@ days in 1984, when an early September storm followed a wet year in 1983
 (\autoref{fig:fall_flows_data_exp}).
 
 Three periods of water use and climate forces have been proposed for the
-Scott River \citep[e.g., by][]{Pyschik2022}: Eras 1, 2, and 3, ranging
-from 1942-1976, 1977-2000, and 2001-2021, respectively. These eras are
+Scott River {[}e.g., by @Pyschik2022{]}: Eras 1, 2, and 3, ranging from
+1942-1976, 1977-2000, and 2001-2021, respectively. These eras are
 separated by the low minimum flow in the year 1977, which corresponds to
 the widespread installation of groundwater pumps, and by the onset of a
 two-decade abnormally dry period in 2000.
@@ -707,10 +874,12 @@ commonly in September, though it has fluctuated over the last eight
 decades (\autoref{fig:fall_flows_data_exp}, middle panel).
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f06} \caption{\label{fig:fall_flows_data_exp} FJ Gauge flow volume, by year, aggregated to monthly time windows in the late summer, fall, and early winter. Eras are noted that correspond to various management and climate forces (e.g., the widespread installation of groundwater wells in the late 1970s, and the onset of a two-decade abnormally dry period in 2000). }\label{fig:fall_flows_data_exp}
+\includegraphics[width=1\linewidth]{f07} \caption{\label{fig:fall_flows_data_exp} FJ Gauge flow volume, by year, aggregated to monthly time windows in the late summer, fall, and early winter. Eras are noted that correspond to various management and climate forces (e.g., the widespread installation of groundwater wells in the late 1970s, and the onset of a two-decade abnormally dry period in 2000). }\label{fig:fall_flows_data_exp}
 \end{figure}
 
-\subsubsection{Cumulative fall precipitation and watershed response}
+\hypertarget{cumulative-fall-precipitation-and-watershed-response}{%
+\subsubsection{Cumulative fall precipitation and watershed
+response}\label{cumulative-fall-precipitation-and-watershed-response}}
 
 In some water years prior to the 1980s, the Fort Jones flowrate exceeded
 \(Q_{spill}\) on September 1st
@@ -721,15 +890,16 @@ the Scott River remained responsive to new precipitation year-round. As
 a result, the range of \(P_{spill}\), the cumulative precipitation
 necessary to reach \(Q_{spill}\), is wide (0 to 178 mm, or 0 to 7
 inches) (\autoref{fig:fall_flows_data_exp}, lower panel). Mean
-\(P_{spill}\) values were 45, 70, and 68 mm in Eras 1, 2 and 3,
+\(P_{spill}\) values were 57, 79, and 76 mm in Eras 1, 2 and 3,
 respectively.
 
+\hypertarget{predictor-comparison-for-v_min.30days-and-p_spill}{%
 \subsection{\texorpdfstring{Predictor comparison for
 \(V_{min.~30~days}\) and
-\(P_{spill}\)}{Predictor comparison for V\_\{min.\textasciitilde30\textasciitilde days\} and P\_\{spill\}}}
+\(P_{spill}\)}{Predictor comparison for V\_\{min.\textasciitilde30\textasciitilde days\} and P\_\{spill\}}}\label{predictor-comparison-for-v_min.30days-and-p_spill}}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f07} \caption{\label{fig:corr_matrix} Correlation coefficient matrix of two response variables, minimum 30-day dry season baseflow volumes (V min) and cumulative precipitation necessary to produce 100 cfs in the Scott River (P spill), with various possible predictor metrics. Gray, purple, and blue squares highlight the inter-category correlation coefficients of snowpack metrics, Oct-April cumulative precipitation, and March-May groundwater elevation measurements. Red and yellow rectangles highlight the predictors with the greatest absolute correlation coefficient values with V min and P spill, respectively.}\label{fig:corr_matrix}
+\includegraphics[width=1\linewidth]{f08} \caption{\label{fig:corr_matrix} Correlation coefficient matrix of two response variables, minimum 30-day dry season baseflow volumes (V min) and cumulative precipitation necessary to produce 100 cfs in the Scott River (P spill), with various possible predictor metrics. Gray, purple, and blue squares highlight the inter-category correlation coefficients of snowpack metrics, Oct-April cumulative precipitation, and March-May groundwater elevation measurements. Red and yellow rectangles highlight the predictors with the greatest absolute correlation coefficient values with V min and P spill, respectively.}\label{fig:corr_matrix}
 \end{figure}
 
 The observations of spring flows, snowpack, valley floor precipitation,
@@ -738,9 +908,8 @@ category and to each other overall, which is unsurprising: wet years are
 associated with higher values in all of these categories. Groundwater
 wells with highest predictive power tend to have long records (e.g.,
 \(n\) of 10 or greater years) and to be close to the Scott River
-(\autoref{fig:gw_vs_fall_flows_corr_map}); these results focus on two
-wells proximate to the river, with long records (well IDs
-415635N1228315W001 and 416295N1228926W001).
+(\autoref{fig:gw_vs_fall_flows_corr_map}); these results incorporate two
+wells proximate to the river, with 43 and 57-year records.
 
 Both response variables are strongly correlated with four categories of
 observations: spring flowrates, maximum snow water content, cumulative
@@ -749,14 +918,14 @@ precipitation recorded at weather stations or or near the valley floor
 in these categories are positively correlated with \(V_{min.~30~days}\)
 and negatively correlated with \(P_{spill}\). The correlation
 coefficient, \(R\), of these response-predictor relationships range from
-0.5 to 0.73 for \(V_{min.~30~days}\) and from -0.45 to -0.76 for
+0.5 to 0.73 for \(V_{min.~30~days}\) and from -0.38 to -0.66 for
 \(P_{spill}\) (\autoref{fig:corr_matrix}).
 
-Conversely, cumulative ET\textsubscript{0}, October-April is negatively
-correlated with \(V_{min.~30~days}\) and positively correlated with
-\(P_{spill}\) (\(R\) of -0.68 and 0.65 for \(V_{min.~30~days}\) and
-\(P_{spill}\), respectively). October-April cumulative
-ET\textsubscript{0} is also negatively correlated with snow,
+In contrast to these four categories, cumulative ET\textsubscript{0},
+October-April is negatively correlated with \(V_{min.~30~days}\) and
+positively correlated with \(P_{spill}\) (\(R\) of -0.68 and 0.48 for
+\(V_{min.~30~days}\) and \(P_{spill}\), respectively). October-April
+cumulative ET\textsubscript{0} is also negatively correlated with snow,
 precipitation, and groundwater level indicators. While ET can remove a
 significant volume of water from the watershed, this correlation
 reflects the fact that years with more rainy or stormy days accumulate
@@ -767,29 +936,33 @@ and the two response variables may be due to a small sample size, as all
 available ET\textsubscript{0} observations or estimates were collected
 in 2002 or later (i.e., in Era 3; \autoref{fig:one_predictor_model}).
 
-Both response variables are also somewhat correlated with snow timing
-(i.e., the Julian day of the maximum measured snowpack in a given year;
-\(R\) of 0.33 to 0.52 and -0.24 to -0.42 for \(V_{min.~30~days}\) and
+Some meteorological timing was evaluated in addition to quantities. Both
+response variables are somewhat correlated with snow timing (i.e., the
+Julian day of the maximum measured snowpack in a given year; \(R\) of
+0.33 to 0.52 and -0.22 to -0.38 for \(V_{min.~30~days}\) and
 \(P_{spill}\), respectively), but no significant correlation is evident
 between the response variables and precipitation timing
 (\autoref{fig:corr_matrix}).
 
-A subset of observations from the previous water year were included in
-the correlation matrix to test for multi-year influence on the response
-variables. These previous-year metrics had a slight positive correlation
-with \(V_{min.~30~days}\) (\(R\) of 0.29 to 0.33), and an even slighter
-negative correlation with \(P_{spill}\) (\(R\) of -0.11 to -0.24),
-providing moderate evidence for an ``echo'' effect of the previous
-year's hydroclimate conditions on a given fall season.
+Finally, a subset of observations from the previous water year were
+included in the correlation matrix to test for multi-year influence on
+the response variables. These previous-year metrics had a slight
+positive correlation with \(V_{min.~30~days}\) (\(R\) of 0.29 to 0.33),
+and an even slighter negative correlation with \(P_{spill}\) (\(R\) of
+-0.01 to -0.1), providing moderate evidence for an ``echo'' effect of
+the previous year's hydroclimate conditions on a given fall season.
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f08} \caption{\label{fig:gw_vs_fall_flows_corr_map} Boundary of the groundwater basin (corresponding approximately to the extent of the flat valley floor in the Scott River watershed) and selected well locations. Colors correspond to the correlation coefficients between April groundwater elevations and September flow volume. The wells included in the predictor comparison are highlighted with a red outer square.}\label{fig:gw_vs_fall_flows_corr_map}
+\includegraphics[width=1\linewidth]{f09} \caption{\label{fig:gw_vs_fall_flows_corr_map} Boundary of the groundwater basin (corresponding approximately to the extent of the flat valley floor in the Scott River watershed) and selected well locations. Colors correspond to the correlation coefficients between April groundwater elevations and September flow volume. The wells included in the predictor comparison are highlighted with a red outer square.}\label{fig:gw_vs_fall_flows_corr_map}
 \end{figure}
 
+\hypertarget{predicted-values-of-v_min.30days}{%
 \subsection{\texorpdfstring{Predicted values of
-\(V_{min.~30~days}\)}{Predicted values of V\_\{min.\textasciitilde30\textasciitilde days\}}}
+\(V_{min.~30~days}\)}{Predicted values of V\_\{min.\textasciitilde30\textasciitilde days\}}}\label{predicted-values-of-v_min.30days}}
 
-\subsubsection{Predictor assessment and prediction formula}
+\hypertarget{predictor-assessment-and-prediction-formula}{%
+\subsubsection{Predictor assessment and prediction
+formula}\label{predictor-assessment-and-prediction-formula}}
 
 In each of six high-\(R\) categories, the monitoring location in each
 category with the highest \(R\) value with observed \(V_{min.~30~days}\)
@@ -852,19 +1025,20 @@ Where:
 \end{itemize}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f09} \caption{\label{fig:one_predictor_model} Single-predictor models of minimum 30-day dry season baseflows in the Scott River.}\label{fig:one_predictor_model}
+\includegraphics[width=1\linewidth]{f10} \caption{\label{fig:one_predictor_model} Single-predictor models of minimum 30-day dry season baseflows in the Scott River.}\label{fig:one_predictor_model}
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f10} \caption{\label{fig:two_predictor_model} Two-predictor models of minimum 30-day dry season baseflows in the Scott River.}\label{fig:two_predictor_model}
+\includegraphics[width=1\linewidth]{f11} \caption{\label{fig:two_predictor_model} Two-predictor models of minimum 30-day dry season baseflows in the Scott River.}\label{fig:two_predictor_model}
 \end{figure}
 
+\hypertarget{predicted-and-observed-v_min.30days-over-time}{%
 \subsubsection{\texorpdfstring{Predicted and observed
 \(V_{min.~30~days}\) over
-time}{Predicted and observed V\_\{min.\textasciitilde30\textasciitilde days\} over time}}
+time}{Predicted and observed V\_\{min.\textasciitilde30\textasciitilde days\} over time}}\label{predicted-and-observed-v_min.30days-over-time}}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f11} \caption{\label{fig:v_min_over_time} Observed and predicted minimum 30-day dry season baseflows both trend downward between the three eras of the period of record (top panel). The predicted-minus-observed difference (residual) over time also reflects this trend, underpredicting minimum flows pre-1977 and overpredicting them post-2000 (middle panel). The predictive model is based on observations from the full record, but three additional models were generated based on only the observations from Eras 1, 2, and 3. Residuals based on Era 1 data are similar to those of the full record; Era 2 residuals tend to overpredict more than the full record; and Era 3 residuals show better performance post-2000 than the full record, but significant underprediction pre-2000.}\label{fig:v_min_over_time}
+\includegraphics[width=1\linewidth]{f12} \caption{\label{fig:v_min_over_time} Observed and predicted minimum 30-day dry season baseflows both trend downward between the three eras of the period of record (top panel). The predicted-minus-observed difference (residual) over time also reflects this trend, underpredicting minimum flows pre-1977 and overpredicting them post-2000 (middle panel). The predictive model is based on observations from the full record, but three additional models were generated based on only the observations from Eras 1, 2, and 3. Residuals based on Era 1 data are similar to those of the full record; Era 2 residuals tend to overpredict more than the full record; and Era 3 residuals show better performance post-2000 than the full record, but significant underprediction pre-2000.}\label{fig:v_min_over_time}
 \end{figure}
 
 The \(V_{min.~30~days}\) formulation proposed above predicts minimum
@@ -894,18 +1068,21 @@ residuals offer better performance in Era 3 than the full record, but
 produce significant systematic underpredictions pre-2000
 (\autoref{fig:v_min_over_time}, middle panel).
 
+\hypertarget{predicted-values-of-p_spill}{%
 \subsection{\texorpdfstring{Predicted values of
-\(P_{spill}\)}{Predicted values of P\_\{spill\}}}
+\(P_{spill}\)}{Predicted values of P\_\{spill\}}}\label{predicted-values-of-p_spill}}
 
-\subsubsection{Predictor assessment and prediction formula}
+\hypertarget{predictor-assessment-and-prediction-formula-1}{%
+\subsubsection{Predictor assessment and prediction
+formula}\label{predictor-assessment-and-prediction-formula-1}}
 
 The results of the predictor assessment for the \(P_{spill}\) prediction
 formula were similar to those for \(V_{min.~30~days}\), in that the two
 best single predictors were October-April cumulative precipitation and
 maximum snowpack (\autoref{fig:one_predictor_model_p_spill}, top two
 panels), with LOOCV model errors of 695 and 496 mm, respectively.
-(Reference ET was once again excluded from consideration based on a
-short record length.) Again similar to \(V_{min.~30~days}\), the best
+(ET\_\{ref\} was once again excluded from consideration based on a short
+record length.) Again similar to \(V_{min.~30~days}\), the best
 two-predictor model was the combination of the two best single
 predictors, with an LOOCV error of 461 mm
 (\autoref{fig:two_predictor_model_p_spill}, upper left panel).
@@ -949,19 +1126,20 @@ Where:
 \end{itemize}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f12} \caption{\label{fig:one_predictor_model_p_spill} Single-predictor models of P spill, the cumulative precipitation after the dry season needed to generate 100 cfs of flow in the Scott River.}\label{fig:one_predictor_model_p_spill}
+\includegraphics[width=1\linewidth]{f13} \caption{\label{fig:one_predictor_model_p_spill} Single-predictor models of P spill, the cumulative precipitation after the dry season needed to generate 100 cfs of flow in the Scott River.}\label{fig:one_predictor_model_p_spill}
 \end{figure}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f13} \caption{\label{fig:two_predictor_model_p_spill} Two-predictor models of P spill, the cumulative precipitation after the dry season needed to generate 100 cfs of flow in the Scott River.}\label{fig:two_predictor_model_p_spill}
+\includegraphics[width=1\linewidth]{f14} \caption{\label{fig:two_predictor_model_p_spill} Two-predictor models of P spill, the cumulative precipitation after the dry season needed to generate 100 cfs of flow in the Scott River.}\label{fig:two_predictor_model_p_spill}
 \end{figure}
 
+\hypertarget{predicted-and-observed-p_spill-over-time}{%
 \subsubsection{\texorpdfstring{Predicted and observed \(P_{spill}\) over
-time}{Predicted and observed P\_\{spill\} over time}}
+time}{Predicted and observed P\_\{spill\} over time}}\label{predicted-and-observed-p_spill-over-time}}
 
 The \(P_{spill}\) estimate formulation proposed above predicts
 \(P_{spill}\) values with a model LOOCV error of 461 mm (18.1 inches),
-and a root mean squared error of 20.7 mm (0.8 inches).
+and a root mean squared error of 25.4 mm (1 inches).
 
 Matching the historical trends of decreasing snowpack, the observed and
 predicted \(P_{spill}\) values show an increasing trend over time
@@ -983,14 +1161,15 @@ similar to the full-record residuals (\autoref{fig:v_min_over_time},
 lower panel).
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f14} \caption{\label{fig:pspill_pred_over_time} Observed and predicted values of P spill (top panel) indicate a worse model fit for the P spill prediction than for minimum 30-day dry season baseflows (Figure 9). Serious overprediction in Era 1 is followed by more mixed over- and under-prediction in Eras 2 and 3 (bottom panel). The overall P spill model is based on observations from the full record, but three additional models were generated based on only the observations from Eras 1, 2, and 3. Residuals based on Era 1 data are generally lower than those from Eras 2 or 3 or from the full record.}\label{fig:pspill_pred_over_time}
+\includegraphics[width=1\linewidth]{f15} \caption{\label{fig:pspill_pred_over_time} Observed and predicted values of P spill (top panel) indicate a worse model fit for the P spill prediction than for minimum 30-day dry season baseflows (Figure 9). Serious overprediction in Era 1 is followed by more mixed over- and under-prediction in Eras 2 and 3 (bottom panel). The overall P spill model is based on observations from the full record, but three additional models were generated based on only the observations from Eras 1, 2, and 3. Residuals based on Era 1 data are generally lower than those from Eras 2 or 3 or from the full record.}\label{fig:pspill_pred_over_time}
 \end{figure}
 
+\hypertarget{comparison-with-california-dwr-water-year-type-wyt-category}{%
 \subsection{Comparison with California DWR Water Year Type (WYT)
-category}
+category}\label{comparison-with-california-dwr-water-year-type-wyt-category}}
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{f15} \caption{\label{fig:resp_vars_wyt} DWR Water Year Type indices over time and compared to the two metrics of hydrologic conditions developed in this study: minimum 30-day dry season baseflow volume (V min) and the amount of precipitation necessary to produce 100 cfs flow in the Scott River (P spill).}\label{fig:resp_vars_wyt}
+\includegraphics[width=1\linewidth]{f16} \caption{\label{fig:resp_vars_wyt} DWR Water Year Type indices over time and compared to the two metrics of hydrologic conditions developed in this study: minimum 30-day dry season baseflow volume (V min) and the amount of precipitation necessary to produce 100 cfs flow in the Scott River (P spill).}\label{fig:resp_vars_wyt}
 \end{figure}
 
 The DWR water year type categories map fairly well onto the two proposed
@@ -1005,9 +1184,12 @@ binning water years into five categories, and the 30-year ranking window
 that would prevent a direct comparison of post-2000 WYTs with pre-1950s
 WYTs (\autoref{fig:resp_vars_wyt}, lower panel).
 
-\section{Discussion}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
-\subsection{Scott River watershed behavior}
+\hypertarget{scott-river-watershed-behavior}{%
+\subsection{Scott River watershed
+behavior}\label{scott-river-watershed-behavior}}
 
 The degree to which these forward-looking seasonal predictions are
 accurate depends on fundamental hydrologic relationships between climate
@@ -1021,7 +1203,7 @@ Mediterranean climate, the general shape of the relationship between
 cumulative precipitation-runoff behavior is preserved in dry and wet
 water years (\autoref{fig:time_v_fall_rains_v_flow_fig}, panel B).
 
-Although a \(Q_{spill}\) of 100 cfs was identified by visual inspection
+Although a \(Q_{spill}\) of 120 cfs was identified by visual inspection
 of aggregate fall hydrograph behavior
 (\autoref{fig:time_v_fall_rains_v_flow_fig}), it also matches
 information from local stakeholders. Many tributary streams on the
@@ -1029,7 +1211,7 @@ valley floor run dry during the summer and fall, and some tributary
 streams respond more quickly to fall precipitation than others.
 Generally, the timing of all tributaries reaching flowing status
 corresponds with the Fort Jones gauge reaching 100 cfs
-\citep{Sommarstrom2020}.
+{[}@Sommarstrom2020{]}.
 
 Simulated estimates of stream-aquifer exchange corroborates these
 precipitation-flow relationships. Dry season baseflow
@@ -1046,19 +1228,20 @@ of water in the surface water system, returning the Scott River to a
 baseline of nearly-balanced stream-to-aquifer and aquifer-to-stream
 fluxes. This dynamic also reflects the small size of the available
 aquifer storage, relative to the amount of precipitation received by the
-watershed in a given water year \citep{DWR2004}.
+watershed in a given water year {[}@DWR2004{]}.
 
 The resulting water storage limitations mean that multi-year planning,
 such as the long-term GSP projects, may be impossible in the Scott River
 watershed without making assumptions about how much it will rain
-\citeyearpar[i.e., the future climate predictions in Siskiyou
-County][]{SiskiyouCounty2021}. If those assumptions are not fulfilled by
+{[}i.e., the future climate predictions in Siskiyou County
+-@SiskiyouCounty2021{]}. If those assumptions are not fulfilled by
 future climate, year-by-year adaptive management may be necessary to
 achieve management outcomes.
 
+\hypertarget{v_min.30days-and-p_spill-prediction-utility}{%
 \subsection{\texorpdfstring{\(V_{min.~30~days}\) and \(P_{spill}\)
 prediction
-utility}{V\_\{min.\textasciitilde30\textasciitilde days\} and P\_\{spill\} prediction utility}}
+utility}{V\_\{min.\textasciitilde30\textasciitilde days\} and P\_\{spill\} prediction utility}}\label{v_min.30days-and-p_spill-prediction-utility}}
 
 Though various methods exist to qualitatively predict, in the spring,
 the severity of the coming low-flow season in the Scott River watershed,
@@ -1076,20 +1259,20 @@ records, have been used as ad-hoc hydrologic indices. Historical
 adaptive management decisions in the Scott River watershed, such as
 planning to purchase surface water rights leases, have relied on
 individual monitoring observations, such as percent of snowpack relative
-to average conditions, or the Fort Jones flow in the spring
-\citep[e.g.,][]{SRWT2018}. Additionally, DWR has effectively extended
-the methodology of the SVI and SJI metrics to all of California by
-publishing a categorical water year type (WYT) index for all its major
-watersheds {[}to the HUC8 level; \citet{DWR2021a}{]}. This metric
-quantifies meteoric drought and relies only on precipitation data, so as
-to be comparable across the state. Matching SVI and SJI methodology, it
-can be calculated at multiple points in each spring, with a final
-determination in May, but in the case of Scott Valley it has been used
-to classify WYTs only retroactively through 2018. As previously
-mentioned it is a relatively complex metric with provisions including a
-partial one-year holdover (i.e., dry conditions in the previous year
-will make a dry-type categorization more likely the following year), and
-non-stationary index thresholds, with a 30-year ranking window.
+to average conditions, or the Fort Jones flow in the spring {[}e.g.,
+@SRWT2018{]}. Additionally, DWR has effectively extended the methodology
+of the SVI and SJI metrics to all of California by publishing a
+categorical water year type (WYT) index for all its major watersheds
+{[}to the HUC8 level; @DWR2021a{]}. This metric quantifies meteoric
+drought and relies only on precipitation data, so as to be comparable
+across the state. Matching SVI and SJI methodology, it can be calculated
+at multiple points in each spring, with a final determination in May,
+but in the case of Scott Valley it has been used to classify WYTs only
+retroactively through 2018. As previously mentioned it is a relatively
+complex metric with provisions including a partial one-year holdover
+(i.e., dry conditions in the previous year will make a dry-type
+categorization more likely the following year), and non-stationary index
+thresholds, with a 30-year ranking window.
 
 The proposed quantitative prediction methods map well onto the existing
 DWR WYT index, but preserve more detailed information. The primary
@@ -1108,7 +1291,9 @@ temporary stream gauge installed in a river, without risk of it being
 washed out, could be informed by a \(P_{spill}\) prediction when
 combined with weather forecasts in the fall.
 
-\subsection{Management implications of best-performing predictors}
+\hypertarget{management-implications-of-best-performing-predictors}{%
+\subsection{Management implications of best-performing
+predictors}\label{management-implications-of-best-performing-predictors}}
 
 As described in Results, the linear models that best predicted observed
 values of \(V_{min.~30~days}\) and \(P_{spill}\) were both based on the
@@ -1118,8 +1303,8 @@ records. One interpretation of these results is that the climate inputs
 produce a predictable fall watershed response, and that human management
 decisions have a negligible influence on fall river flow. However, model
 simulations suggest that the timing and magnitude of fall flow increases
-can be influenced by human water use {[}e.g., scenarios in Chapter 2 of
-this dissertation; Siskiyou County -\citet{SiskiyouCounty2021}{]}.
+can be influenced by human water use {[}e.g., scenarios in Siskiyou
+County -@SiskiyouCounty2021{]}.
 
 Multiple possible explanations could reconcile these two pieces of
 seemingly contradictory evidence. First, random variability in human
@@ -1133,7 +1318,9 @@ choices) are carefully recorded in the future, they could be compared to
 residuals of the climate-based predictive models to evaluate whether any
 signal of a response to human interventions can be observed.
 
-\subsection{Influences of climate change on predictive indices}
+\hypertarget{influences-of-climate-change-on-predictive-indices}{%
+\subsection{Influences of climate change on predictive
+indices}\label{influences-of-climate-change-on-predictive-indices}}
 
 Both predictions (using the full record of hydrologic data) assume some
 degree of hydroclimate stationarity, in that it uses historical
@@ -1151,23 +1338,24 @@ dynamics, and possibly unknown changes in water use, may be altering the
 relationship between the spring water supply and dry season baseflow
 rates.
 
-\section{Conclusions}
+\hypertarget{conclusions}{%
+\section{Conclusions}\label{conclusions}}
 
 This study proposed two locally-tailored hydrologic decision-support
 metrics for the Scott River watershed in northern California. Both use
 snowpack and cumulative precipitation data from October-April to predict
 the quantity of interest: the first is the minimum 30-day flow volume in
-a given water year, referred to as \(V_{min,~30~days}\), which typically
-occurs in September or October. The second index is the cumulative
-rainfall needed to ``fill'' the watershed after the end of the dry
-season to a ``spilling'' condition that responds quickly to
-precipitation events, referred to as \(P_{spill}\). Both indices can be
-calculated at the end of April to support near-term (seasonal) adaptive
-management regarding the growing season or the fall, similar to the SVI
-and SJI in California's Central Valley. However, climate change may
-reduce the predictive accuracy of indices based on long-term data
-records, and updates based on smaller numbers of more recent water years
-should be considered periodically.
+a given water year, referred to as \(V_{min}\), which typically occurs
+in September or October. The second index is the cumulative rainfall
+needed to ``fill'' the watershed after the end of the dry season to a
+``spilling'' condition that responds quickly to precipitation events,
+referred to as \(P_{spill}\). Both indices can be calculated at the end
+of April to support near-term (seasonal) adaptive management regarding
+the growing season or the fall, similar to the SVI and SJI in
+California's Central Valley. However, climate change may reduce the
+predictive accuracy of indices based on long-term data records, and
+updates based on smaller numbers of more recent water years should be
+considered periodically.
 
 The management choices facing local managers in this basin are difficult
 to quantify and summarize, as is the case in basins throughout
@@ -1176,73 +1364,213 @@ tailored to regional hydrologic dynamics, have provided and will
 continue to provide tools for supporting those choices and communicating
 them to diverse stakeholders and the general public.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# From the perspective of river flow, the "dry season" and "wet season" can be defined using this spill threshold {-} the flow rate at which the watershed functionally "spilling", after which point additional rainfall causes a surge in flow. Because a watershed is structurally more complex than a bucket, this threshold is approximate. }
+
+\CommentTok{\# To determine the approximate numerical value of the spill threshold, we identified the flow value that, when used to divide the dry and wet seasons,   the difference between the rainfall{-}runoff responses in the dry and wet seasons. evaluated the difference between the dry and wet season rainfall{-}runoff responses keeps growing until it first levels off at a spill threshold of approximately 120 cfs. At higher values (i.e., defining the start of the wet season as a larger storm event), the average wet season rainfall{-}runoff response continues to grow, }
+
+\CommentTok{\# If the threshold is 20 cfs, many water years }
+\CommentTok{\# Using a threshold of Dry season rainfall{-}runoff response falls with spill thresholds ranging from 10 to 80 cfs and is relatively stable, at . Beyond 80 cfs the dry season runoff increase relative to added precip }
+
+\CommentTok{\# Between approximately 100 and 140 cfs there is a plateau: t}
+\CommentTok{\# }
+\CommentTok{\# }
+\CommentTok{\# calc\_dQdP = function(P, Q, dates, lag\_days = 1, }
+\CommentTok{\#                      dry\_season\_day1 = yday(as.Date("2001{-}09{-}01")),}
+\CommentTok{\#                      result="dQdP")\{}
+\CommentTok{\#   P\_lagged\_forward = c(rep(NA, lag\_days), P[1:(length(P){-}lag\_days)])}
+\CommentTok{\#   Q\_lagged\_forward = c(rep(NA, lag\_days), Q[1:(length(Q){-}lag\_days)])}
+\CommentTok{\#   }
+\CommentTok{\#     \# take out annual fenceposts {-} first x days of each year\textquotesingle{}s dry season (which in this tabular arrangement have lagged values from the preceding year)}
+\CommentTok{\#   dates\_julian = yday(dates)}
+\CommentTok{\#   Q[dates\_julian \textless{} (lag\_days+dry\_season\_day1) \& dates\_julian \textgreater{}= dry\_season\_day1] = NA }
+\CommentTok{\#   P[dates\_julian \textless{} (lag\_days+dry\_season\_day1) \& dates\_julian \textgreater{}= dry\_season\_day1] = NA }
+\CommentTok{\# }
+\CommentTok{\#   dP = P {-} P\_lagged\_forward \# real time cum. precip. record minus cum. ppt from x days ago}
+\CommentTok{\#   dQ = Q {-} Q\_lagged\_forward \# real time flow record minus flow from x days ago}
+\CommentTok{\#   dQdP = dQ/dP}
+\CommentTok{\#   if(result=="dQdP")\{return(dQdP)\}}
+\CommentTok{\#   if(result=="dQ")\{return(dQ)\}}
+\CommentTok{\# \}}
+\CommentTok{\# }
+\CommentTok{\# }
+\CommentTok{\# \# calc\_dQdPs\_multiple\_lags = function(fj3d, max\_lag\_days=6)\{}
+\CommentTok{\# \#   starting\_ncol = ncol(fj3d)}
+\CommentTok{\# \#   fj3d[,(starting\_ncol+1):(starting\_ncol+max\_lag\_days)] = NA}
+\CommentTok{\# \#   colnames(fj3d)[(starting\_ncol+1):(starting\_ncol+max\_lag\_days)] = paste0("dQdP\_lag",1:max\_lag\_days)}
+\CommentTok{\# \#   for(lag\_days in 1:max\_lag\_days)\{}
+\CommentTok{\# \#     result\_colname = paste0("dQdP\_lag",lag\_days)}
+\CommentTok{\# \#     fj3d[,starting\_ncol+lag\_days] = calc\_dQdP(P = fj3d$cum\_ppt, }
+\CommentTok{\# \#                                               Q = fj3d$Flow, }
+\CommentTok{\# \#                                               dates = fj3d$Date, }
+\CommentTok{\# \#                                               lag\_days = lag\_days)}
+\CommentTok{\# \#   \}}
+\CommentTok{\# \#   return(fj3d)}
+\CommentTok{\# \# \}}
+\CommentTok{\# }
+\CommentTok{\# }
+\CommentTok{\# calc\_cum\_dQdPs\_multiple\_lags = function(fj3d, max\_lag\_days=6)\{}
+\CommentTok{\#   starting\_ncol = ncol(fj3d)}
+\CommentTok{\#   fj3d[,(starting\_ncol+1):(starting\_ncol+max\_lag\_days)] = NA}
+\CommentTok{\#   colnames(fj3d)[(starting\_ncol+1):(starting\_ncol+max\_lag\_days)] = paste0("dQdP\_lag",1:max\_lag\_days)}
+\CommentTok{\#   for(lag\_days in 1:max\_lag\_days)\{}
+\CommentTok{\#     result\_colname = paste0("dQdP\_lag",lag\_days)}
+\CommentTok{\#     fj3d[,starting\_ncol+lag\_days] = calc\_dQdP(P = fj3d$cum\_ppt, }
+\CommentTok{\#                                               Q = fj3d$cum\_flow\_m3, }
+\CommentTok{\#                                               dates = fj3d$Date, }
+\CommentTok{\#                                               lag\_days = lag\_days)}
+\CommentTok{\#   \}}
+\CommentTok{\#   return(fj3d)}
+\CommentTok{\# \}}
+\CommentTok{\# }
+\CommentTok{\# }
+\CommentTok{\# dQdP\_vs\_flow = function(lag\_days = 1, }
+\CommentTok{\#                         storm\_cutoff = 0.5*25.4)\{ \# half inch to mm}
+\CommentTok{\# }
+\CommentTok{\#   \# Change in flow in X days}
+\CommentTok{\#   \# q1 = c(fj3d$Flow[1:(nrow(fj3d){-}lag\_days)], rep(NA, lag\_days))}
+\CommentTok{\#   q1 = fj3d$cum\_flow\_m3 \# $Flow}
+\CommentTok{\#   q2 = c(rep(NA, lag\_days), fj3d$cum\_flow\_m3[1:(nrow(fj3d){-}lag\_days)])}
+\CommentTok{\#   \# Change in cumulative precip in X days}
+\CommentTok{\#   \# p1 = c(fj3d$cum\_ppt[1:(nrow(fj3d){-}lag\_days)], rep(NA, lag\_days))}
+\CommentTok{\#   p1 = fj3d$cum\_ppt}
+\CommentTok{\#   \# p2 the cumulative precip vector adjusted forward by x days}
+\CommentTok{\#   p2 = c(rep(NA, lag\_days), fj3d$cum\_ppt[1:(nrow(fj3d){-}lag\_days)])}
+\CommentTok{\# }
+\CommentTok{\#   \# take out annual fenceposts {-} first x days of each year (which are just values from the preceding year)}
+\CommentTok{\#   fj3d$julian = yday(fj3d$Date)}
+\CommentTok{\#   adj\_wy\_day1 = yday(as.Date("2001{-}09{-}01"))}
+\CommentTok{\#   q1[fj3d$julian \textless{} (lag\_days+adj\_wy\_day1) \& fj3d$julian \textgreater{}= adj\_wy\_day1] = NA }
+\CommentTok{\#   p1[fj3d$julian \textless{} (lag\_days+adj\_wy\_day1) \& fj3d$julian \textgreater{}= adj\_wy\_day1] = NA }
+\CommentTok{\#   }
+\CommentTok{\#   \#calculate dQ (the change in flow in x days) and dP (the change in cum. precip. in x days)}
+\CommentTok{\#   fj3d$q1=q1; fj3d$q2=q2; fj3d$p1=p1; fj3d$p2 = p2}
+\CommentTok{\#   fj3d$dQ = q1{-}q2 \# time{-}true record minus the record from x days ago}
+\CommentTok{\#   fj3d$dP = p1{-}p2}
+\CommentTok{\#   \# Calculate dQdP}
+\CommentTok{\#   fj3d$dQdP = fj3d$dQ/fj3d$dP}
+\CommentTok{\#   }
+\CommentTok{\#   \# hist(fj3d$dQdP,xlim = c({-}1000,1000), breaks = 300)}
+\CommentTok{\#   }
+\CommentTok{\#   storm\_index = fj3d$ppt \textgreater{}= storm\_cutoff}
+\CommentTok{\#   \# adjust for smoothing days}
+\CommentTok{\#   \# storm\_index\_delayed = c(rep(NA,lag\_days),}
+\CommentTok{\#   \#                         storm\_index[1:(length(storm\_index){-}lag\_days)])}
+\CommentTok{\#   fj3d\_storm = fj3d[storm\_index,]}
+\CommentTok{\#   }
+\CommentTok{\#   \# summary(fj3d\_storm$dQdP,na.rm=T)}
+\CommentTok{\#   plot(fj3d\_storm$dQdP, fj3d\_storm$cum\_flow\_m3, xlim = c({-}1*10\^{}3, 10\^{}3), }
+\CommentTok{\#        pch = 19, col = rgb(0,0,0,.05), log = "y",}
+\CommentTok{\#        main = paste("d\_Flow d\_Precip, \textbackslash{}n smoothing", lag\_days, "day(s), storm cutoff",storm\_cutoff, "mm, storms only"))}
+\CommentTok{\#   grid()}
+\CommentTok{\#   abline(h=100, col = "brown", lwd=2)}
+\CommentTok{\#   }
+\CommentTok{\#     plot(fj3d\_storm$dP, fj3d\_storm$dQ, \#xlim = c({-}1, 10\^{}2), }
+\CommentTok{\#        pch = 19, col = rgb(0,0,0,.1), log = "y",}
+\CommentTok{\#        main = paste("d\_Precip vs d\_Flow, \textbackslash{}n smoothing", lag\_days, "day(s), storm cutoff",storm\_cutoff, "mm, storms only"))}
+\CommentTok{\#   grid()}
+\CommentTok{\#   abline(h=100, col = "brown", lwd=2)}
+\CommentTok{\# }
+\CommentTok{\#   \# plot(fj3d$dQdP, fj3d$Flow, xlim = c({-}1*10\^{}3, 10\^{}3), }
+\CommentTok{\#   \#      pch = 19, col = rgb(0,0,0,.05), log = "y",}
+\CommentTok{\#   \#      main = paste("d\_Flow d\_Precip, \textbackslash{}n smoothing", lag\_days, "day(s), storm cutoff",storm\_cutoff, "mm, all days"))}
+\CommentTok{\#   \# grid()}
+\CommentTok{\#   \# abline(h=100, col = "brown", lwd=2)}
+\CommentTok{\#   }
+\CommentTok{\#   }
+\CommentTok{\# \}}
+\CommentTok{\# }
 
 
-\codedataavailability{Analyses and figures in this manuscript were
-drafted in RMarkdown. The RMarkdown scripts are available on the
-corresponding author's GitHub page. All data used in this manuscript are
-publicly available on local, state or federal data
-portals.} %% use this section when having data sets and software code available
+
+\CommentTok{\# computation steps: }
+\CommentTok{\# calculate dQ and dP (Q\_i {-} Q\_i{-}1), and dQ/dP}
+\CommentTok{\# don\textquotesingle{}t need days for which dQ is negative. Flow can be falling even on days with some rainfall if it\textquotesingle{}s coming down from a higher peak}
+\CommentTok{\# try to skew for early in the wet season so we avoid snowmelt influence}
+\CommentTok{\# filter for days that got more than 1/10th inch. Because small dPs can produce high dQ dP values that are not meaningful. }
+\DocumentationTok{\#\#\# why 1/10th inch? make up some bullshit justification about refET in the winter?}
+
+
+\CommentTok{\# 653 sq miles drainage area for Ft Jones gauge (per USGS https://waterdata.usgs.gov/monitoring{-}location/11519500/\#parameterCode=00060\&period=P7D)}
+\CommentTok{\# 1 ft3/sec * 1m3/35 ft3 * 86400 sec/day / 1.7m sq meters * 1000mm/m = mm/day}
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% optional
+\CommentTok{\# }
+\CommentTok{\#   \#summarize for each threshold}
+\CommentTok{\# delta\_dqdp\_mean = aggregate(x = results$delta\_dQdP,}
+\CommentTok{\#                             by = list(results$Q\_threshold\_m3day), FUN = mean,}
+\CommentTok{\#                             na.rm=T,finite=T)$x}
+\CommentTok{\# delta\_dqdp\_med = aggregate(x = results$delta\_dQdP,}
+\CommentTok{\#                             by = list(results$Q\_threshold\_m3day), FUN = median, na.rm=T)$x}
+\CommentTok{\#   \#   mean(results\_for\_wys$delta\_dqdp, na.rm=T)}
+\CommentTok{\#   \# results\_for\_thresholds$delta\_dqdp\_med[threshold\_picker] = median(results\_for\_wys$delta\_dqdp, na.rm=T)}
+\CommentTok{\#   \# results\_for\_thresholds$delta\_dqdp\_std[threshold\_picker] = sd(results\_for\_wys$delta\_dqdp, na.rm=T)}
+\CommentTok{\# }
+\CommentTok{\# plot(q\_thresh/cfs\_to\_m3day, delta\_dqdp\_mean / cfs\_to\_m3day)}
+\CommentTok{\# grid()}
+\CommentTok{\# }
+\CommentTok{\# plot(q\_thresh/cfs\_to\_m3day,delta\_dqdp\_med / cfs\_to\_m3day)}
+\CommentTok{\# grid()}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\competinginterests{The authors declare no competing
-interests.} %% this section is mandatory even if you declare that no competing interests are present
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{acknowledgements}
-This manuscript emerged from dissertation work funded by Siskiyou County
-SGMA planning grants, with funding from California water bonds.
-\end{acknowledgements}
-
-%% REFERENCES
-%% DN: pre-configured to BibTeX for rticles
-
-%% The reference list is compiled as follows:
-%%
-%% \begin{thebibliography}{}
-%%
-%% \bibitem[AUTHOR(YEAR)]{LABEL1}
-%% REFERENCE 1
-%%
-%% \bibitem[AUTHOR(YEAR)]{LABEL2}
-%% REFERENCE 2
-%%
-%% \end{thebibliography}
-
-%% Since the Copernicus LaTeX package includes the BibTeX style file copernicus.bst,
-%% authors experienced with BibTeX only have to include the following two lines:
-%%
-\bibliographystyle{copernicus}
-\bibliography{library.bib}
-%%
-%% URLs and DOIs can be entered in your BibTeX file as:
-%%
-%% URL = {http://www.xyz.org/~jones/idx_g.htm}
-%% DOI = {10.5194/xyz}
+\CommentTok{\# for(yr in EoDS\_years)\{}
+\CommentTok{\#   yr\_picker = results$year==yr}
+\CommentTok{\#   thresholds = results$Q\_threshold\_m3day[yr\_picker]}
+\CommentTok{\#   delta\_dqdp = results$delta\_dQdP[yr\_picker]}
+\CommentTok{\# }
+\CommentTok{\#   if(yr==EoDS\_years[1])\{}
+\CommentTok{\#     plot(thresholds/cfs\_to\_m3day, delta\_dqdp/cfs\_to\_m3day, main = "Effect of dQ threshold value on runoff{-}rainfall \textbackslash{}n responses in end of dry and beginning of wet season",}
+\CommentTok{\#          xlab = "dQ end{-}of{-}dry{-}season threshold (m3day)",}
+\CommentTok{\#          ylab = "change in dQ/dP (wet season minus dry season)",}
+\CommentTok{\#          ylim = range(results$delta\_dQdP,na.rm=T, finite=T)/cfs\_to\_m3day,}
+\CommentTok{\#          type = "o", col = rgb(.2,.2,.2,.2))}
+\CommentTok{\#   \} else \{}
+\CommentTok{\#     lines(thresholds/cfs\_to\_m3day, delta\_dqdp/cfs\_to\_m3day, col = rgb(.2,.2,.2,.2), type = "o")}
+\CommentTok{\#   \}}
+\CommentTok{\# \}}
 
 
-%% LITERATURE CITATIONS
-%%
-%% command                        & example result
-%% \citet{jones90}|               & Jones et al. (1990)
-%% \citep{jones90}|               & (Jones et al., 1990)
-%% \citep{jones90,jones93}|       & (Jones et al., 1990, 1993)
-%% \citep[p.~32]{jones90}|        & (Jones et al., 1990, p.~32)
-%% \citep[e.g.,][]{jones90}|      & (e.g., Jones et al., 1990)
-%% \citep[e.g.,][p.~32]{jones90}| & (e.g., Jones et al., 1990, p.~32)
-%% \citeauthor{jones90}|          & Jones et al.
-%% \citeyear{jones90}|            & 1990
+\CommentTok{\# thresh\_colors = sequential\_hcl(n=length(q\_thresh), palette = "Hawaii")}
+\CommentTok{\# }
+\CommentTok{\# for(i in 1:length(q\_thresh))\{}
+\CommentTok{\#   thresh=q\_thresh[i]}
+\CommentTok{\#   thresh\_picker = results$Q\_threshold\_m3day==thresh}
+\CommentTok{\#   years = results$year[thresh\_picker]}
+\CommentTok{\#   delta\_dqdp = results$delta\_dQdP[thresh\_picker]}
+\CommentTok{\#   thresh\_col = thresh\_colors[i]}
+\CommentTok{\#   }
+\CommentTok{\#   if(thresh==q\_thresh[1])\{}
+\CommentTok{\#     plot(years, delta\_dqdp/cfs\_to\_m3day, log="y",}
+\CommentTok{\#          main = "Yearly pattern, by threshold, of runoff{-}rainfall \textbackslash{}n responses in end of dry and beginning of wet season",}
+\CommentTok{\#          xlab = "Year",}
+\CommentTok{\#          ylab = "change in dQ/dP (wet season minus dry season)",}
+\CommentTok{\#          \# ylim = range(results$delta\_dQdP,na.rm=T, finite=T)[2]/cfs\_to\_m3day,}
+\CommentTok{\#          col=thresh\_col,\# col = rgb(.2,.2,.2,.2),}
+\CommentTok{\#          type = "o")}
+\CommentTok{\#   \} else \{}
+\CommentTok{\#     lines(years, delta\_dqdp/cfs\_to\_m3day, \#col = rgb(.2,.2,.2,.2), }
+\CommentTok{\#           type = "o", col = thresh\_col, pch=3)}
+\CommentTok{\#   \}}
+\CommentTok{\# \}}
+
+\CommentTok{\# if(write\_q\_thresh\_pdf)\{}
+\CommentTok{\#   pdf(file = "First spill day viewer, all WYs\_120cfs.pdf", width = 8.5, height = 11)}
+\CommentTok{\#   par(mfrow = c(2,1), mar = c(5,4,4,4)*1.1)}
+\CommentTok{\#   for(yr in EoDS\_years)\{}
+\CommentTok{\#     dQdP\_vs\_hydrograph(fj3d = fj3d, }
+\CommentTok{\#                        storm\_cutoff = 6.35,}
+\CommentTok{\#                        date\_1 = as.Date(paste0(yr,"{-}09{-}01")), }
+\CommentTok{\#                        date\_2 = as.Date(paste0(yr+1,"{-}02{-}01")),}
+\CommentTok{\#                        as\_png = F, }
+\CommentTok{\#                        max\_lag\_days = 1,}
+\CommentTok{\#                        Q\_spill\_threshold = 120) \#threshold in cfs}
+\CommentTok{\#   \}}
+\CommentTok{\#   }
+\CommentTok{\#   dev.off()}
+\CommentTok{\# \}}
+\end{Highlighting}
+\end{Shaded}
 
 
 \end{document}

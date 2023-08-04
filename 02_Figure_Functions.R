@@ -49,7 +49,7 @@ et_col = "darkgoldenrod2"
 
 #Hillshade black-white palette
 hillshade_palette_faded = colorRampPalette(c("gray30", "white")) # This washed-out hillshade palette allows legends to be plotted on top
-
+hill_wsh = rast(file.path(scratch_dir, "hillshade_cropped_raster.tif"))
 
 n_sp = 336 #number of stress periods in model run, 2011-2018
 
@@ -722,6 +722,7 @@ add_wls_to_fall_flows = function(dsb_tab, fft_well_ids){
 
 
 get_time_cumprecip_flow_tab = function(wys = 1944:2021,save_pdf=F){
+  fj_flow$Flow_m3day = fj_flow$Flow * cfs_to_m3day
   # first task: precip munging
   fj_flow$flow_diff = c(NA,diff(fj_flow$Flow))
   # Subset FJ flow for this analysis
@@ -729,7 +730,7 @@ get_time_cumprecip_flow_tab = function(wys = 1944:2021,save_pdf=F){
   # assign Sept to following WY
   fj3d$wy_3d = fj3d$wy
   fj3d$wy_3d[month(fj3d$Date)==9] = fj3d$wy[month(fj3d$Date)==9] + 1
-  # restrict to just complet WYs
+  # restrict to just complete WYs
   fj3d = fj3d[fj3d$wy_3d %in% wys,]
   # initialize columns for cumulative precip and modified day of WY (days after aug31)
   fj3d$cum_ppt = NA
@@ -748,9 +749,11 @@ get_time_cumprecip_flow_tab = function(wys = 1944:2021,save_pdf=F){
     prcp_day1 = as.Date(paste0(wy-1,"-09-01"))
     prcp_day_last = as.Date(paste0(wy,"-03-31"))
     ppt_i = ppt[ppt$Date>=prcp_day1 & ppt$Date<=prcp_day_last,c("Date","interp_cal_fj_mean")]
+    fj3d$ppt[fj3d_indices] = ppt_i$interp_cal_fj_mean
     fj3d$cum_ppt[fj3d_indices] = cumsum(ppt_i$interp_cal_fj_mean)
     #Calculate flow rate of change (cfs/day)
-    fj3d$d_flow[fj3d_indices]
+    # fj3d$d_flow[fj3d_indices]
+    fj3d$cum_flow_m3[fj3d_indices] = cumsum(fj3d$Flow_m3day[fj3d_indices])
   }
   
   if(save_pdf ==T){
@@ -892,7 +895,7 @@ add_interp_fall_rains_to_fft = function(dsb_tab,
 add_fj_recon_dates_to_fft=function(dsb_tab,
                                    fall_flow_start_day="09-01",
                                    fall_flow_end_day="03-31",
-                                   flow_thresholds = c(10,20,40,50,75,100)){
+                                   flow_thresholds = c(10,20,40,50,75,100,120)){
   #initialize columns for exceedance dates
   dsb_tab[,paste0("wy_day_exceed_",flow_thresholds,"_cfs")]=NA
   for(i in 1:nrow(dsb_tab)){
@@ -911,6 +914,102 @@ add_fj_recon_dates_to_fft=function(dsb_tab,
   }
   return(dsb_tab)
 }
+
+one_pred_model_diagnostics = function(response = "min_fall_flow", tab_for_glm,
+                                      preds = c("SWJ_max_wc_mm", "USC00043182_oct_apr_mm", "SWJ_jday_of_max", "springWL_415635N1228315W001", "et0_oct_apr", "mar_flow")){
+  # initialize diagnostic table
+  diag_tab = data.frame(pred1=preds, n=NA, 
+                        logLike=NA,AIC=NA,loocv=NA, Rsquare=NA)
+  
+  for(i in 1:nrow(diag_tab)){
+    pred1=as.character(diag_tab$pred1[i])
+    tab_for_glm_i = tab_for_glm[!is.na(tab_for_glm[,response] * 
+                                         tab_for_glm[,pred1]),]
+    f1_i = paste(response," ~ ", pred1)
+    glm_i = glm(f1_i, data = tab_for_glm_i)
+    loocv_i = cv.glm(tab_for_glm_i, glm_i)
+    lm_i = lm(f1_i, data = tab_for_glm_i) # for calculating R squared
+    #attach lm results 
+    diag_tab_row=diag_tab$pred1==pred1 
+    diag_tab$logLike[diag_tab_row] = logLik(glm_i)
+    diag_tab$AIC[diag_tab_row] = AIC(glm_i)
+    diag_tab$loocv[diag_tab_row] = loocv_i$delta[1]
+    diag_tab$Rsquare[diag_tab_row] = summary(lm_i)$r.squared
+    diag_tab$n[diag_tab_row] = nrow(tab_for_glm_i)
+    
+  }
+  return(diag_tab)
+}
+
+two_pred_model_diagnostics = function(response = "min_fall_flow", tab_for_glm,
+                                      preds = c("SWJ_max_wc_mm", "USC00043182_oct_apr_mm", "SWJ_jday_of_max", "springWL_415635N1228315W001", "et0_oct_apr", "mar_flow")){
+  
+  pred_combo = as.data.frame(t(combn(preds, 2)))
+  colnames(pred_combo)=c("pred1","pred2")
+  # initialize diagnostic table
+  diag_tab = data.frame(pred1=pred_combo$pred1, pred2=pred_combo$pred2, n=NA,
+                        logLike=NA,AIC=NA,loocv=NA,Rsquare=NA)
+  
+  for(i in 1:nrow(pred_combo)){
+    pred1=as.character(diag_tab$pred1[i])
+    pred2=as.character(diag_tab$pred2[i])
+    tab_for_glm_i = tab_for_glm[!is.na(tab_for_glm[,response] * 
+                                         tab_for_glm[,pred1] *
+                                         tab_for_glm[,pred2]),]
+    f1_i = paste(response," ~ ", paste(pred1,pred2,sep=" + "))
+    glm_i = glm(f1_i, data = tab_for_glm_i)
+    loocv_i = cv.glm(tab_for_glm_i, glm_i)
+    lm_i = lm(f1_i, data = tab_for_glm_i) # for calculating R squared
+    #attach lm results 
+    diag_tab_row=diag_tab$pred1==pred1 & diag_tab$pred2==pred2
+    diag_tab$logLike[diag_tab_row] = logLik(glm_i)
+    diag_tab$AIC[diag_tab_row] = AIC(glm_i)
+    diag_tab$loocv[diag_tab_row] = loocv_i$delta[1]
+    diag_tab$Rsquare[diag_tab_row] = summary(lm_i)$r.squared
+    diag_tab$n[diag_tab_row] = nrow(tab_for_glm_i)
+  }
+  return(diag_tab)
+}
+
+three_pred_model_diagnostics = function(response = "min_fall_flow", tab_for_glm,
+                                        preds = c("SWJ_max_wc_mm","USC00043182_oct_apr_mm",
+                                                  "SWJ_jday_of_max","springWL_415635N1228315W001",
+                                                  "et0_oct_apr","mar_flow")){
+  
+  pred_combo = as.data.frame(t(combn(preds, 3)))
+  colnames(pred_combo)=c("pred1","pred2","pred3")
+  # initialize diagnostic table
+  diag_tab = pred_combo
+  diag_tab$n = NA;  diag_tab$logLike = NA; 
+  diag_tab$AIC = NA; diag_tab$loocv=NA
+  
+  for(i in 1:nrow(pred_combo)){
+    pred1=as.character(diag_tab$pred1[i])
+    pred2=as.character(diag_tab$pred2[i])
+    pred3=as.character(diag_tab$pred3[i])
+    tab_for_glm_i = tab_for_glm[!is.na(tab_for_glm[,response] * 
+                                         tab_for_glm[,pred1] *
+                                         tab_for_glm[,pred2] *
+                                         tab_for_glm[,pred3]),]
+    f1_i = paste(response," ~ ", paste(pred1,pred2,pred3,sep=" + "))
+    glm_i = glm(f1_i, data = tab_for_glm_i)
+    loocv_i = cv.glm(tab_for_glm_i, glm_i)
+    lm_i = lm(f1_i, data = tab_for_glm_i) # for calculating R squared
+    #attach lm results 
+    diag_tab_row=diag_tab$pred1==pred1 & diag_tab$pred2==pred2 & diag_tab$pred3==pred3
+    diag_tab$logLike[diag_tab_row] = logLik(glm_i)
+    diag_tab$AIC[diag_tab_row] = AIC(glm_i)
+    diag_tab$loocv[diag_tab_row] = loocv_i$delta[1]
+    diag_tab$Rsquare[diag_tab_row] = summary(lm_i)$r.squared
+    diag_tab$n[diag_tab_row] = nrow(tab_for_glm_i)
+  }
+  
+  return(diag_tab)
+}
+
+
+
+make_table_of_selected_model_coefficients = function(){}
 
 # Figure functions --------------------------------------------------------
 
@@ -1014,7 +1113,9 @@ watershed_fig_ch3 = function(){
   
   #plot
   plot(watershed$geometry)
-  plot(hill_wsh, col = hillshade_palette_faded(10), legend = F, add=T)
+  #read raster in from file, since the saved-in-RData raster objects are giving me a hard time right now
+  plot(hill_wsh, col = hillshade_palette_faded(10), 
+       legend = F, add=T)
   plot(mapped_streams$geometry, add=T, lwd = 2, col = color_tribs)
   plot(riv$geometry, add=T, lwd = 3, col = color_river)
   plot(watershed$geometry, add=T, lwd = 2, border = color_watershed)
@@ -1037,6 +1138,9 @@ watershed_fig_ch3 = function(){
   legend(x = "bottomleft", lwd = c(2,1.5,2,3), 
          legend = c("Watershed HUC8", "Groundwater Basin", "Tributary Stream", "Scott River"), 
          col = c(color_watershed, color_basin, color_tribs, color_river), bg="white")
+  north(xy="topleft",type=1) # add north arrow
+  sbar(d=20*10^3, xy="topright", label = c("0","10","20"), 
+       below = "km", adj = c(0.5, -0.5))
 }
 
 
@@ -1069,11 +1173,15 @@ gw_vs_fall_flows_data_exp = function(fall_flow_window_tab, spring_months,
                        "_gw_vs_fall_flows.pdf")
     pdf(file=file_name, height = 11/2, width = 8.5)}
   
+  # num_corr_wells=0
   for(i in 1:nrow(wells)){
     well_id = wells$well_code[i]
     # check if there's any obs. for this well in spring window
     selector = wl_obs$well_code==well_id & month(wl_obs$date) %in% spring_months
     if(sum(selector)>0){ 
+      # if(sum(selector)>min_obs_for_cor){
+      #   num_corr_wells = num_corr_wells+1
+      #   print(paste(well_id, "has ", sum(selector), "spring obs"))}
       # Subset wl_obs to just spring
       spring_elev = wl_obs[selector,c("date","wse_ft","year")]
       # add fall flow aggregates by year
@@ -1188,7 +1296,7 @@ gw_vs_p_spill_data_exp = function(well_ids = "all",
     wl_obs_i = wl_obs[wl_obs$well_code==well_id,]
     if(nrow(wl_obs_i)>0){
       # wl_obs_ij = wl_obs_i[month(wl_obs_i$date) == j,]
-      p_spill_i = dsb_tab$cum_ppt_on_first_day_100cfs[match(year(wl_obs_i$date), 
+      p_spill_i = dsb_tab$cum_ppt_on_first_day_qspill[match(year(wl_obs_i$date), 
                                                                   dsb_tab$year)] 
       gw_month_color = gw_month_tab$color[match(month(wl_obs_i$date),
                                                 gw_month_tab$month)]
@@ -1214,7 +1322,7 @@ gw_vs_p_spill_data_exp = function(well_ids = "all",
   }
   
   # spring flows?
-  # plot(x=dsb_tab$apr_flow, y=dsb_tab$cum_ppt_on_first_day_100cfs)
+  # plot(x=dsb_tab$apr_flow, y=dsb_tab$cum_ppt_on_first_day_qspill)
   
   if(save_well_by_well_pdf==T){ dev.off()}
   
@@ -1243,7 +1351,7 @@ gw_vs_p_spill_data_exp = function(well_ids = "all",
       fft_plot = merge(dsb_tab, comb_by_yr, by.x = "year", by.y = "year")
       
       plot(x=fft_plot[,paste0("comb_wl_", month.abb[i])],
-           y = fft_plot$cum_ppt_on_first_day_100cfs, 
+           y = fft_plot$cum_ppt_on_first_day_qspill, 
            pch = 21, bg = gw_month_tab$color[i], cex = 2,
            main = month.abb[i])
       grid()
@@ -1305,6 +1413,120 @@ snow_vs_fall_flows = function(xtype = "Water Content"){
   
 }
 
+Q_spill_threshold_tester = function(results, Q_spill = 120, q_thresh,fj3d){
+  # prep tables
+  EoDS_years = 1943:2020
+  # prep fj3d table for plotting dq dp
+  fj3d = add_dQ_dP_cols(fj3d = fj3d, lag_days = 1,  Q = fj3d$Flow_m3day, P = fj3d$cum_ppt)
+  # pick thresholds for plot
+  q_thresh = round(seq(from = 10, by = 5, to = 500) * cfs_to_m3day)
+  EoDS_years = 1943:2020
+  # calculate dq and dp values for dry and wet season for each threshold
+  results = dQ_dP_difference_finder(q_thresh=q_thresh, EoDS_years)
+  
+  #summarize
+  results$dQ_dP_pre = results$dQ_cum_pre/results$dP_cum_pre
+  results$dQ_dP_post = results$dQ_cum_post/results$dP_cum_post
+  results$delta_dQdP = results$dQ_dP_post - results$dQ_dP_pre
+  
+  dq_pre_mean = aggregate(x = results$dQ_cum_pre,
+                          by = list(results$Q_threshold_m3day), FUN = mean,
+                          na.rm=T,finite=T)$x
+  dq_post_mean = aggregate(x = results$dQ_cum_post,
+                           by = list(results$Q_threshold_m3day), FUN = mean,
+                           na.rm=T,finite=T)$x
+  dp_pre_mean = aggregate(x = results$dP_cum_pre,
+                          by = list(results$Q_threshold_m3day), FUN = mean,
+                          na.rm=T,finite=T)$x
+  dp_post_mean = aggregate(x = results$dP_cum_post,
+                           by = list(results$Q_threshold_m3day), FUN = mean,
+                           na.rm=T,finite=T)$x
+  
+  delta_dq_dp = dq_post_mean/dp_post_mean - dq_pre_mean/dp_pre_mean
+  
+  # Plot wet, dry and difference of dQ/dP
+  par(mar = c(5,8,4,1))
+  plot(q_thresh/cfs_to_m3day, dq_pre_mean/dp_pre_mean/cfs_to_m3day,
+       main = "Spill thresholds vs 78-year average of \n dry season rainfall-runoff responses (dQ/dP)",
+       ylim = c(-20,300), pch = 19, type = "o", col = "darkgoldenrod3", cex=.7,
+       ylab = "Ratio of 30-day cumulative flow difference \n (dQ, m3) to 30-day precip. (dP, mm)",
+       xlab = "Flow threshold (cfs) defining watershed spill condition \n (dividing dry and wet season)")
+  lines(q_thresh/cfs_to_m3day, dq_post_mean/dp_post_mean/cfs_to_m3day, 
+        pch = 15, type = "o", col = "dodgerblue", cex = .7)
+  lines(q_thresh/cfs_to_m3day, delta_dq_dp/cfs_to_m3day,
+        pch=17, type = "o", col = "firebrick", cex=.7)
+  grid()
+  abline(v=Q_spill, col = "brown", lty = 3, lwd = 2)
+  abline(v=Q_spill, lwd=30, col = rgb(1,0,0,.2))
+  # abline(v=80)
+  legend(x="bottomright", 
+         legend = c("Avg. dry season dQ/dP", "Avg. wet season dQ/dP", "dQ/dP diff. (wet minus dry)","Approx. dQ/dP diff. plateau"),
+         lty=c(1,1,1,3), lwd=c(1,1,1,2), col = c("darkgoldenrod3", "dodgerblue", "firebrick","brown"),
+         pch=c(19,15,17, NA), cex = .7)
+}
+
+
+dQdP_vs_hydrograph = function(fj3d,
+                              date_1 = as.Date("2015-09-01"), 
+                              date_2 = as.Date("2016-02-01"),
+                              as_png = F, 
+                              max_lag_days = 1,
+                              Q_spill_threshold = 120){
+  
+  if(as_png == TRUE){
+    png(filename = file.path(scratch_dir,paste("dqdp vs hydrograph", date_1, "_",date_2,".png")), width = 8.5, height = 11, unit = "in", res = 300)
+  }
+  
+  # subset the flow and precip table by date for hydrograph
+  fj3d_dates = fj3d[fj3d$Date>=date_1 & fj3d$Date <=date_2,]
+  
+  
+  
+  # Panel 2: hydrograph
+  # find first day of spilling
+  first_spill_day = min(fj3d_dates$Date[fj3d_dates$Flow >= Q_spill_threshold], na.rm=T)
+  
+  # plot hydrograph
+  plot(fj3d_dates$Date, fj3d_dates$Flow,# * cfs_to_m3day, #fj3d_dates$cum_flow_m3, 
+       log = "y", ylim=range(fj3d$Flow,na.rm=T),# * cfs_to_m3day, na.rm=T),
+       main = paste0("Fort Jones Gauge Flow and Cum. Precip., ", year(date_1), "-", year(date_2)), 
+       type ="o",pch=18, lwd = 2, col = "blue",
+       ylab = "Fort Jones daily flow (cfs)", xlab = "")
+  grid()
+  abline(v=first_spill_day, lty=2, lwd=2,col = "red")
+  # add spill line (reference to flow axis on left)
+  arrows(x0=fj3d_dates$Date[1], x1=first_spill_day, 
+         y0=Q_spill_threshold, col = "dodgerblue", lty = 2, code = 0)
+  
+  P_spill=fj3d_dates$cum_ppt[fj3d_dates$Date==first_spill_day]
+  
+  legend(x="topleft", lwd = c(1,1,2,2,2), lty = c(1,1,3,2,5), pch = c(18,3,NA,NA,NA),
+         col = c("blue","violet", "dodgerblue","red", "mediumorchid"), xjust=0.5,
+         legend = c("Fort Jones flow","Cum. Precip.", 
+                    paste0("Q spill (",Q_spill_threshold," cfs)"),
+                    paste0("First spill day, WY ",year(date_2)),
+           paste0("P spill, WY ",year(date_2)," (",round(P_spill), " mm)")),
+         cex=.8)
+  
+  #Add arrows indicating 30-day windows for calculating dQdP
+  arrows(x0=first_spill_day, x1=first_spill_day-29, y0=1E7, code = 3)
+  arrows(x0=first_spill_day, x1=first_spill_day+29, y0=1E7, code=3)
+  text(x=first_spill_day, y = 4E7, labels="dQ/dP calculation windows \n to determine Q spill")
+  
+  # Plot cumulative precip on right axis 
+  par(new=TRUE)
+  plot(fj3d_dates$Date, fj3d_dates$cum_ppt, 
+       axes=F, ylab="",xlab="", ylim = range(fj3d$cum_ppt, na.rm=T),
+       type = "o", pch=3, col = "violet", lwd = 2)
+  axis(side=4, at = pretty(range(fj3d_dates$cum_ppt)))
+  mtext("Cum. Precip. since Sept. 01 (mm)", side = 4, line = 3)
+  # to do: add pSpill line (reference to ppt axis on right)
+  arrows(x1=fj3d_dates$Date[nrow(fj3d_dates)], x0=first_spill_day,
+         y0=P_spill, col = "mediumorchid", lty = 5, lwd=2, code = 0)
+  
+  if(as_png==TRUE){dev.off()}
+  
+}
 
 
 
@@ -1333,6 +1555,7 @@ time_rain_flow_fig = function(wys = 1944:2021, plot_panel = NA,
     #Add useful axis ticks
     axis(side = 2, at = 10^(-2:4), labels = 10^(-2:4))
     axis(side = 2, at = rep(1:9,4)*sort(rep(10^(-2:4),9)), labels = NA, tck = -0.01)
+    abline(h=flow_threshold, lty=2, lwd=2)
     #Annotate with flow threshold
     legend(x="bottomright",lwd=2,lty=2,
            legend = paste0("FJ Flow \'Q spill\' Threshold (", round(flow_threshold)," cfs)"))
@@ -1368,7 +1591,7 @@ time_rain_flow_fig = function(wys = 1944:2021, plot_panel = NA,
     arrows(x0=cum_precip_arrows[1], x1=cum_precip_arrows[2],
            y0=flow_threshold, y1=flow_threshold,
            angle=90, length=.1, lty=1, code=3)
-    text(x=160, y=30, labels = "Range of P spill at Q spill = 100 cfs",pos=4)# label range
+    text(x=160, y=30, labels = "Range of P spill at Q spill = 120 cfs",pos=4)# label range
     if(is.na(plot_panel)){legend(x="topright",bty="n",legend="B", cex = 1.5)}# Panel label
   }
   
@@ -1431,6 +1654,7 @@ flow_to_aq_and_stream_fig = function(plot_panel = NA){
     legend(x = "bottomleft", ncol = 3, pch=c(20,17,18), cex = .8,
            col = c("dodgerblue","firebrick1","gray20"), bg="white",
            legend = c("to stream", "to aquifer", "net to stream"))
+    text(x=3,y=2,labels="A")
   }
   
   # Panel 2
@@ -1510,6 +1734,8 @@ flow_to_aq_and_stream_fig = function(plot_panel = NA){
           side = 4, line = 3.5)
     abline(h=Q_spill, lwd = 2, lty = 2)
     text(x = .75,y = 1.5*Q_spill, labels = "Q spill threshold")
+    
+    text(x=-0.3,y=1800,labels="B")
   }
     
 }
@@ -1580,9 +1806,9 @@ p_spill_fig = function(){
   # initialize plot
   # par(mar=c(5,4,3,5))
   plot(dsb_tab$year, 
-       dsb_tab$cum_ppt_on_first_day_100cfs,
+       dsb_tab$cum_ppt_on_first_day_qspill,
        xlab = "Year",ylab = "P spill (mm)",
-       main = "Cumulative precip. on first day of FJ flow greater than 100 cfs, 1942-2021",
+       main = "Cumulative precip. on first day of FJ flow greater than 120 cfs, 1942-2021",
        pch = 19, type = "o")
   grid()
   
@@ -1597,11 +1823,11 @@ p_spill_fig = function(){
   # make 2nd y-axis
   par(new=T)
   plot(x = dsb_tab$year, 
-       y = dsb_tab$cum_ppt_on_first_day_100cfs * mm_to_in, 
+       y = dsb_tab$cum_ppt_on_first_day_qspill * mm_to_in, 
        # ylim = c(0.3,400)*Mm3month_AugDec_to_cfs, log="y",
        axes=F, bty="n", xlab="",ylab="")
   axis(side = 4, 
-       at = pretty(range(dsb_tab$cum_ppt_on_first_day_100cfs, na.rm = T)
+       at = pretty(range(dsb_tab$cum_ppt_on_first_day_qspill, na.rm = T)
                    * mm_to_in) )
   # axis(side = 4, at = 2:9 * 10^(sort(rep(-1:3,9))), tck = -.01, labels=NA)
   mtext(text = "P spill (inches)",
@@ -1632,7 +1858,7 @@ corr_matrix_fig_ch3 = function(keep_these_cols,
                      rep(wl_col,length(keep_wells_last)))
   fftr = dsb_tab[,keep_these_cols]
   #rename fftr columns for fig. legibility
-  colnames(fftr)[colnames(fftr)=="cum_ppt_on_first_day_100cfs"] = "P_spill"
+  colnames(fftr)[colnames(fftr)=="cum_ppt_on_first_day_qspill"] = "P_spill"
   colnames(fftr)[colnames(fftr)=="min_fall_flow"] = "V_min, 30 days"#"Q_min"
   colnames(fftr)[colnames(fftr) %in% c("mar_flow","apr_flow")] = c("Mar. flow","Apr. flow")
   colnames(fftr)[colnames(fftr) %in% paste0(keep_snow,"_max_wc_mm")] =
@@ -1676,7 +1902,7 @@ corr_matrix_fig_ch3 = function(keep_these_cols,
   # Make rectangles to highlight groups. First, find indices
   # sep_index = grep(pattern = "sep_", keep_these_cols)
   min_fall_flow_index = grep(pattern = "min_fall_flow", keep_these_cols)
-  p_spill_index = grep(pattern = "cum_ppt_on_first_day_100cfs", keep_these_cols)
+  p_spill_index = grep(pattern = "cum_ppt_on_first_day_qspill", keep_these_cols)
   mar_flow_index = grep(pattern = "mar_flow", keep_these_cols)
   apr_flow_index = grep(pattern = "apr_flow", keep_these_cols) 
   snow_indices = which(grepl(pattern = "max_wc_mm",  keep_these_cols) &
@@ -1797,6 +2023,11 @@ get_high_corr_wells = function(show_map = F,show_corr_plots = F,
     if(sum(!is.na(corr_wells))>0){
       plot(wells_sp$geometry[wells_sp$well_code %in% corr_wells], add=T, pch = 0,
            bg=NA, lwd=2, cex = 2.5, col = "red")
+      plot(riv$geometry, add=T, lwd = 3, col = color_river)
+      north(xy="right",type=1)
+      sbar(xy="topright", d=10^4, below= "km", label = c(0,5,10))
+      legend(x="bottomright",lwd=c(1,2),col=c("black","blue"),
+             legend=c("Basin boundary","Scott River"))
     }
   }
   
@@ -1855,8 +2086,15 @@ get_high_corr_wells = function(show_map = F,show_corr_plots = F,
 
 
 one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
-                                     annotate_plots = T){
+                                     annotate_plots = T,
+                                     return_diag_tab=F,
+                                     make_plots=T){
   
+  #initialize model diagnostics table
+  preds = c("SWJ_max_wc_mm","USC00043182_oct_apr_mm",
+            "SWJ_jday_of_max","springWL_415635N1228315W001",
+            "et0_oct_apr","mar_flow")
+  diag_tab = data.frame(pred=preds,logLike=NA,AICc=NA,loocv=NA)
   par(mfrow = panel_arrange)
   ylim_mult = 1.1
   
@@ -1869,10 +2107,15 @@ one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
   f1a = paste("min_fall_flow ~ ", pred)
   glm_1a = glm(f1a, data = tab_for_glm1a)
   loocv_1a = cv.glm(tab_for_glm1a, glm_1a)
+  #attach lm results 
+  diag_tab$logLike[diag_tab$pred==pred] = logLik(glm_1a)
+  diag_tab$AICc[diag_tab$pred==pred] = AICc(glm_1a)
+  diag_tab$loocv[diag_tab$pred==pred] = loocv_1a$delta[1]
+  #Generate plot
   obs = tab_for_glm1a$min_fall_flow
   pred = predict.glm(object = glm_1a, newdata=tab_for_glm1a)
   # Plot observed vs predicted for SWJ station
-  par(mar=c(5,5,3,2))
+  if(make_plots==T){par(mar=c(5,5,3,2))
   plot(x=obs, y = pred, col = tab_for_glm1a$era_color_minflow, pch=19, 
        asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
        main = "Snow maximum",
@@ -1886,7 +2129,7 @@ one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
   }
   era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
   legend(x="bottomright", col = era_tab$color_minflow, 
-         legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)
+         legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)}
   
   # B. LOOCV of next best single predictor, rainy station
   pred = "USC00043182_oct_apr_mm"
@@ -1895,24 +2138,29 @@ one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
   f1b = paste("min_fall_flow ~ ", pred)
   glm_1b = glm(f1b, data = tab_for_glm1b)
   loocv_1b = cv.glm(tab_for_glm1b, glm_1b)
+  #attach lm results 
+  diag_tab$logLike[diag_tab$pred==pred] = logLik(glm_1b)
+  diag_tab$AICc[diag_tab$pred==pred] = AICc(glm_1b)
+  diag_tab$loocv[diag_tab$pred==pred] = loocv_1b$delta[1]
+  #Generate plot
   obs = tab_for_glm1b$min_fall_flow
   pred = predict.glm(object = glm_1b, newdata=tab_for_glm1b)
   # Plot observed vs predicted for SWJ station
-  par(mar=c(5,5,3,2))
-  plot(x=obs, y = pred, col = tab_for_glm1a$era_color_minflow, pch=19, 
-       asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
-       main = "Oct.-Apr. precip.",
-       xlab = "Observed min. fall. flow volume (Mm3)",
-       ylab = "Min. fall flow volume (Mm3 / 30 d) \n predicted from FJ Oct-Apr precip.")
-  grid()
-  abline(a=0,b=1)
-  if(annotate_plots==T){
-    text(x=10,y=7.5,label="1:1 line")
-    text(x=0,y=7.5,label=paste("LOOCV Error: ", round(loocv_1b$delta[1],1)), pos=4)
-  }
-  era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
-  legend(x="bottomright", col = era_tab$color_minflow, 
-         legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)
+  if(make_plots==T){par(mar=c(5,5,3,2))
+    plot(x=obs, y = pred, col = tab_for_glm1a$era_color_minflow, pch=19, 
+         asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
+         main = "Oct.-Apr. precip.",
+         xlab = "Observed min. fall. flow volume (Mm3)",
+         ylab = "Min. fall flow volume (Mm3 / 30 d) \n predicted from FJ Oct-Apr precip.")
+    grid()
+    abline(a=0,b=1)
+    if(annotate_plots==T){
+      text(x=10,y=7.5,label="1:1 line")
+      text(x=0,y=7.5,label=paste("LOOCV Error: ", round(loocv_1b$delta[1],1)), pos=4)
+    }
+    era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
+    legend(x="bottomright", col = era_tab$color_minflow, 
+           legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)}
   
   # A2. LOOCV of best single predictor, SWJ snow max timing
   pred = "SWJ_jday_of_max"
@@ -1921,24 +2169,29 @@ one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
   f1aa = paste("min_fall_flow ~ ", pred)
   glm_1aa = glm(f1aa, data = tab_for_glm1aa)
   loocv_1aa = cv.glm(tab_for_glm1aa, glm_1aa)
+  #attach lm results 
+  diag_tab$logLike[diag_tab$pred==pred] = logLik(glm_1aa)
+  diag_tab$AICc[diag_tab$pred==pred] = AICc(glm_1aa)
+  diag_tab$loocv[diag_tab$pred==pred] = loocv_1aa$delta[1]
+  #Generate plot
   obs = tab_for_glm1aa$min_fall_flow
   pred = predict.glm(object = glm_1aa, newdata=tab_for_glm1aa)
   # Plot observed vs predicted for SWJ station
-  par(mar=c(5,5,3,2))
-  plot(x=obs, y = pred, col = tab_for_glm1aa$era_color_minflow, pch=19, 
-       asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
-       main = "Snow maximum timing",
-       xlab = "Observed min. fall. flow volume (Mm3)",
-       ylab = "Min. fall flow volume (Mm3 / 30 d) \n predicted from SWJ snow max timing")
-  grid()
-  abline(a=0,b=1)
-  if(annotate_plots==T){
-    text(x=4,y=6,label="1:1 line")
-    text(x=7,y=6,label=paste("LOOCV Error: ", round(loocv_1aa$delta[1],1)), pos=4)
-  }
-  era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
-  legend(x="bottomright", col = era_tab$color_minflow, 
-         legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)  
+  if(make_plots==T){par(mar=c(5,5,3,2))
+    plot(x=obs, y = pred, col = tab_for_glm1aa$era_color_minflow, pch=19, 
+         asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
+         main = "Snow maximum timing",
+         xlab = "Observed min. fall. flow volume (Mm3)",
+         ylab = "Min. fall flow volume (Mm3 / 30 d) \n predicted from SWJ snow max timing")
+    grid()
+    abline(a=0,b=1)
+    if(annotate_plots==T){
+      text(x=4,y=6,label="1:1 line")
+      text(x=7,y=6,label=paste("LOOCV Error: ", round(loocv_1aa$delta[1],1)), pos=4)
+    }
+    era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
+    legend(x="bottomright", col = era_tab$color_minflow, 
+           legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19) } 
   
   # C. LOOCV of next best single predictor, water level in a well
   pred = "springWL_415635N1228315W001"#"aprWL_415635N1228315W001"
@@ -1947,24 +2200,29 @@ one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
   f1c = paste("min_fall_flow ~ ", pred)
   glm_1c = glm(f1c, data = tab_for_glm1c)
   loocv_1c = cv.glm(tab_for_glm1c, glm_1c)
+  #attach lm results 
+  diag_tab$logLike[diag_tab$pred==pred] = logLik(glm_1c)
+  diag_tab$AICc[diag_tab$pred==pred] = AICc(glm_1c)
+  diag_tab$loocv[diag_tab$pred==pred] = loocv_1c$delta[1]
+  #Generate plot
   obs = tab_for_glm1c$min_fall_flow
   pred = predict.glm(object = glm_1c, newdata=tab_for_glm1c)
   # Plot observed vs predicted for SWJ station
-  par(mar=c(5,5,3,2))
-  plot(x=obs, y = pred, col = tab_for_glm1c$era_color_minflow, pch=19, 
-       asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
-       main = "Mar-May WLs",#"April WLs",
-       xlab = "Observed min. fall. flow volume (Mm3)",
-       ylab = "Min. fall flow volume (Mm3 / 30 d) predicted \n from well 415635N1228315W001")
-  grid()
-  abline(a=0,b=1)
-  if(annotate_plots==T){
-    text(x=4,y=5.5,label="1:1 line")
-    text(x=6,y=5.5,label=paste("LOOCV Error: ", round(loocv_1c$delta[1],1)), pos=4)
-  }
-  era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
-  legend(x="bottomright", col = era_tab$color_minflow, 
-         legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)
+  if(make_plots==T){par(mar=c(5,5,3,2))
+    plot(x=obs, y = pred, col = tab_for_glm1c$era_color_minflow, pch=19, 
+         asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
+         main = "Mar-May WLs",#"April WLs",
+         xlab = "Observed min. fall. flow volume (Mm3)",
+         ylab = "Min. fall flow volume (Mm3 / 30 d) predicted \n from well 415635N1228315W001")
+    grid()
+    abline(a=0,b=1)
+    if(annotate_plots==T){
+      text(x=4,y=5.5,label="1:1 line")
+      text(x=6,y=5.5,label=paste("LOOCV Error: ", round(loocv_1c$delta[1],1)), pos=4)
+    }
+    era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
+    legend(x="bottomright", col = era_tab$color_minflow, 
+           legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)}
   
   
   # D. LOOCV of next best single predictor, ET0
@@ -1974,24 +2232,30 @@ one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
   f1d = paste("min_fall_flow ~ ", pred)
   glm_1d = glm(f1d, data = tab_for_glm1d)
   loocv_1d = cv.glm(tab_for_glm1d, glm_1d)
+  #attach lm results 
+  diag_tab$logLike[diag_tab$pred==pred] = logLik(glm_1d)
+  diag_tab$AICc[diag_tab$pred==pred] = AICc(glm_1d)
+  diag_tab$loocv[diag_tab$pred==pred] = loocv_1d$delta[1]
+  #Generate plot
+  obs = tab_for_glm1c$min_fall_flow
   obs = tab_for_glm1d$min_fall_flow
   pred = predict.glm(object = glm_1d, newdata=tab_for_glm1d)
   # Plot observed vs predicted for SWJ station
-  par(mar=c(5,5,3,2))
-  plot(x=obs, y = pred, col = tab_for_glm1d$era_color_minflow, pch=19,
-       asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
-       main = "Reference ET",
-       xlab = "Observed min. fall. flow volume (Mm3)",
-       ylab = "Min. fall flow volume (Mm3 / 30 d) \n from ET0")
-  grid()
-  abline(a=0,b=1)
-  if(annotate_plots==T){
-    text(x=1.5,y=.5,label="1:1 line")
-    text(x=-0.2,y=2.9,label=paste("LOOCV Error: ", round(loocv_1d$delta[1],2)), pos=4)
-  }
-  era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
-  legend(x="bottomright", col = era_tab$color_minflow, 
-         legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)
+  if(make_plots==T){par(mar=c(5,5,3,2))
+    plot(x=obs, y = pred, col = tab_for_glm1d$era_color_minflow, pch=19,
+         asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
+         main = "Reference ET",
+         xlab = "Observed min. fall. flow volume (Mm3)",
+         ylab = "Min. fall flow volume (Mm3 / 30 d) \n from ET0")
+    grid()
+    abline(a=0,b=1)
+    if(annotate_plots==T){
+      text(x=1.5,y=.5,label="1:1 line")
+      text(x=-0.2,y=2.9,label=paste("LOOCV Error: ", round(loocv_1d$delta[1],2)), pos=4)
+    }
+    era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
+    legend(x="bottomright", col = era_tab$color_minflow, 
+           legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)}
   
   
   # E. LOOCV of next best single predictor, march flows
@@ -2001,24 +2265,31 @@ one_predictor_model_plots = function(tab_for_glm, panel_arrange = c(3,2),
   f1e = paste("min_fall_flow ~ ", pred)
   glm_1e = glm(f1e, data = tab_for_glm1e)
   loocv_1e = cv.glm(tab_for_glm1e, glm_1e)
+  #attach lm results 
+  diag_tab$logLike[diag_tab$pred==pred] = logLik(glm_1e)
+  diag_tab$AICc[diag_tab$pred==pred] = AICc(glm_1e)
+  diag_tab$loocv[diag_tab$pred==pred] = loocv_1e$delta[1]
+  #Generate plot
   obs = tab_for_glm1e$min_fall_flow
   pred = predict.glm(object = glm_1e, newdata=tab_for_glm1e)
   # Plot observed vs predicted for SWJ station
-  par(mar=c(5,5,3,2))
-  plot(x=obs, y = pred, col = tab_for_glm1e$era_color_minflow, pch=19, 
-       asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
-       main = "March flow vol.",
-       xlab = "Observed min. fall. flow volume (Mm3)",
-       ylab = "Min. fall flow volume (Mm3 / 30 d) \n from March flow vol.")
-  grid()
-  abline(a=0,b=1)
-  if(annotate_plots==T){
-    text(x=2,y=0.5,label="1:1 line")
-    text(x=0,y=7,label=paste("LOOCV Error: ", round(loocv_1e$delta[1],1)), pos=4)
-  }
-  era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
-  legend(x="bottomright", col = era_tab$color_minflow, 
-         legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)
+  if(make_plots==T){par(mar=c(5,5,3,2))
+    plot(x=obs, y = pred, col = tab_for_glm1e$era_color_minflow, pch=19, 
+         asp=1, ylim = c(range(pred)[1], range(pred)[2]*ylim_mult),
+         main = "March flow vol.",
+         xlab = "Observed min. fall. flow volume (Mm3)",
+         ylab = "Min. fall flow volume (Mm3 / 30 d) \n from March flow vol.")
+    grid()
+    abline(a=0,b=1)
+    if(annotate_plots==T){
+      text(x=2,y=0.5,label="1:1 line")
+      text(x=0,y=7,label=paste("LOOCV Error: ", round(loocv_1e$delta[1],1)), pos=4)
+    }
+    era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
+    legend(x="bottomright", col = era_tab$color_minflow, 
+           legend = paste0("Era ",era_tab$era,": ",era_yrs_text), pch = 19)}
+  
+  if(return_diag_tab==T){return(diag_tab)}
 }
 
 two_predictor_model_plots = function(tab_for_glm, annotate_plots = T){
@@ -2193,16 +2464,16 @@ one_pred_p_spill = function(pred1, tab_for_glm_p_spill, annotate_plots = T,
                             make_plot = F, return_lm_results = T,
                             plot_title = NA, yaxis_label=NA){
   
-  tab_for_glm1g = tab_for_glm_p_spill[!is.na(tab_for_glm_p_spill$cum_ppt_on_first_day_100cfs * 
+  tab_for_glm1g = tab_for_glm_p_spill[!is.na(tab_for_glm_p_spill$cum_ppt_on_first_day_qspill * 
                                                tab_for_glm_p_spill[,pred1]),]
   
   if(nrow(tab_for_glm1g) >0){
-    f1g = paste("cum_ppt_on_first_day_100cfs ~ ", pred1)#0+", pred1)
+    f1g = paste("cum_ppt_on_first_day_qspill ~ ", pred1)#0+", pred1)
     glm_1g = glm(f1g, data = tab_for_glm1g)
     loocv_1g = cv.glm(tab_for_glm1g, glm_1g)
     
     # Pred and obs
-    obs = tab_for_glm1g$cum_ppt_on_first_day_100cfs
+    obs = tab_for_glm1g$cum_ppt_on_first_day_qspill
     pred = predict.glm(object = glm_1g, newdata=tab_for_glm1g)
     rmse = sqrt(mean((pred-obs)^2))
     
@@ -2252,18 +2523,18 @@ two_pred_p_spill = function(pred1, pred2, tab_for_glm_p_spill, annotate_plots = 
                             make_plot = F, return_lm_results = T,
                             plot_title = NA, yaxis_label = NA){
   
-  tab_for_glm2f = tab_for_glm_p_spill[!is.na(tab_for_glm_p_spill$cum_ppt_on_first_day_100cfs * 
+  tab_for_glm2f = tab_for_glm_p_spill[!is.na(tab_for_glm_p_spill$cum_ppt_on_first_day_qspill * 
                                                tab_for_glm_p_spill[,pred1] *
                                                tab_for_glm_p_spill[,pred2]),]
   
   if(nrow(tab_for_glm2f) >0){
     # f2c = paste(c("min_fall_flow", paste(c(pred1, pred2), collapse = " * ")), collapse = " ~ ")
-    f2f = paste("cum_ppt_on_first_day_100cfs ~ ",pred1, "+",pred2)
+    f2f = paste("cum_ppt_on_first_day_qspill ~ ",pred1, "+",pred2)
     glm_2f = glm(f2f, data = tab_for_glm2f)
     loocv_2f = cv.glm(tab_for_glm2f, glm_2f)
     
     # Pred and observed      
-    obs = tab_for_glm2f$cum_ppt_on_first_day_100cfs
+    obs = tab_for_glm2f$cum_ppt_on_first_day_qspill
     pred = predict.glm(object = glm_2f, newdata=tab_for_glm2f)
     rmse = sqrt(mean((pred-obs)^2))
     
@@ -2418,7 +2689,7 @@ p_spill_plots = function(tab_for_glm, pred1 = "USC00043182_oct_apr_mm_last_year"
                          pred2="SWJ_max_wc_mm", plot_panel = NA){
   
   if(is.na(plot_panel) | plot_panel==1){
-    plot(dsb_tab$year, dsb_tab$cum_ppt_on_first_day_100cfs, pch = 19, type = "o",
+    plot(dsb_tab$year, dsb_tab$cum_ppt_on_first_day_qspill, pch = 19, type = "o",
          main = "P spill over time, observed and predicted",
          xlab = "Year", ylab = "P spill (mm)", ylim = c(0,200))
     grid()
@@ -2436,7 +2707,7 @@ p_spill_plots = function(tab_for_glm, pred1 = "USC00043182_oct_apr_mm_last_year"
   if(is.na(plot_panel) | plot_panel == 2){
     # plot residuals
     plot(dsb_tab$year, dsb_tab$p_spill_pred - 
-           dsb_tab$cum_ppt_on_first_day_100cfs,
+           dsb_tab$cum_ppt_on_first_day_qspill,
          pch=19, type = "o", col="gray40", ylim = c(-120,100),
          main = "Predicted minus observed P spill \n (linear model residuals)",
          xlab = "Year", ylab = "Pred. minus obs. P spill (mm)")
@@ -2451,38 +2722,38 @@ p_spill_plots = function(tab_for_glm, pred1 = "USC00043182_oct_apr_mm_last_year"
     era3_sel = dsb_tab$year >= 2000
     
     # Era 1
-    tab_for_glm2a_E1 = tab_for_glm[!is.na(tab_for_glm$cum_ppt_on_first_day_100cfs * 
+    tab_for_glm2a_E1 = tab_for_glm[!is.na(tab_for_glm$cum_ppt_on_first_day_qspill * 
                                             tab_for_glm[,pred1] *tab_for_glm[,pred2]  ) &
                                      tab_for_glm$era==1,]
-    f2a = paste(c("cum_ppt_on_first_day_100cfs ~  ", 
+    f2a = paste(c("cum_ppt_on_first_day_qspill ~  ", 
                   paste(c(pred1, pred2), collapse = " + ")))
     glm_2a_E1 = glm(f2a, data = tab_for_glm2a_E1)
     pred_E1 = predict.glm(object = glm_2a_E1, newdata=dsb_tab)
     
     # Era 2
-    tab_for_glm2a_E2 = tab_for_glm[!is.na(tab_for_glm$cum_ppt_on_first_day_100cfs * 
+    tab_for_glm2a_E2 = tab_for_glm[!is.na(tab_for_glm$cum_ppt_on_first_day_qspill * 
                                             tab_for_glm[,pred1] * tab_for_glm[,pred2]) &
                                      tab_for_glm$era==2,]
-    f2a = paste(c("cum_ppt_on_first_day_100cfs ~  ", 
+    f2a = paste(c("cum_ppt_on_first_day_qspill ~  ", 
                   paste(c(pred1, pred2), collapse = " + ")))
     glm_2a_E2 = glm(f2a, data = tab_for_glm2a_E2)
     pred_E2 = predict.glm(object = glm_2a_E2, newdata=dsb_tab)
     
     # Era 3
-    tab_for_glm2a_E3 = tab_for_glm[!is.na(tab_for_glm$cum_ppt_on_first_day_100cfs * 
+    tab_for_glm2a_E3 = tab_for_glm[!is.na(tab_for_glm$cum_ppt_on_first_day_qspill * 
                                             tab_for_glm[,pred1] * tab_for_glm[,pred2]) &
                                      tab_for_glm$era==3,]
-    f2a = paste(c("cum_ppt_on_first_day_100cfs ~  ", paste(c(pred1, pred2), collapse = " + ")))
+    f2a = paste(c("cum_ppt_on_first_day_qspill ~  ", paste(c(pred1, pred2), collapse = " + ")))
     glm_2a_E3 = glm(f2a, data = tab_for_glm2a_E3)
     pred_E3 = predict.glm(object = glm_2a_E3, newdata=dsb_tab)
     
     # plot(dsb_tab$year, dsb_tab$min_30day_flow_jul_dec_cal_yr / 10^6, 
     #      type = "o", pch = 19)
-    points(dsb_tab$year, pred_E1 - dsb_tab$cum_ppt_on_first_day_100cfs, #type = "o", 
+    points(dsb_tab$year, pred_E1 - dsb_tab$cum_ppt_on_first_day_qspill, #type = "o", 
            col = era_tab$color_pspill[1], pch = 18)
-    points(dsb_tab$year, pred_E2 - dsb_tab$cum_ppt_on_first_day_100cfs, #type = "o",
+    points(dsb_tab$year, pred_E2 - dsb_tab$cum_ppt_on_first_day_qspill, #type = "o",
            col = era_tab$color_pspill[2], pch = 18)
-    points(dsb_tab$year, pred_E3 - dsb_tab$cum_ppt_on_first_day_100cfs, #type = "o",
+    points(dsb_tab$year, pred_E3 - dsb_tab$cum_ppt_on_first_day_qspill, #type = "o",
            col = era_tab$color_pspill[3], pch = 18)
     
     legend(x = "bottomleft", pch = 18, col = c("black",era_tab$color_pspill),
@@ -2491,7 +2762,7 @@ p_spill_plots = function(tab_for_glm, pred1 = "USC00043182_oct_apr_mm_last_year"
   }
 
   # num for discussion
-  # residuals = dsb_tab$cum_ppt_on_first_day_100cfs/10^6 - dsb_tab$AWI
+  # residuals = dsb_tab$cum_ppt_on_first_day_qspill/10^6 - dsb_tab$AWI
   # resid_minus_outliers = residuals[residuals < 4]
   # resid_range_no_outliers = range(resid_minus_outliers,na.rm=T)
 }
@@ -2557,7 +2828,75 @@ precip_vs_fall_flows = function(xtype, wx_stns_plot = "all",n_colors = 4){
 }
 
 
+add_dQ_dP_cols = function(fj3d, lag_days = 1, P, Q, 
+                          dry_season_day1 = yday(as.Date("2001-09-01"))){
+  # identify first date in each WY where dQ exceeds the threshold
+  Q_lagged_forward = c(rep(NA, lag_days), Q[1:(length(Q)-lag_days)])
+  P_lagged_forward = c(rep(NA, lag_days), P[1:(length(P)-lag_days)])
+  
+  # take out annual fenceposts - first x days of each year's dry season (which in this tabular arrangement have lagged values from the preceding year)
+  dates_julian = yday(fj3d$Date)
+  Q[dates_julian < (lag_days+dry_season_day1) & dates_julian >= dry_season_day1] = NA 
+  P[dates_julian < (lag_days+dry_season_day1) & dates_julian >= dry_season_day1] = NA 
+  
+  dP = P - P_lagged_forward # real time cum. precip. record minus cum. ppt from x days ago
+  dQ = Q - Q_lagged_forward # real time flow record minus flow from x days ago
+  fj3d[,paste0("dP_lag",lag_days)] = dP
+  fj3d[,paste0("dQ_lag",lag_days)] = dQ
+  fj3d$dQ_dP = dQ/dP
+  return(fj3d)
+}
 
+
+dQ_dP_difference_finder = function(q_thresh, EoDS_years){
+  
+  # initialize results table
+  thresh_by_yr = expand.grid(Q_threshold_m3day = q_thresh, year = EoDS_years)
+  results = thresh_by_yr
+  results[,3:6]=NA
+  colnames(results) = c(colnames(thresh_by_yr), "dQ_cum_pre", "dP_cum_pre",
+                        "dQ_cum_post", "dP_cum_post")
+  ## for each threshold:
+  for(thresh in q_thresh){
+    # initialize table of results for each threshold
+    threshold_picker = results$Q_threshold_m3day==thresh
+    ## for each water year:
+    for(yr in EoDS_years){
+      # find date of exceeding threshold
+      # dQ_col_index = grepl(pattern = "dQ_lag",x = colnames(fj3d))
+      Q_col_index = grepl(pattern = "Flow_m3day", x = colnames(fj3d))
+      Q_exceeded_this_year = fj3d$Date>=as.Date(paste0(yr,"-09-30")) & #This is Sept 30, not Sept 1, because we need it to be at least a 30-day period starting sept 1
+        fj3d$Date<=as.Date(paste0(yr+1,"-02-01")) & fj3d[, Q_col_index] > thresh
+      
+      # If the dQ threshold was exceeded in this end of dry season period, calculate dQs and dPs for 30 days on either side of the spill date
+      if(sum(Q_exceeded_this_year, na.rm=T)>0){
+        spill_date = min(fj3d$Date[Q_exceeded_this_year], na.rm=T)
+        # calculate dQ_cum / dP_cum in the 30 days on either side of this date
+        # dates_selector_30_days_prior = fj3d$Date < spill_date & fj3d$Date >= spill_date - 30
+        spill_date_minus_30_days = spill_date - 29
+        dQ_cum_prior = fj3d$cum_flow_m3[fj3d$Date == spill_date] -
+          fj3d$cum_flow_m3[fj3d$Date==spill_date_minus_30_days] 
+        dP_cum_prior = fj3d$cum_ppt[fj3d$Date == spill_date] -
+          fj3d$cum_ppt[fj3d$Date==spill_date_minus_30_days] 
+        
+        # dates_selector_30_days_after = fj3d$Date >= spill_date & fj3d$Date < spill_date + 30
+        spill_date_plus_30_days = spill_date + 29
+        dQ_cum_post = fj3d$cum_flow_m3[fj3d$Date==spill_date_plus_30_days]  - fj3d$cum_flow_m3[fj3d$Date == spill_date]
+        dP_cum_post = fj3d$cum_ppt[fj3d$Date==spill_date_plus_30_days] - 
+          fj3d$cum_ppt[fj3d$Date == spill_date]
+        
+        yr_picker = results$year==yr
+        sum(yr_picker & threshold_picker)
+        results$dQ_cum_pre[yr_picker & threshold_picker] = dQ_cum_prior
+        results$dQ_cum_post[yr_picker & threshold_picker] = dQ_cum_post
+        results$dP_cum_pre[yr_picker & threshold_picker] = dP_cum_prior
+        results$dP_cum_post[yr_picker & threshold_picker] = dP_cum_post
+        
+      }
+    }
+  }
+  return(results)
+}
 
 gradient_areas_wl_vs_flow_day_of_and_lagged = function(){
   grad_months = 4:6
@@ -2743,7 +3082,7 @@ stream_aq_flux_hist = function(summary_tab){
   
 }
 
-gradients_vs_flow_plot = function(){
+gradients_vs_flow_plot = function(Q_spill=120){
   grad_symbol = 18
   grad_colors = data.frame(area = unique(grad$grad_areas),
                            name = c("Tailings","French C", "Etna Cr",
@@ -2754,7 +3093,7 @@ gradients_vs_flow_plot = function(){
   
   
   
-  threshold_flow = 100
+  threshold_flow = Q_spill
   # grad_low_flow = grad[grad$fj_flow_up_date<threshold_flow,]
   # grad_fre = grad[grad$grad_areas=="fre" & grad$fj_flow_up_date < threshold_flow,]
   

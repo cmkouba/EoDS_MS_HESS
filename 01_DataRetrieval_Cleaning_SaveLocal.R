@@ -347,13 +347,26 @@ wsh_10km = st_buffer(watershed, 1e4) # give it a buffer for figure backgrounds
 dem_watershed=terra::crop(dem_3310, wsh_10km)
 dem_shade=gray(0:100 / 100)
 
-#generate hillshade (for smaller maps)
-# hill_basin = hillShade(slope = terrain(dem_basin, "slope"), aspect = terrain(dem_basin, "aspect"))
-#generate cropped hillshade
-hill_wsh = shade(slope = terrain(dem_watershed, "slope"), 
-                     aspect = terrain(dem_watershed, "aspect"))
 
-
+if(!file.exists(file.path(scratch_dir, "hillshade_cropped_raster.tif"))){
+  #generate hillshade (for smaller maps)
+  # hill_basin = hillShade(slope = terrain(dem_basin, "slope"), aspect = terrain(dem_basin, "aspect"))
+  #generate cropped hillshade
+  dem_watershed_slope = terra::terrain(dem_watershed, v = "slope", unit = "radians")
+  dem_watershed_asp = terra::terrain(dem_watershed, v = "aspect", unit = "radians")
+  hill_wsh = shade(slope = dem_watershed_slope, aspect = dem_watershed_asp,
+                   angle = 45, direction = 0)
+  
+  
+  plot(hill_wsh, col = grey(c(0:100)/100), legend = F)
+  
+  # plot(hill_wsh)
+  # hill_wsh_spatRaster = hill_wsh
+  # hill_wsh_raster = raster(hill_wsh_spatRaster)
+  # hill_wsh_wrapped = wrap(hill_wsh_spatRaster)
+  terra::writeRaster(hill_wsh, filename = file.path(scratch_dir, "hillshade_cropped_raster.tif"), overwrite=T)
+  
+}
 
 # American Indian Areas ----------------------------------------------------
 tribal_url = "https://www2.census.gov/geo/tiger/TIGER2021/AIANNH/tl_2021_us_aiannh.zip"
