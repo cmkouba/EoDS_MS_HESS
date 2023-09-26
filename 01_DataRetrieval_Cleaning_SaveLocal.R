@@ -338,13 +338,14 @@ if(!file.exists(file.path(scratch_dir,tif_name))){
   }
 dem124 = rast(file.path(scratch_dir, tif_name))
 
-m <- merge(dem123, dem124) # getting some weird errors but it still runs the merge.
+m <- merge(dem123,
+           dem124) # getting some weird errors but it still runs the merge.
 # plot(m)
 dem_3310 = terra::project(x = m, y = crs("+init=epsg:3310"))
 
 # Generate hillshade
-wsh_10km = st_buffer(watershed, 1e4) # give it a buffer for figure backgrounds
-dem_watershed=terra::crop(dem_3310, wsh_10km)
+wsh_30km = st_buffer(watershed, 3e4) # give it a buffer for figure backgrounds
+dem_watershed=terra::crop(dem_3310, wsh_30km)
 dem_shade=gray(0:100 / 100)
 
 

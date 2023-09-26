@@ -1139,8 +1139,11 @@ watershed_fig_ch3 = function(){
          legend = c("Watershed HUC8", "Groundwater Basin", "Tributary Stream", "Scott River"), 
          col = c(color_watershed, color_basin, color_tribs, color_river), bg="white")
   north(xy="topleft",type=1) # add north arrow
-  sbar(d=20*10^3, xy="topright", label = c("0","10","20"), 
-       below = "km", adj = c(0.5, -0.5))
+  sbar_x = st_bbox(watershed)["xmin"] + -.25 * diff(c(st_bbox(watershed)["xmin"],st_bbox(watershed)["xmax"]))
+  sbar_y = st_bbox(watershed)["ymin"] + .25 * diff(c(st_bbox(watershed)["ymin"],st_bbox(watershed)["ymax"]))
+  sbar(d=20*10^3, xy=c(sbar_x, sbar_y), label = c("0","10","20"), 
+       type = "bar", divs = 4,
+       below = "km", adj = c(1, -1.4))
 }
 
 
@@ -1531,7 +1534,7 @@ dQdP_vs_hydrograph = function(fj3d,
 
 
 time_rain_flow_fig = function(wys = 1944:2021, plot_panel = NA,
-                              cum_precip_arrows,
+                              cum_precip_arrows, add_percentile_lines=T,
                               flow_threshold, P_max){
   
   # Panel 1
@@ -1561,6 +1564,7 @@ time_rain_flow_fig = function(wys = 1944:2021, plot_panel = NA,
            legend = paste0("FJ Flow \'Q spill\' Threshold (", round(flow_threshold)," cfs)"))
     # abline(h= flow_threshold, lty = 2, lwd = 2)
     if(is.na(plot_panel)){legend(x="topright",bty="n",legend="A", cex = 1.5)}# Panel label
+    
   }
 
   
@@ -1594,6 +1598,26 @@ time_rain_flow_fig = function(wys = 1944:2021, plot_panel = NA,
     text(x=160, y=30, labels = "Range of P spill at Q spill = 120 cfs",pos=4)# label range
     if(is.na(plot_panel)){legend(x="topright",bty="n",legend="B", cex = 1.5)}# Panel label
   }
+  if(add_percentile_lines == TRUE){
+    # Calculate and add percentile lines to plot
+    num_bins = 50
+    x_breaks = seq(from=range(fj3d$cum_ppt,na.rm=T)[1], to = range(fj3d$cum_ppt,na.rm=T)[2],
+                   length.out=num_bins+1)
+    y_10th = rep(NA,num_bins); y_50th = rep(NA,num_bins); y_90th = rep(NA,num_bins);
+    for(i in 1:num_bins){
+      binned_y_vals = fj3d$Flow[fj3d$cum_ppt>=x_breaks[i] & 
+                                  fj3d$cum_ppt<x_breaks[i+1]]
+      if(i==num_bins){binned_y_vals = fj3d$Flow[fj3d$cum_ppt>=x_breaks[i] & fj3d$cum_ppt<=x_breaks[i+1]]}
+      y_10th[i] = quantile(x=binned_y_vals,probs=0.1, na.rm=T)
+      y_50th[i] = quantile(x=binned_y_vals,probs=0.5, na.rm=T)
+      y_90th[i] = quantile(x=binned_y_vals,probs=0.9, na.rm=T)
+    }
+    lines(x = x_breaks[1:num_bins], y = y_10th, lty = 2)
+    lines(x = x_breaks[1:num_bins], y = y_90th, lty = 2)
+    lines(x = x_breaks[1:num_bins], y = y_50th, lwd = 2)
+    
+    legend(x="topleft",legend = c("50th flow %ile","10th and 90th"),lwd=c(2,1),lty=c(1,2))
+  }
   
 
   # Panel 3
@@ -1621,11 +1645,49 @@ time_rain_flow_fig = function(wys = 1944:2021, plot_panel = NA,
     #        legend = paste0("Maximum P spill value, 1942-2021 (",round(P_max)," mm)"))
     # abline(h=P_max, lty = 2, lwd = 2)
     era_yrs_text = c("1942-1976", "1977-2000","2001-2021")
-    legend(x="topleft",lwd=2, col = era_tab$color_minflow,
-           legend = paste0("Era ",era_tab$era,": ",era_yrs_text))
+    if(add_percentile_lines == FALSE){
+      legend(x="topleft",lwd=2, col = era_tab$color_minflow,
+             legend = paste0("Era ",era_tab$era,": ",era_yrs_text))
+    }
 
     if(is.na(plot_panel)){legend(x="topright",bty="n",legend="C", cex = 1.5)}# Panel label
   }
+
+  if(add_percentile_lines == TRUE){
+    #add era to fj3d
+    fj3d$era = 1
+    fj3d$era[fj3d$wy_3d>=1977 & fj3d$wy_3d<=2000] = 2
+    fj3d$era[fj3d$wy_3d>=2001] = 3
+    
+    # Calculate and add percentile lines to plot
+    num_bins = 20
+    x_breaks = seq(from=range(fj3d$days_after_aug31,na.rm=T)[1], to = range(fj3d$days_after_aug31,na.rm=T)[2],
+                   length.out=num_bins+1)
+    y_e1 = rep(NA,num_bins); y_e2 = rep(NA,num_bins); y_e3 = rep(NA,num_bins);
+    for(i in 1:num_bins){
+      bin_picker = fj3d$days_after_aug31>=x_breaks[i] & fj3d$days_after_aug31<x_breaks[i+1]
+      binned_yvals_e1 = fj3d$cum_ppt[bin_picker & fj3d$era==1]
+      binned_yvals_e2 = fj3d$cum_ppt[bin_picker & fj3d$era==2]
+      binned_yvals_e3 = fj3d$cum_ppt[bin_picker & fj3d$era==3]
+      if(i==num_bins){binned_y_vals = fj3d$cum_ppt[fj3d$days_after_aug31>=x_breaks[i] & fj3d$days_after_aug31<=x_breaks[i+1]]}
+      y_e1[i] = quantile(x=binned_yvals_e1,probs=0.5, na.rm=T)
+      y_e2[i] = quantile(x=binned_yvals_e2,probs=0.5, na.rm=T)
+      y_e3[i] = quantile(x=binned_yvals_e3,probs=0.5, na.rm=T)
+    }
+    lines(x = x_breaks[1:num_bins], y = y_e1, lty = 1, lwd = 2)#, col = era_tab$color_minflow[era_tab$era==1])
+    lines(x = x_breaks[1:num_bins], y = y_e2, lty = 2, lwd = 2)#, col = era_tab$color_minflow[era_tab$era==2])
+    lines(x = x_breaks[1:num_bins], y = y_e3, lty = 3, lwd = 2)#, col = era_tab$color_minflow[era_tab$era==3])
+    
+    # legend(x="topleft",lwd=2, col = era_tab$color_minflow,
+    #        legend = paste0("Era ",era_tab$era,": ",era_yrs_text))
+    
+    legend(x="topleft",
+           col = c(era_tab$color_minflow,"black","black","black"),
+           legend = c(paste0("Era ",era_tab$era,": ",era_yrs_text),
+                      paste0("Median, Era ",era_tab$era)),
+           lwd=c(1,1,1,2,2,2),lty=c(1,1,1,1,2,3))
+  }
+  
   
 }
 
