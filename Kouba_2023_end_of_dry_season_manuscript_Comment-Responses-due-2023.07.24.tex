@@ -519,7 +519,7 @@ precipitation are an order of magnitude greater than the estimated water
 pumped or diverted for agriculture \citep{Tolley2019}. In this study we
 tested whether fundamental hydrologic characteristics, specifically the
 dry-season baseflow recession and the rainfall-runoff response to early
-wet season cumulative precipitation can be predicted five to six months
+wet season cumulative precipitation, can be predicted five to six months
 prior using observable hydroclimate data of the preceding wet season and
 antecedent climate and flow conditions prior to the water year. The
 first step was identification and quantification of relevant response
@@ -669,9 +669,9 @@ observation. The root mean square of these \(n\) errors is the LOOCV
 error used to evaluate model performance in Results.
 
 The single predictors with the lowest LOOCV error (other than
-evapotranspiration of a reference crop, {[}\(ET_{ref}\){]}, which was
-excluded due to insufficient observation record length) were used to
-produce a set of four two-predictor models (see Results, Section 3.4 and
+evapotranspiration of a reference crop, \(ET_{ref}\), which was excluded
+due to insufficient observation record length) were used to produce a
+set of four two-predictor models (see Results, Section 3.4 and
 \autoref{tab:vmin_tab_2pred}) for \(V_{min}\), including two that
 incorporate data from a full calendar year prior. A similar approach was
 used to assess two-predictor models for \(P_{spill}\), though no
@@ -740,9 +740,9 @@ evaluate rainfall-runoff responses preceding and following the threshold
 \subsubsection{Dry season baseflow quantity and timing}
 
 Minimum 30-day dry season baseflow volumes, denoted here as \(V_{min}\),
-ranged from 0.3 to 7.5 Mm\textsuperscript{3} / 30 days, with one outlier
-value of 13.9 Mm\textsuperscript{3} / 30 days in 1984, when an early
-September storm followed a wet year in 1983
+ranged from 0.3 to 7.5 Mm\textsuperscript{3} / 30 days (3.9 to 102 cfs),
+with one outlier value of 14 Mm\textsuperscript{3} / 30 days (189.2 cfs)
+in 1984, when an early September storm followed a wet year in 1983
 (\autoref{fig:fall_flows_data_exp}).
 
 As mentioned previously, three eras have been proposed for the Scott
@@ -751,7 +751,7 @@ and 2001-2021, respectively. Matching other long-term declining flow
 trends in this watershed, the flows in August and September are
 relatively steady in Era 1, and they become more variable with
 significantly lower lows in Eras 2 and 3 (minima of 2.1, 0.35, and 0.33
-Mm\textsuperscript{3} / 30 days {[}28.6, 4.8 and 4.4 average cfs{]}, in
+Mm\textsuperscript{3} / 30 days; or 28.6, 4.8 and 4.4 average cfs; in
 Eras 1, 2 and 3 respectively; \autoref{fig:fall_flows_data_exp}, panel
 A).
 
@@ -765,11 +765,11 @@ decades (\autoref{fig:fall_flows_data_exp}, panel B).
 
 \subsubsection{Cumulative fall precipitation and watershed response}
 
-Typically, flow at the Fort Jones gauge is low (i.e., \textless{} 100
-cfs) and stable through the end of the dry season
-(\autoref{fig:time_v_fall_rains_v_flow_fig}, panel A). However, in some
-water years prior to the 1980s, the Fort Jones flowrate exceeded
-\(Q_{spill}\) on September 1st
+Typically, flow at the Fort Jones gauge is low (i.e., less than the
+\(Q_{spill}\) threshold of 120 cfs) and stable through the end of the
+dry season (\autoref{fig:time_v_fall_rains_v_flow_fig}, panel A).
+However, in some water years prior to the 1980s, the Fort Jones flowrate
+exceeded \(Q_{spill}\) on September 1st
 (\autoref{fig:time_v_fall_rains_v_flow_fig}, panels A and B), indicating
 that even under persistent dry season draining conditions, under the
 climate and water use conditions of wet years in the mid-20th century,
@@ -879,8 +879,9 @@ linear combination of maximum snowpack and cumulative precipitation
 improved on the best single-predictor model, with an LOOCV error of 2.29
 Mm\textsuperscript{3} (\autoref{fig:two_predictor_model}, upper left
 panel; \autoref{tab:vmin_tab_2pred}). No three-predictor models produced
-lower LOOCV or higher \(R^2\) values (\autoref{tab:vmin_tab_3pred}), so
-no visualizations were made of three-predictor model results.
+lower LOOCV or higher \(R^2\) values than the best two-predictor models
+(\autoref{tab:vmin_tab_3pred}), so no visualizations were made of
+three-predictor model results.
 
 Among the two-predictor models evaluated was a combination of maximum
 snowpack water content and the timing of the maximum measurement
@@ -975,7 +976,7 @@ significant systematic underpredictions pre-2000
 prediction
 formula}{P\_\{spill\} predictor assessment and prediction formula}}
 
-The two single predictors of \(P_{spill}\) with the (largest \(R\) or
+The two single predictors of \(P_{spill}\) (with the largest \(R\) or
 least error or both) were October-April cumulative precipitation and the
 maximum snowpack (\autoref{fig:one_predictor_model_p_spill}, top two
 panels), the same parameters that provided the best prediction
