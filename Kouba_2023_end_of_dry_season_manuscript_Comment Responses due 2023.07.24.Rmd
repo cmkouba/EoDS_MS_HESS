@@ -23,8 +23,8 @@ affiliation:
     address: Department of Land, Air and Water Resources, University of California, Davis, One Shields Avenue, Davis, CA, United States
 abstract: |
   In undammed watersheds in Mediterranean climates, the timing and abruptness of the transition from the dry season to the wet season have major implications for aquatic ecosystems. Of particular concern in many coastal areas is whether this transition can provide sufficient flows at the right time to allow passage for spawning anadromous fish, which is determined by dry season baseflow rates and the timing of the onset of the rainy season. In (semi-) ephemeral watershed systems, these functional flows also dictate the timing of full reconnection of the stream system. 
-  In this study, we propose methods to predict, approximately five months in advance, two key hydrologic metrics in the undammed rural Scott River watershed (HUC8 18010208) in northern California. Both metrics are intended to quantify the transition from the dry to the wet season, to characterize the severity of a dry year and support seasonal adaptive management. The first metric is the minimum 30-day dry season baseflow volume, $V_{min}$, which occurs at the end of the dry season (September-October) in this Mediterranean climate. The second metric is the cumulative precipitation, starting Sept. 1st, necessary to bring the watershed to a "full" or "spilling" condition (i.e. initiate the onset of wet season storm- or baseflows) after the end of the dry season, referred to here as $P_{spill}$. As potential predictors of these two values, we assess maximum snowpack, cumulative precipitation, the timing of the snowpack and precipitation, spring groundwater levels, spring river flows, reference ET, and a subset of these metrics from the previous water year. 
-  We find that, though many of these predictors are correlated with the two metrics of interest, of the predictors considered here, the best prediction for both metrics is a linear combination of the maximum snowpack water content and total October-April precipitation. These two linear models could reproduce historic values of $V_{min}$ and $P_{spill}$ with an average model error (RMSE) of 1.4 Mm^3^ / 30 days (19.4 cfs) and 25.4 mm (1 inch), corresponding to 49% and 37% of mean observed values, respectively. Although these predictive indices could be used by governance entities to support local water management, careful consideration of baseline conditions used as a basis for prediction is necessary.
+  In this study, we propose methods to predict, approximately five months in advance, two key hydrologic metrics in the undammed rural Scott River watershed (HUC8 18010208) in northern California. The two metrics are intended to quantify the relative transition timing from the dry to the wet season and to characterize the severity of a dry year. The ability to predict these metrics in advance could support seasonal adaptive management. The first metric is the minimum 30-day dry season baseflow volume, $V_{min}$, which occurs at the end of the dry season (September-October) in this Mediterranean climate. The second metric is the cumulative precipitation, starting Sept. 1st, necessary to bring the watershed to a "full" or "spilling" condition (i.e. initiate the onset of wet season storm- or baseflows) after the end of the dry season, referred to here as $P_{spill}$. As potential predictors of these two metrics, we assess maximum snowpack, cumulative precipitation, the timing of the snowpack and precipitation, spring groundwater levels, spring river flows, reference ET, and a subset of these metrics from the previous water year. 
+  Though many of these predictors are correlated with the two metrics of interest, we find that the best prediction for both metrics is a linear combination of the maximum snowpack water content and total October-April precipitation. These two linear models could reproduce historic values of $V_{min}$ and $P_{spill}$ with an average model error (RMSE) of 1.4 Mm^3^ / 30 days (19.4 cfs) and 25.4 mm (1 inch), corresponding to 49% and 37% of mean observed values, respectively. Although these predictive indices could be used by governance entities to support local water management, careful consideration of baseline conditions used as a basis for prediction is necessary.
 bibliography: library.bib
 running:
   title: Seasonal prediction of end-of-dry season watershed behavior in a highly interconnected alluvial watershed, northern California
@@ -128,15 +128,15 @@ update_watershed_figure = T # figure takes a few moments to render; no need to r
 
 In regions that experience periodic drought, such as the western United States, spatially distributed indices summarizing hydroclimate or surface water supply conditions are often critical decision-support tools for water managers [e.g., @Garen1993]. An index can be forward-looking, such as those that forecast near-term seasonal water supplies [e.g., @Null2013; @Verley2020], or backward-looking, such as ones that evaluate drought severity [e.g., @Palmer1965; @Guttman1998a; @McKee1993; @Wilhite1985; @Wilhite2000]. In many western states, forward-looking seasonal indices are used extensively by water agencies to inform local adaptive management decisions, e.g. in Colorado [CDWR -@ColoradoDWR2023], Idaho [NRCS -@NRCS2023] and California [@Null2013]. In California the principal examples are the Sacramento Valley Index (SVI) and San Joaquin Index (SJI), which are seasonal forecasts used to determine water allocations from these watersheds through the State Water Project [DWR -@DWR2022]. The state has more recently published a retroactive categorical water year type (WYT) dataset for sub-county level regions throughout California [DWR -@DWR2021a]. 
 
-These summary indices provide broad characterizations of anticipated or historically available water supplies. More detailed characteristics, including the hydrologic effects of water year type, climate change, human water use, and other factors, can be identified using the functional flows approach [e.g., @Poff1997; @Bunn2002; @Poff2010; @Wheeler2018]. The flows are "functional" because they serve an ecological purpose, such as wet season flood flows, needed to disperse cottonwood seeds [@Mahoney1998] and fall pulse flows, needed to provide passage for spawning fall-run anadromous fish [@Moyle2002a]. A California-specific functional flows framework has been developed to assess the degree of hydrologic alteration between current and unimpaired conditions [@Yarnell2020; @Patterson2020]. 
+These summary indices provide broad characterizations of anticipated or historically available water supplies, particularly in climates and geographies with significant snowpack, groundwater storage, and/or surface water storage capacity and a consummate delay -- and possibly significant spatial transfer -- between precipitation occurrence and water use. More detailed characteristics, including the hydrologic effects of water year type, climate change, human water use, and other factors, can be identified using the functional flows approach [e.g., @Poff1997; @Bunn2002; @Poff2010; @Wheeler2018]. The flows are "functional" because they serve an ecological purpose, such as wet season flood flows, needed to disperse cottonwood seeds [@Mahoney1998] and fall pulse flows, needed to provide passage for spawning fall-run anadromous fish [@Moyle2002a]. A California-specific functional flows framework has been developed to assess the degree of hydrologic alteration between current and unimpaired conditions [@Yarnell2020; @Patterson2020]. 
 
-Unlike forward-looking indices such as the SVI and SJI, the functional flows approach [e.g. @Yarnell2020] does not provide numerical flow predictions from recent seasonal hydrologic datasets. The existing forward-looking indices developed for Mediterranean climates (such as the ones used in California, Idaho and Colorado, referenced above) are particularly useful in stream systems with significant managed surface water storage, capable of bridging the temporal gap between the timing of precipitation and water use [e.g., DWR -@DWR2023]. Under Mediterranean climate conditions, the completion of the wet season defines the total available water supply, which is then managed through reservoirs for supply deliveries throughout the irrigation season [e.g., CDWR -@ColoradoDWR2023]. However, such indices have not been employed in basins without managed surface water storage. Neither have such indices been developed specifically to manage environmental (instream) flow protection.  Finally, such forward-looking indices to inform adaptive water supply management are lacking in smaller-scale geographic settings, especially for the mixed rain and snow-fed stream category of Patterson et al., 2020. 
+Unlike forward-looking indices such as the SVI and SJI, the functional flows approach [e.g. @Yarnell2020] does not provide numerical flow predictions from recent seasonal hydrologic datasets. The existing forward-looking indices developed for Mediterranean climate, such as the ones used in California, Idaho and Colorado, referenced above, are widespread in stream systems with significant managed surface water storage, capable of bridging the temporal gap between the timing of precipitation and water use [e.g., DWR -@DWR2023]. Under Mediterranean climate conditions, the completion of the wet season (winter, spring) defines the total available water supply, which is then managed through reservoirs for supply deliveries throughout the dry irrigation season [summer and fall, e.g., CDWR -@ColoradoDWR2023]. However, such indices have not been employed in basins without managed surface water storage, but significant seasonal snowpack or groundwater storage. Neither have such indices been developed specifically to manage environmental (instream) flow protection.  Finally, such forward-looking indices to inform adaptive water supply management are lacking in smaller-scale geographic settings, especially for the mixed rain and snow-fed stream category of Patterson et al., 2020. 
 
-Here, we outline and test a novel approach to developing a forward-looking index that may be useful to inform water management decisions targeting environmental instream flow management in mixed rain and snow-fed watersheds without managed surface water storage under Mediterranean climates. Environmentally, a critical period in such systems is the summer baseflow period at the end of the dry season, bracketed by the onset of winter stormflow [@Peek2022]. Summer baseflow conditions are primarily an expression of underlying groundwater storage, fed in turn by recharge from winter and spring precipitation, snowmelt, and runoff [@Tarboton2003]. During this period, native fish, particularly anadromous and/or salmonid fish, are highly vulnerable to below average low flow conditions [e.g., @VanKirk2008a]. Due to lack of surface water storage, to manage environmental flows, such basins may seek early protective water management decisions. These decisions must be made prior to the onset of the irrigation season, but following the (near) completion of the wet season to quantify the key annual water input to a Mediterranean watershed. 
+Here, we outline and test a novel approach to developing a forward-looking index that may be useful to inform water management decisions targeting environmental instream flow management in mixed rain and snow-fed watersheds without managed surface water storage under Mediterranean climates. Environmentally, a critical period in such systems is the summer baseflow period at the end of the dry season, bracketed by the onset of winter stormflow [@Peek2022]. Summer baseflow conditions are primarily an expression of underlying groundwater storage, fed in turn by recharge from winter and spring precipitation, snowmelt, and runoff [@Tarboton2003]. During this period, native fish, particularly anadromous and/or salmonid fish, are highly vulnerable to below average low flow conditions [e.g., @VanKirk2008a]. Due to lack of surface water storage, such basins may seek early protective water management decisions to support environmental flows. These decisions must be made prior to the onset of the irrigation season but following the (near) completion of the wet season, which defines the bulk of annual water input to a Mediterranean watershed. 
 
-We utilize the Scott River watershed in northern California as an example Mediterranean climate stream system (without surface water storage) to outline our approach and to evaluate whether a statistically significant, forward looking index can be defined to support environmental water management. Three periods of water use and climate forces have been proposed for the Scott River [e.g., by @Pyschik2022]: Eras 1, 2, and 3, ranging from 1942-1976, 1977-2000, and 2001-2021, respectively. These eras reflect changes in human management, such as the widespread installation of groundwater pumps in the region in the late 1970s [@Tolley2019]; and climate conditions, such as the shift in the Pacific Decadal Oscillation in the late 1970s [@Francis1998] or the onset of a two-decade abnormally dry period in 2000 [@Williams2020]. These overlapping changes make it difficult to identify the cause of decade-scale changes in regional hydrology; therefore, the proposed predictive method of hydrologic behavior is agnostic as to the mechanism linking the predictors and hydrologic response.
+We utilize the Scott River watershed in northern California as an example Mediterranean climate stream system (without surface water storage) to outline our approach and to evaluate whether a statistically significant, forward-looking index can be defined to support environmental water management. Three periods of water use and climate forces have been proposed for the Scott River [e.g., by @Pyschik2022]: Eras 1, 2, and 3, ranging from 1942-1976, 1977-2000, and 2001-2021, respectively. These eras reflect changes in human management, such as the widespread installation of groundwater pumps in the region in the late 1970s [@Tolley2019]; and climate conditions, such as the shift in the Pacific Decadal Oscillation in the late 1970s [@Francis1998] or the onset of a two-decade abnormally dry period in 2000 [@Williams2020]. These overlapping changes make it difficult to identify the cause of decade-scale changes in regional hydrology; therefore, the proposed predictive method of hydrologic behavior is agnostic as to the mechanism linking the predictors and hydrologic response.
 
-We first review the hydrologic indices and methods currently used in decision-making, such as agricultural cropping choices or regulatory water use restrictions, and propose two additional decision-support metrics, both designed as quantitative forecasts. We additionally explore the significance of each metric in the context of functional flows. The first metric is $V_{min}$, the minimum 30-day dry season baseflow volume in a given water year, which typically occurs in September or October. The second is a prediction of the cumulative rainfall needed to wet up the watershed after the dry season such that subsequent rainfall results in clear runoff, or storm surge, events. This cumulative precipitation depth is referred to as $P_{spill}$. Both of these metrics have significance for environmental flows and could support near-term (seasonal) adaptive management, similar to the SVI and SJI in California's Central Valley. Specifically, the magnitude of the minimum baseflow rate sets the spatial extent of the aquatic ecosystem during the dry season and influences rearing conditions for oversummering juvenile salmonids [@Gorman2016]. $P_{spill}$, meanwhile, is intuitively related to the timing of flows necessary for fall-run salmon passage: under equivalent fall rainfall, a greater amount of rain needed to generate stormflow would be associated with a prolonged dry season. This type of prolonged dry season has delayed salmon access to spawning habitat in recent years [CDFW -@CDFW2015a]. After defining and developing seasonal predictions for $V_{min}$ and $P_{spill}$, we then evaluate trends over time and consider the effects that climate change and changing water use patterns may have on the metrics considered in this study, and the decisions they support. 
+We propose two decision-support metrics, both designed as quantitative forecasts. We additionally explore the significance of each metric in the context of functional flows. The first metric is $V_{min}$, the minimum 30-day dry season baseflow volume in a given water year, which typically occurs in September or October. The second is a prediction of the cumulative rainfall needed to wet up the watershed after the dry season such that subsequent rainfall results in significant, measurable runoff, or storm surge, events. This cumulative precipitation depth is referred to as $P_{spill}$. Both metrics have significance for environmental flows and -- if predictable in advance -- could support near-term (seasonal) adaptive management, similar to the SVI and SJI in California's Central Valley. Specifically, the magnitude of the minimum baseflow rate sets the spatial extent of the aquatic ecosystem during the dry season and influences rearing conditions for over-summering juvenile salmonids [@Gorman2016]. $P_{spill}$ is intuitively related to the relative timing of flows necessary for fall-run salmon passage: under equivalent fall rainfall, a greater amount of rain needed to generate stormflow would be associated with a prolonged dry season. This type of prolonged dry season has delayed salmon access to spawning habitat in recent years [CDFW -@CDFW2015a]. In the following, we first define $V_{min}$ and $P_{spill}$. Next, we develop seasonal predictions for $V_{min}$ and $P_{spill}$ from environmental observations near the end of the wet season, about a half a year earlier. We then evaluate trends over time and consider the effects that climate change and changing water use patterns may have on the metrics considered in this study, and the decisions they support. 
 
 # Methods
 
@@ -197,7 +197,7 @@ if(!exists(x="fj3d")){
 
 In this study we used linear regression modeling to predict watershed behavior at the end of the dry season (the response) using data available the previous spring (the predictors). The Scott River watershed (\autoref{fig:watershed_fig_ch3}) has a snow-influenced Mediterranean climate, giving the river's annual hydrograph a characteristic high-flow season during the rainy winters, a gradual flow recession in the spring-summer as the snowpack melts, and a low-flow dry season after the snowpack is depleted (e.g., \autoref{fig:watershed_4states_illustration}). In the U.S. Geological Survey (USGS) National Hydrography Dataset, the Scott River watershed is denoted with the 8-digit Hydrologic Unit Code (HUC8) 18010208. Annual demand for agricultural and domestic use (estimated at 23 and 1.3 thousand acre-feet, respectively) [DWR -@DWR2004] are relatively stable in the Scott River system (although some reports of dry wells occur in dry years) [Siskiyou County -@SiskiyouCounty2021]. A key management challenge is persistent low environmental flows during the dry season baseflow period. In dry years, the lowest annual flowrates can overlap with the spawning periods for fall-run anadromous fish, potentially restricting fish passage and imperiling the long-term viability of the Scott River fishery [Siskiyou County -@SiskiyouCounty2021]. Post-1970s minimum dry season baseflows have been lower than pre-1977, and very low minima (< 10 cfs or 0.7 Mm^3^ / 30 days) have been more frequent in the past two decades (see Results, Section 3.2.1), making the management of these flows more urgent. 
 
-This study focuses on the transition from the dry season to the wet season, which at times can straddle the conventional water year boundary of October 1st, and cumulative precipitation is used both as a predictor and as a response variable ($P_{spill}$). When it is a predictor, a traditional October 1st start date is used and it is summed as the cumulative precipitation of October-April, to facilitate an end-of-April prediction of fall conditions. When it is the response variable, to capture uncommon September precipitation, cumulative precipitation is counted starting on September 1st of the preceding water year. This September 1st start date is also used in some graphs of climate and flow data (e.g. in Section 3.2 below), to establish and visualize baseline dry season conditions. Additionally, all flows in this study are observed or simulated at the USGS Fort Jones streamflow gauge (station 11519500), a key monitoring location downstream of nearly all water use and cultivated land in the HUC8 watershed (\autoref{fig:watershed_fig_ch3}), with an observation record covering water years 1942-2021. 
+This study focuses on the transition from the dry season to the wet season, which at times can straddle the conventional water year boundary of October 1st, and cumulative precipitation is used both as a predictor and as a response variable ($P_{spill}$). When it is a predictor, a traditional October 1st start date is used and it is summed as the cumulative precipitation of October-April, to facilitate an end-of-April prediction of fall conditions. When it is the response variable, cumulative precipitation is counted starting on September 1st of the preceding water year, to capture uncommon September precipitation. This September 1st start date is also used in some graphs of climate and flow data (e.g. in Section 3.2 below), to establish and visualize baseline dry season conditions. Additionally, all flows in this study are observed or simulated at the USGS Fort Jones streamflow gauge (station 11519500), a key monitoring location downstream of nearly all water use and cultivated land in the HUC8 watershed (\autoref{fig:watershed_fig_ch3}), with an observation record covering water years 1942-2021. 
 
 
 ```{r generate_watershed_fig_ch3, echo = F, message = F, warning =F, include=F}
@@ -247,12 +247,12 @@ In this study we expand this concept of a basin-scale, threshold-based runoff re
 Water in the Scott River watershed is stored in five primary reservoirs [@Harter2008]: 
 
 * snowpack
-* fractures in impermeable bedrock
+* fractures in impermeable bedrock (uplands)
 * soil moisture/subflow
-* the alluvial groundwater aquifer
+* the alluvial groundwater aquifer (lowlands)
 * streams and surface water bodies
 
-Accumulating snowpack is present only in the mountainous areas of the upper watershed, and limited to the winter and spring season. The alluvial aquifer is present only within the bounds of the groundwater basin underlying the flat valley floor; water stored in fractured rock emerges as springs in the upper watershed [@Mack1958] (\autoref{fig:watershed_fig_ch3}). In conditions with sufficiently high soil water content or groundwater elevations, soil moisture/subflow and groundwater become hydrologically connected to the surface water system. Conversely, water in the snowpack and fractured rock reservoirs is not hydrologically connected to major surface water bodies until it melts or descends lower into the watershed, effectively passing through the aquifer or soil to reach the stream. For convenience the soil moisture/subflow and aquifer reservoirs will be referred to as "connected" storage. Storage in streams and surface water bodies is negligible at temporal scales exceeding a few days.
+Accumulating snowpack is present only in the mountainous areas of the upper watershed and is limited to the winter and spring season. The alluvial aquifer is present only within the bounds of the groundwater basin underlying the flat valley floor. Water stored in fractured rock and soils/subflow emerges as springs in streambeds in the upper watershed [@Mack1958] (\autoref{fig:watershed_fig_ch3}). In conditions with sufficiently high soil water content or groundwater elevations, soil moisture/subflow and groundwater become hydrologically connected to the surface water system. Conversely, water in the snowpack and fractured rock reservoirs is not hydrologically connected to major surface water bodies until it melts or descends lower into the watershed, effectively passing through the aquifer or soil to reach the stream. For convenience the soil moisture/subflow and aquifer reservoirs will be referred to as "connected" storage. Storage in streams and surface water bodies is negligible at temporal scales exceeding a few days.
 
 \begin{table*}[t]
 \caption{Schematic of watershed behavior and functional flow components occurring during the transition from the dry season to the wet season in a Mediterranean climate; the categories are illustrated in an example annual hydrograph in Figure 2. Water storage level refers to the relative water content of the soil and aquifer within the watershed.}
@@ -344,15 +344,15 @@ At the onset of a new wet season, under average conditions, the flowrate of fill
 
 The precipitation and winter temperatures during the wet season produce an accumulation of snowpack, though in some years this can be reduced by warm periods and rain-on-snow events. Melting snowpack contributes subsurface flow and tributary streamflow to the lower watershed, producing a spring flow recession typically lasting from the last major precipitation event into the summer (\autoref{fig:watershed_4states_illustration}, second period C and second period A) and providing significant recharge via stream leakage near the mountain front, at the margins of the alluvial basin. This process amounts to a net transfer of water in snow storage during winter and spring to water in groundwater storage in spring and summer.
 
-Many of these phenomena are are reflected in the well-established elements of functional flows (\autoref{tab:watershed_modes_tab}). Winter stormflow is the obvious functional flow metric corresponding to a "spilling" watershed. The spring recession can last for three to six months and its steepness is moderated by snowmelt. Because it bridges the high-storage and low-storage states, the early and late spring recession appear in two different flow behavior categories (\autoref{tab:watershed_modes_tab}). Conversely, the flows classified under "watershed filling from a low storage level" are somewhat ambiguous and dependent on year-to-year conditions, since a discrete fall pulse flow does not occur in every water year, and no distinct metric has been proposed for a more gradual post-dry-season flow increase.
+Many of these phenomena are are reflected in the well-established elements of functional flows (\autoref{tab:watershed_modes_tab}). Winter stormflow is the functional flow metric corresponding to a "spilling" watershed. The spring recession can last for three to six months and its steepness is moderated by snowmelt. Because it bridges the high-storage and low-storage states, the early and late spring recession appear in two different flow behavior categories (\autoref{tab:watershed_modes_tab}). Conversely, the flows that are here classified under "watershed filling from a low storage level" have no specifically discerning feature in the hydrograph and depend on year-to-year conditions. A discrete fall pulse flow does not occur in every water year, and no distinct metric has been proposed for the gradual post-dry-season flow increase.
 
-Given the regular behavior observed during the dry season-to-wet season transition of the Fort Jones hydrograph (i.e., prolonged dry season baseflows followed by gradual flow increase and then storm surges), and the physical structure of this highly inter-connected basin, we expected to find a flowrate threshold at the Fort Jones gauge approximately defining the lower limit of the "full" or "spilling" basin condition (referred to here as $Q_{spill}$; see Results, Section 3.1).
+Given the regular behavior observed during the dry season-to-wet season transition of the Fort Jones hydrograph (i.e., prolonged dry season baseflows followed by gradual flow increase and then storm surges), and the physical structure of this highly inter-connected basin, we propose that an operational flowrate threshold exists at the Fort Jones gauge that defines approximate transition to "full" or "spilling" basin condition (referred to here as $Q_{spill}$; see Results, Section 3.1).
 
 
 
 ### Stream-aquifer interaction
 
-In the groundwater basin portion of the watershed, the alluvial aquifer is the largest storage reservoir [@Mack1958]. Groundwater-surface water interactions drive Scott River flow behavior towards the end of the dry season, before the next rainy season begins, when snowpack is depleted and streamflow in many areas is sustained by groundwater discharge alone [@Foglia2018a]. Discharge to streams from the alluvial aquifer occurs along the thalweg of the Scott River. In this highly interconnected system, groundwater discharge along the thalweg, at the annual scale, is balanced by landscape recharge and by recharge from stream reaches near the margins of the basin, overlying coarse alluvial fans (see discussion below).
+In the groundwater basin (i.e., lower) portion of the watershed, the alluvial aquifer is the largest storage reservoir [@Mack1958]. Groundwater-surface water interactions drive Scott River flow behavior towards the end of the dry season, before the next rainy season begins, when snowpack is depleted and streamflow in many areas is sustained by groundwater discharge alone [@Foglia2018a]. Discharge to streams from the alluvial aquifer occurs along the thalweg of the Scott River. In this highly interconnected system, groundwater discharge along the thalweg, at the annual scale, is balanced by landscape recharge and by recharge from stream reaches near the margins of the basin, overlying coarse alluvial fans (see discussion below).
 
 We used the Scott Valley Integrated Hydrologic Model (SVIHM) [@Tolley2019; @Foglia2013a; @Foglia2013b] to obtain the estimated volume of water exchanged monthly, in water years 1991-2018, between the surface stream network and the underlying aquifer. Streamflow gains from and streamflow losses to groundwater were integrated across the stream network to obtain a net monthly groundwater-surface water exchange value for the basin (\autoref{fig:flow_to_aq_and_stream}, panel A). These net monthly groundwater-to-stream flux values were then compared to simulated monthly flow volumes in the Scott River, measured at the Fort Jones gauge (\autoref{fig:flow_to_aq_and_stream}, panel B). 
 
@@ -381,7 +381,7 @@ The Scott River is an undammed watershed, in which estimates of annual precipita
 
 Multiple integrated numerical indicators of dry season baseflows were evaluated for suitability as the response variables in this prediction exercise. Monthly flow volumes were preferred over a minimum daily flow value to reduce the influence of individual events that might affect flow on one or a small number of days, such as groundwater pumping or surface water diversions.
 
-Historically, the rainy season in California tends to begin in October, and so by convention each water year begins on October 1st of the previous calendar year, and ends on September 30th. Matching this convention, in most years, the minimum-flow month for the Scott River is September; however, uncommon September storms can elevate flow volumes, and in some years with a late rainy season onset, the October flow volume may be lower. To capture these dynamics, for each calendar year, we calculated a rolling 30-day sum of daily flow volumes in the period July-December to identify the 30-day period with the least flow volume, referred to as $V_{min}$ (see Section 3.2). For consistency, each annual $V_{min}$ value was assigned to the water year ending in September of that calendar year, even if the minimum flow window included days in October-December of the following water year.
+Historically, the rainy season in California tends to begin in October. By convention each water year begins on October 1st of the previous calendar year, and ends on September 30th. Matching this convention, in most years, the minimum-flow month for the Scott River is September; however, uncommon September storms can elevate flow volumes, and in some years with a late rainy season onset, the October flow volume may be lower. To capture these dynamics, we calculated a rolling 30-day sum of daily flow volumes in the period July-December for each calendar year to identify the 30-day period with the least flow volume, referred to as $V_{min}$ (see Section 3.2). For consistency, each annual $V_{min}$ value was assigned to the water year ending in September of that calendar year, even if the minimum flow window included days in October-December of the following water year.
 
 ### Cumulative precipitation $P_{spill}$
 
@@ -429,7 +429,7 @@ Where:
 
 ## Scott River precipitation-runoff behavior
 
-The quantity $P_{spill}$ is correlated with both a lower minimum flow volume and a later river reconnection (\autoref{fig:p_spill_vs_baseflow_and_recon_timing}). This corroborates the hypothesis that $P_{spill}$, predicted in advance, could be an indicator of the risk of a severe dry season.
+The quantity $P_{spill}$ is correlated with both a lower minimum flow volume and a later river reconnection (\autoref{fig:p_spill_vs_baseflow_and_recon_timing}). This corroborates the hypothesis that $P_{spill}$ is an indicator of the risk of a severe dry season.
 
 ```{r generate_p_spill_vs_baseflow_and_recon_timing, echo = F, message = F, warning =F, include=F}
 
@@ -660,7 +660,7 @@ dev.off()
 knitr::include_graphics(fig_file_name)
 ```
 
-The DWR water year type categories map fairly well onto the two proposed hydrologic indices $V_{min}$ and $P_{spill}$ (\autoref{fig:resp_vars_wyt}, panels A and B), which is to be expected, as both DWR WYT and the two proposed indices are based in part on cumulative precipitation data. However, there is less of an ability to identify a long-term trend in the DWR WYT index time series than in the time series of observed or predicted $V_{min}$ or $P_{spill}$ values. Likely causes include the information lost when binning water years into five categories, and the 30-year ranking window that would prevent a direct comparison of post-2000 WYTs with pre-1950s WYTs (\autoref{fig:resp_vars_wyt}, panel C).
+The DWR water year type categories map well onto the two proposed hydrologic indices $V_{min}$ and $P_{spill}$ (\autoref{fig:resp_vars_wyt}, panels A and B), which is to be expected, as both DWR WYT and the two proposed indices are based in part on cumulative precipitation data. However, there is less of an ability to identify a long-term trend in the DWR WYT index time series than in the time series of observed or predicted $V_{min}$ or $P_{spill}$ values. Likely causes include, first, the information lost when binning water years into five categories, and, secondly, the 30-year ranking window that would prevent a direct comparison of post-2000 WYTs with pre-1950s WYTs (\autoref{fig:resp_vars_wyt}, panel C).
 
 
 ## Predictor comparison for $V_{min}$ and $P_{spill}$
@@ -891,7 +891,7 @@ The $V_{min}$ formulation proposed above predicts minimum 30-day dry season base
 
 Matching the historical trends of decreasing snowpack, the observed and predicted $V_{min}$ values show a downward trend over time (\autoref{fig:v_min_over_time}, top panel). An outlier in the year 1984 reflects extremely high minimum dry season baseflows, relative to the predicted values and the overall distribution. In that year, a relatively high-baseflow season was followed by an early September storm. The model residual (predicted minus observed flow volumes) for 1984 is also an outlier, indicating that the model has a sufficient sample size to not be overwhelmed by this extreme value produced by an exceedingly rare sequence of events (\autoref{fig:v_min_over_time}, middle panel). 
 
-The predictive $V_{min}$ model is based on observations from the full record, but three additional models were generated based on only the observations from each period: Eras 1, 2, and 3, respectively. Residuals based on Era 1 data are similar to those of the full record, with a slight but systematic overprediction in Era 3; Era 2 residuals tend to overpredict in Era 1 more than the full record; and Era 3 residuals offer better performance in Era 3 than the full record, but produce significant systematic underpredictions pre-2000 (\autoref{fig:v_min_over_time}, middle panel).
+The predictive $V_{min}$ model is based on observations from the full record, but three additional models were generated based on only the observations from each period: Eras 1, 2, and 3, respectively. Residuals based on Era 1 data are similar to those of the full record, with a slight but systematic overprediction in Era 3; Era 2 residuals tend to overpredict in Era 1 more than the full record; and Era 3 residuals offer better performance in Era 3 than the full record, but produce significant systematic underpredictions pre-2000 $V_{min}$ values (\autoref{fig:v_min_over_time}, middle panel).
 
 
 
@@ -1052,7 +1052,7 @@ The $P_{spill}$ estimate formulation proposed above predicts $P_{spill}$ values 
 
 Matching the historical trends of decreasing snowpack, the observed and predicted $P_{spill}$ values show an increasing trend over time (\autoref{fig:pspill_pred_over_time}, top panel). A high outlier in calendar year 1994 (in early water year 1995) was caused by a dry water year 1994 followed by a series of small storms in November and December, none of which produced `r Q_spill` cfs of flow, followed by a much larger storm on January 8th-9th of 1995 in which the river flow jumped to 600 and then 7,500 cfs in two days.
 
-The predictive $P_{spill}$ model is based on observations from the full record, but three additional models were generated based on only the observations from each period: Eras 1, 2, and 3, respectively. Residuals based on Era 1 tend to underpredict Eras 2 and 3 more than the full-record model; Era 2 residuals tend to overpredict in Eras 1 and 3 more than the full record; and Era 3 residuals have a slightly higher tendency to underpredict than the full record, but overall are fairly similar to the full-record residuals (\autoref{fig:v_min_over_time}, lower panel).
+The predictive $P_{spill}$ model is based on observations from the full record. As for $V_{min}$, three additional models were generated based on only the observations from each period: Eras 1, 2, and 3, respectively. Residuals based on Era 1 tend to underpredict Eras 2 and 3 more than the full-record model; Era 2 residuals tend to overpredict in Eras 1 and 3 more than the full record; and Era 3 residuals have a slightly higher tendency to underpredict than the full record, but overall are fairly similar to the full-record residuals (\autoref{fig:v_min_over_time}, lower panel).
 
 The linear coefficients for the two prediction equations and their standard errors are summarized in \autoref{tab:coeff_and_std_error_tab}.
 
@@ -1096,22 +1096,22 @@ print.xtable(cse_xtable, comment = F,type = "latex", caption.placement = "top",
 
 ## Scott River watershed behavior and long-term planning
 
-The forward-looking seasonal predictions in this study are possible only because of predictable hydrologic relationships between early-season inputs (precipitation) and late-season outputs (surface flow and ET). In this watershed there are reasonably consistent rainfall-runoff relationships: the general shape of the relationship between cumulative precipitation and river flow at onset of the rainy season is preserved in dry and wet water years (\autoref{fig:time_v_fall_rains_v_flow_fig}, panel B). This consistency is also reflected in stormflow behavior occurring after precipitation fills the watershed, a condition in which the Scott River exceeds a flowrate of $Q_{spill}$ at the Fort Jones stream gauge.
+The forward-looking seasonal predictions in this study are possible because of predictable hydrologic relationships between early-season inputs (precipitation) and late-season outputs (surface flow and ET), as is typical for many Mediterranean climate watersheds. In this watershed there are reasonably consistent rainfall-runoff relationships: the general shape of the relationship between cumulative precipitation and river flow at onset of the rainy season is preserved in dry and wet water years (\autoref{fig:time_v_fall_rains_v_flow_fig}, panel B). This consistency is also reflected in stormflow behavior occurring after precipitation fills the watershed, a condition in which the Scott River exceeds a flowrate of $Q_{spill}$ at the Fort Jones stream gauge.
 
-A $Q_{spill}$ threshold of `r Q_spill` cfs was identified by an analysis of rainfall-runoff responses and a visual inspection of fall hydrograph behavior (Figures \ref{fig:qspill_figs} and \ref{fig:time_v_fall_rains_v_flow_fig}), and it also matches information from local stakeholders. Many tributary streams on the valley floor run dry during the summer and fall, and some tributary streams respond more quickly to fall precipitation than others. Generally, the timing of all tributaries reaching flowing status corresponds with the Fort Jones gauge reaching 100 cfs [@Sommarstrom2020].
+A $Q_{spill}$ threshold of `r Q_spill` cfs was identified by an analysis of rainfall-runoff responses and a visual inspection of fall hydrograph behavior (Figures \ref{fig:qspill_figs} and \ref{fig:time_v_fall_rains_v_flow_fig}). It also matches information from local stakeholders. Many tributary streams on the valley floor run dry during the summer and fall, and some tributary streams respond more quickly to fall precipitation than others. Generally, the timing of all tributaries reaching flowing status corresponds with the Fort Jones gauge reaching 100 cfs [@Sommarstrom2020].
 
 Simulated estimates of stream-aquifer exchange corroborate these precipitation-flow relationships. Dry season baseflow ($V_{min}$) and the onset of wet season flow (framed in terms of $P_{spill}$) are both influenced by net groundwater discharge from the aquifer. One interpretation of the high frequency of near-0 net monthly stream-aquifer flux values (\autoref{fig:flow_to_aq_and_stream}, panel B) is that the high degree of connectivity between the streams and the aquifer in the Scott River system produces balancing counter-forces in response to hydrologic stresses on the system, such as large recharge events. This balancing tendency can be temporarily overwhelmed by large precipitation pulses, but high-flow conditions quickly reduce the volume of water in the surface water system, returning the Scott River to a baseline of relatively-balanced stream-to-aquifer and aquifer-to-stream fluxes. This dynamic also reflects the small size of the available aquifer storage, relative to the amount of precipitation received by the watershed in a given water year [DWR -@DWR2004], leading to net groundwater contributions that are one to two orders of magnitude smaller than streamflow during "spilling" conditions (\autoref{fig:flow_to_aq_and_stream}, panel B) and two or more orders of magnitude difference between dry season low flows (almost exclusively from groundwater contributions) and wet season high flows.
 
-These limitations in natural water storage preclude the use of wet year surplus for dry years and dictate that water management focus on within-year projects and management actions that either carry over some of the wet season flow to enhance dry season flow ($V_{min}$) and possibly reduce $P_{spill}$ via interim aquifer storage, or reduce surface water diversions and groundwater pumping, or a combination of both. These conditions also reduce resiliency to climate change. 
+These limitations in natural water storage preclude the use of wet year surplus water for dry years and dictate that water management focus on within-year projects and management actions that either carry over some of the wet season flow to enhance dry season flow ($V_{min}$) that possibly reduce $P_{spill}$ via interim aquifer storage, or that reduce surface water diversions and groundwater pumping, or a combination of both. These conditions also reduce resiliency to climate change. 
 
 
 ## $V_{min}$ and $P_{spill}$ prediction utility
 
-Though various methods exist to qualitatively predict, in the spring, the severity of the coming low-flow season in the Scott River watershed, a quantitative short-term forecasting index could support more rigorous thresholds for adaptive management. To this end we developed two linear equations for predicting minimum dry season baseflows about five months in advance, effectively taking an inventory in each April of relevant hydrologic inputs. It could be used to support decisions made in the late spring timeframe regarding the growing season, such as potential regulatory actions and some farmer cropping decisions. 
+Though various methods exist to qualitatively predict, in the spring, the severity of the coming low-flow season in the Scott River watershed, a quantitative short-term forecasting index could support more rigorous thresholds for adaptive management. To this end we developed two linear equations for predicting minimum dry season baseflows about five months in advance, by taking an inventory of relevant seasonal hydrologic inputs in April. The $V_{min}$ and $P_{spill}$ predictions could be used to support decision making processes in the late spring timeframe on potential regulatory actions and cropping decisions affecting the growing season. 
 
 There are several methods in current use. Observations at existing monitoring locations, such as weather stations and long-term snow course records, have been used as ad-hoc hydrologic indices. Historical adaptive management decisions in the Scott River watershed, such as planning to purchase surface water rights leases, have relied on individual monitoring observations, such as percent of snowpack relative to average conditions, or the Fort Jones flow in the spring [e.g., SRWT -@SRWT2018]. Additionally, DWR has effectively extended the methodology of the SVI and SJI metrics to all of California by publishing a categorical water year type (WYT) index for all its major watersheds (to the HUC8 level) [DWR -@DWR2021a]. This metric quantifies meteoric drought and relies only on precipitation data, so as to be comparable across the state. Matching SVI and SJI methodology, it can be calculated at multiple points in each spring, with a final determination in May, but in the case of Scott Valley it has been used to classify WYTs only retroactively through 2018. As previously mentioned it is a relatively complex metric with provisions including a partial one-year holdover (i.e., dry conditions in the previous year will make a dry-type categorization more likely the following year), and non-stationary index thresholds, with a 30-year ranking window. 
 
-The quantitative prediction methods proposed in this study map well onto the existing DWR WYT index (\autoref{fig:resp_vars_wyt}), which serves as a validation of this approach. However, the $V_{min}$ and $P_{spill}$ metrics preserve more detail. The primary advantages of the proposed method over the DWR WYT and other previous methods of gauging near-term hydrologic conditions is that it is tailored to local hydroclimate data and is interpretable as a numeric prediction of fall conditions. This could be used to inform regulatory actions in an attempt to increase fall environmental flows, or for surface water diverters to plan for low-flow conditions. However, each seasonal prediction should be accompanied by its uncertainty: the RMSE of this predictive model is `r  round(awi_rmse/ min_fall_flow_mean*100)`% of the mean value for $V_{min}$, `r  round(min_fall_flow_mean,1)` Mm^3^ (`r  round(min_fall_flow_mean*Mm3month_30day_to_cfs,1)` cfs).
+The quantitative prediction methods proposed in this study map well onto the existing DWR WYT index (\autoref{fig:resp_vars_wyt}), which serves as a validation of this approach. However, the $V_{min}$ and $P_{spill}$ metrics preserve more detail. The primary advantages of the proposed method over the DWR WYT and other previous methods of gauging near-term hydrologic conditions is that it is tailored to local hydroclimate data and is interpretable as a numeric prediction of fall streamflow conditions. This could be used to inform regulatory actions that increase fall environmental flows, or -- for surface water diverters -- to plan for low-flow conditions. However, each seasonal prediction should be accompanied by its measure of uncertainty: the RMSE of this predictive model is `r  round(awi_rmse/ min_fall_flow_mean*100)`% of the mean value for $V_{min}$, `r  round(min_fall_flow_mean,1)` Mm^3^ (`r  round(min_fall_flow_mean*Mm3month_30day_to_cfs,1)` cfs).
 
 Though it also serves as an indication of the severity of a water year, the immediate seasonal utility of the second predicted metric, $P_{spill}$, may be less than for that of minimum dry season baseflows. Management decisions such as the last possible date to keep a temporary stream gauge installed in a river, without risk of it being washed out, could be informed by a $P_{spill}$ prediction when combined with weather forecasts in the fall. This prediction also carries substantial uncertainty (RMSE of `r  round(pspill_rmse/ p_spill_mean*100)`% of the mean $P_{spill}$ value, `r  round(p_spill_mean,1)` mm).
 
@@ -1130,218 +1130,10 @@ Both predictions (using the full record of hydrologic data) assume some degree o
 
 # Conclusions
 
-This study proposed two locally-tailored hydrologic decision-support metrics for the Scott River watershed in northern California. Both use snowpack and cumulative precipitation data from October-April to predict the quantity of interest: the first is the minimum 30-day flow volume in a given water year, referred to as $V_{min}$, which typically occurs in September or October. The second index is the cumulative rainfall needed to "fill" the watershed after the end of the dry season to a "spilling" condition that responds quickly to precipitation events, referred to as $P_{spill}$. Both indices can be calculated at the end of April to support near-term (seasonal) adaptive management regarding the growing season or the fall, similar to the SVI and SJI in California's Central Valley and other indices used throughout the western United States. However, climate change may reduce the predictive accuracy of indices based on long-term data records, and updates based on smaller numbers of more recent water years should be considered periodically.
+This study proposed two locally-tailored hydrologic decision-support metrics for the Scott River watershed in northern California. Both metrics have been shown to be predictable quantities using snowpack and cumulative precipitation data from October-April: the first metric is the minimum 30-day flow volume in a given water year, referred to as $V_{min}$, which typically occurs in September or October. The second metric is the cumulative rainfall needed to "fill" the watershed after the end of the dry season to a "spilling" condition that responds quickly to precipitation events, referred to as $P_{spill}$. Both indices can be calculated at the end of April to support near-term (seasonal) adaptive management regarding the growing season (summer through the fall), similar to the SVI and SJI in California's Central Valley and other indices used throughout the western United States. However, climate change may reduce the predictive accuracy of indices based on long-term data records, and updates based on smaller numbers of more recent water years should be considered periodically.
 
-The management choices facing local managers in this basin are difficult to quantify and summarize, as is the case in basins throughout California and arid regions globally. Locally-derived summary metrics, tailored to regional hydrologic dynamics, have provided and will continue to provide tools for supporting those choices and communicating them to diverse stakeholders and the general public.
+The management choices facing local managers in this basin are difficult to quantify and summarize, as is the case in basins throughout the western U.S. and other semi-arid and arid regions globally. Locally-derived summary metrics, tailored to regional hydrologic dynamics, have provided and will continue to provide tools for supporting those choices and communicating them to diverse stakeholders and the general public.
 
-
-```{r scratch_work, echo=F}
-# From the perspective of river flow, the "dry season" and "wet season" can be defined using this spill threshold - the flow rate at which the watershed functionally "spilling", after which point additional rainfall causes a surge in flow. Because a watershed is structurally more complex than a bucket, this threshold is approximate. 
-
-# To determine the approximate numerical value of the spill threshold, we identified the flow value that, when used to divide the dry and wet seasons,   the difference between the rainfall-runoff responses in the dry and wet seasons. evaluated the difference between the dry and wet season rainfall-runoff responses keeps growing until it first levels off at a spill threshold of approximately 120 cfs. At higher values (i.e., defining the start of the wet season as a larger storm event), the average wet season rainfall-runoff response continues to grow, 
-
-# If the threshold is 20 cfs, many water years 
-# Using a threshold of Dry season rainfall-runoff response falls with spill thresholds ranging from 10 to 80 cfs and is relatively stable, at . Beyond 80 cfs the dry season runoff increase relative to added precip 
-
-# Between approximately 100 and 140 cfs there is a plateau: t
-# 
-# 
-# calc_dQdP = function(P, Q, dates, lag_days = 1, 
-#                      dry_season_day1 = yday(as.Date("2001-09-01")),
-#                      result="dQdP"){
-#   P_lagged_forward = c(rep(NA, lag_days), P[1:(length(P)-lag_days)])
-#   Q_lagged_forward = c(rep(NA, lag_days), Q[1:(length(Q)-lag_days)])
-#   
-#     # take out annual fenceposts - first x days of each year's dry season (which in this tabular arrangement have lagged values from the preceding year)
-#   dates_julian = yday(dates)
-#   Q[dates_julian < (lag_days+dry_season_day1) & dates_julian >= dry_season_day1] = NA 
-#   P[dates_julian < (lag_days+dry_season_day1) & dates_julian >= dry_season_day1] = NA 
-# 
-#   dP = P - P_lagged_forward # real time cum. precip. record minus cum. ppt from x days ago
-#   dQ = Q - Q_lagged_forward # real time flow record minus flow from x days ago
-#   dQdP = dQ/dP
-#   if(result=="dQdP"){return(dQdP)}
-#   if(result=="dQ"){return(dQ)}
-# }
-# 
-# 
-# # calc_dQdPs_multiple_lags = function(fj3d, max_lag_days=6){
-# #   starting_ncol = ncol(fj3d)
-# #   fj3d[,(starting_ncol+1):(starting_ncol+max_lag_days)] = NA
-# #   colnames(fj3d)[(starting_ncol+1):(starting_ncol+max_lag_days)] = paste0("dQdP_lag",1:max_lag_days)
-# #   for(lag_days in 1:max_lag_days){
-# #     result_colname = paste0("dQdP_lag",lag_days)
-# #     fj3d[,starting_ncol+lag_days] = calc_dQdP(P = fj3d$cum_ppt, 
-# #                                               Q = fj3d$Flow, 
-# #                                               dates = fj3d$Date, 
-# #                                               lag_days = lag_days)
-# #   }
-# #   return(fj3d)
-# # }
-# 
-# 
-# calc_cum_dQdPs_multiple_lags = function(fj3d, max_lag_days=6){
-#   starting_ncol = ncol(fj3d)
-#   fj3d[,(starting_ncol+1):(starting_ncol+max_lag_days)] = NA
-#   colnames(fj3d)[(starting_ncol+1):(starting_ncol+max_lag_days)] = paste0("dQdP_lag",1:max_lag_days)
-#   for(lag_days in 1:max_lag_days){
-#     result_colname = paste0("dQdP_lag",lag_days)
-#     fj3d[,starting_ncol+lag_days] = calc_dQdP(P = fj3d$cum_ppt, 
-#                                               Q = fj3d$cum_flow_m3, 
-#                                               dates = fj3d$Date, 
-#                                               lag_days = lag_days)
-#   }
-#   return(fj3d)
-# }
-# 
-# 
-# dQdP_vs_flow = function(lag_days = 1, 
-#                         storm_cutoff = 0.5*25.4){ # half inch to mm
-# 
-#   # Change in flow in X days
-#   # q1 = c(fj3d$Flow[1:(nrow(fj3d)-lag_days)], rep(NA, lag_days))
-#   q1 = fj3d$cum_flow_m3 # $Flow
-#   q2 = c(rep(NA, lag_days), fj3d$cum_flow_m3[1:(nrow(fj3d)-lag_days)])
-#   # Change in cumulative precip in X days
-#   # p1 = c(fj3d$cum_ppt[1:(nrow(fj3d)-lag_days)], rep(NA, lag_days))
-#   p1 = fj3d$cum_ppt
-#   # p2 the cumulative precip vector adjusted forward by x days
-#   p2 = c(rep(NA, lag_days), fj3d$cum_ppt[1:(nrow(fj3d)-lag_days)])
-# 
-#   # take out annual fenceposts - first x days of each year (which are just values from the preceding year)
-#   fj3d$julian = yday(fj3d$Date)
-#   adj_wy_day1 = yday(as.Date("2001-09-01"))
-#   q1[fj3d$julian < (lag_days+adj_wy_day1) & fj3d$julian >= adj_wy_day1] = NA 
-#   p1[fj3d$julian < (lag_days+adj_wy_day1) & fj3d$julian >= adj_wy_day1] = NA 
-#   
-#   #calculate dQ (the change in flow in x days) and dP (the change in cum. precip. in x days)
-#   fj3d$q1=q1; fj3d$q2=q2; fj3d$p1=p1; fj3d$p2 = p2
-#   fj3d$dQ = q1-q2 # time-true record minus the record from x days ago
-#   fj3d$dP = p1-p2
-#   # Calculate dQdP
-#   fj3d$dQdP = fj3d$dQ/fj3d$dP
-#   
-#   # hist(fj3d$dQdP,xlim = c(-1000,1000), breaks = 300)
-#   
-#   storm_index = fj3d$ppt >= storm_cutoff
-#   # adjust for smoothing days
-#   # storm_index_delayed = c(rep(NA,lag_days),
-#   #                         storm_index[1:(length(storm_index)-lag_days)])
-#   fj3d_storm = fj3d[storm_index,]
-#   
-#   # summary(fj3d_storm$dQdP,na.rm=T)
-#   plot(fj3d_storm$dQdP, fj3d_storm$cum_flow_m3, xlim = c(-1*10^3, 10^3), 
-#        pch = 19, col = rgb(0,0,0,.05), log = "y",
-#        main = paste("d_Flow d_Precip, \n smoothing", lag_days, "day(s), storm cutoff",storm_cutoff, "mm, storms only"))
-#   grid()
-#   abline(h=100, col = "brown", lwd=2)
-#   
-#     plot(fj3d_storm$dP, fj3d_storm$dQ, #xlim = c(-1, 10^2), 
-#        pch = 19, col = rgb(0,0,0,.1), log = "y",
-#        main = paste("d_Precip vs d_Flow, \n smoothing", lag_days, "day(s), storm cutoff",storm_cutoff, "mm, storms only"))
-#   grid()
-#   abline(h=100, col = "brown", lwd=2)
-# 
-#   # plot(fj3d$dQdP, fj3d$Flow, xlim = c(-1*10^3, 10^3), 
-#   #      pch = 19, col = rgb(0,0,0,.05), log = "y",
-#   #      main = paste("d_Flow d_Precip, \n smoothing", lag_days, "day(s), storm cutoff",storm_cutoff, "mm, all days"))
-#   # grid()
-#   # abline(h=100, col = "brown", lwd=2)
-#   
-#   
-# }
-# 
-
-
-
-# computation steps: 
-# calculate dQ and dP (Q_i - Q_i-1), and dQ/dP
-# don't need days for which dQ is negative. Flow can be falling even on days with some rainfall if it's coming down from a higher peak
-# try to skew for early in the wet season so we avoid snowmelt influence
-# filter for days that got more than 1/10th inch. Because small dPs can produce high dQ dP values that are not meaningful. 
-### why 1/10th inch? make up some bullshit justification about refET in the winter?
-
-
-# 653 sq miles drainage area for Ft Jones gauge (per USGS https://waterdata.usgs.gov/monitoring-location/11519500/#parameterCode=00060&period=P7D)
-# 1 ft3/sec * 1m3/35 ft3 * 86400 sec/day / 1.7m sq meters * 1000mm/m = mm/day
-
-
-
-# 
-#   #summarize for each threshold
-# delta_dqdp_mean = aggregate(x = results$delta_dQdP,
-#                             by = list(results$Q_threshold_m3day), FUN = mean,
-#                             na.rm=T,finite=T)$x
-# delta_dqdp_med = aggregate(x = results$delta_dQdP,
-#                             by = list(results$Q_threshold_m3day), FUN = median, na.rm=T)$x
-#   #   mean(results_for_wys$delta_dqdp, na.rm=T)
-#   # results_for_thresholds$delta_dqdp_med[threshold_picker] = median(results_for_wys$delta_dqdp, na.rm=T)
-#   # results_for_thresholds$delta_dqdp_std[threshold_picker] = sd(results_for_wys$delta_dqdp, na.rm=T)
-# 
-# plot(q_thresh/cfs_to_m3day, delta_dqdp_mean / cfs_to_m3day)
-# grid()
-# 
-# plot(q_thresh/cfs_to_m3day,delta_dqdp_med / cfs_to_m3day)
-# grid()
-
-# for(yr in EoDS_years){
-#   yr_picker = results$year==yr
-#   thresholds = results$Q_threshold_m3day[yr_picker]
-#   delta_dqdp = results$delta_dQdP[yr_picker]
-# 
-#   if(yr==EoDS_years[1]){
-#     plot(thresholds/cfs_to_m3day, delta_dqdp/cfs_to_m3day, main = "Effect of dQ threshold value on runoff-rainfall \n responses in end of dry and beginning of wet season",
-#          xlab = "dQ end-of-dry-season threshold (m3day)",
-#          ylab = "change in dQ/dP (wet season minus dry season)",
-#          ylim = range(results$delta_dQdP,na.rm=T, finite=T)/cfs_to_m3day,
-#          type = "o", col = rgb(.2,.2,.2,.2))
-#   } else {
-#     lines(thresholds/cfs_to_m3day, delta_dqdp/cfs_to_m3day, col = rgb(.2,.2,.2,.2), type = "o")
-#   }
-# }
-
-
-# thresh_colors = sequential_hcl(n=length(q_thresh), palette = "Hawaii")
-# 
-# for(i in 1:length(q_thresh)){
-#   thresh=q_thresh[i]
-#   thresh_picker = results$Q_threshold_m3day==thresh
-#   years = results$year[thresh_picker]
-#   delta_dqdp = results$delta_dQdP[thresh_picker]
-#   thresh_col = thresh_colors[i]
-#   
-#   if(thresh==q_thresh[1]){
-#     plot(years, delta_dqdp/cfs_to_m3day, log="y",
-#          main = "Yearly pattern, by threshold, of runoff-rainfall \n responses in end of dry and beginning of wet season",
-#          xlab = "Year",
-#          ylab = "change in dQ/dP (wet season minus dry season)",
-#          # ylim = range(results$delta_dQdP,na.rm=T, finite=T)[2]/cfs_to_m3day,
-#          col=thresh_col,# col = rgb(.2,.2,.2,.2),
-#          type = "o")
-#   } else {
-#     lines(years, delta_dqdp/cfs_to_m3day, #col = rgb(.2,.2,.2,.2), 
-#           type = "o", col = thresh_col, pch=3)
-#   }
-# }
-
-# if(write_q_thresh_pdf){
-#   pdf(file = "First spill day viewer, all WYs_120cfs.pdf", width = 8.5, height = 11)
-#   par(mfrow = c(2,1), mar = c(5,4,4,4)*1.1)
-#   for(yr in EoDS_years){
-#     dQdP_vs_hydrograph(fj3d = fj3d, 
-#                        storm_cutoff = 6.35,
-#                        date_1 = as.Date(paste0(yr,"-09-01")), 
-#                        date_2 = as.Date(paste0(yr+1,"-02-01")),
-#                        as_png = F, 
-#                        max_lag_days = 1,
-#                        Q_spill_threshold = 120) #threshold in cfs
-#   }
-#   
-#   dev.off()
-# }
-
-
-```
 
 \newpage 
 
@@ -1377,9 +1169,9 @@ knitr::include_graphics(fig_file_name)
 
 ## Selection of the $Q_{spill}$ threshold value
 
-The $Q_{spill}$ value of `r Q_spill` cfs (`r round(Q_spill * cfs_to_m3day / 1000)` thousand m^3^/day or approximately `r round(Q_spill / Mm3month_AugDec_to_cfs,1)` Mm^3^ per month) was determined by testing a range of potential $Q_{spill}$ values (10 to 500 cfs [`r round(10 * cfs_to_m3day / 1000)` to `r round(500  * cfs_to_m3day / 1000)` thousand m^3^/day]) as a dividing threshold between dry- and wet-season flow behavior, and calculating the difference in rainfall-runoff response on either side of the dry season-wet season divide (\autoref{fig:qspill_figs}, Panel A). The objective of this analysis was to maximize the difference between these two $dQ/dP$ values: to identify the threshold that reflected a maximally different rainfall-runoff response before and after the threshold was reached. 
+The $Q_{spill}$ value of `r Q_spill` cfs (`r round(Q_spill * cfs_to_m3day / 1000)` thousand m^3^/day or approximately `r round(Q_spill / Mm3month_AugDec_to_cfs,1)` Mm^3^ per month) was determined by testing a range of potential $Q_{spill}$ values (10 to 500 cfs [`r round(10 * cfs_to_m3day / 1000)` to `r round(500  * cfs_to_m3day / 1000)` thousand m^3^/day]) as a dividing threshold between dry- and wet-season flow behavior. Specifically, the threshold, $Q_{spill}$, was here operationally defined as the flow rate that generated the largest, difference in rainfall-runoff response on either side of the dry season-wet season divide (\autoref{fig:qspill_figs}, Panel A). The rainfall-runoff response was measured as the ratio $dQ/dP$, where $dQ$ is the change in runoff and $dP$ is the cumulative precipitation over the same moving 30-day period. Hence, the objective of this analysis was to find $Q_{spill}$ such that the difference between the two $dQ/dP$ values for the 30 days immediately prior to reaching $Q_{spill}$ and the 30 days immediately following the day when $Q_{spill}$ reaches an initial maximum. 
 
-The difference between the wet and dry season rainfall-runoff responses is approximately the same (113 cfs [275 m^3^/day] of increased flow per mm of precipitation) for spill thresholds from 105-135 cfs (256-330 10^3^ m^3^/day) (\autoref{fig:qspill_figs}, Panel A). This indicates that in a large number of water years, flows in the range of 105-135 cfs (`r round(105 * cfs_to_m3day / 1000)` to `r round(135  * cfs_to_m3day / 1000)` thousand m^3^/day) range are preceded by a dry season flow-response regime and followed by a distinct, flashier flow regime regime. Though higher wet-dry flow response differences were calculated at higher threshold values (i.e., up to 500 cfs [1,223 thousand m^3^/day]), these progressively higher wet-season flow responses likely reflect the falling limb of individual large storms that over-fill the watershed rather than separating filling from spilling behavior.
+For the Scott Valley watershed, the difference between the wet and dry season rainfall-runoff responses reaches an initial plateau (113 cfs [275 m^3^/day] of increased flow per mm of precipitation) for spill thresholds from 105-135 cfs (256-330 10^3^ m^3^/day) (\autoref{fig:qspill_figs}, Panel A). This indicates that in a large number of water years, flows in the range of 105-135 cfs (`r round(105 * cfs_to_m3day / 1000)` to `r round(135  * cfs_to_m3day / 1000)` thousand m^3^/day) range are preceded by a dry season flow-response regime and followed by a distinct, flashier flow regime regime. Though higher wet-dry flow response differences were calculated at higher threshold values (i.e., up to 500 cfs [1,223 thousand m^3^/day]), these progressively higher wet-season flow responses likely reflect the falling limb of individual large storms that over-fill the watershed rather than separating filling from spilling behavior.
 
 Additionally, in visual inspection of 78 years of Fort Jones hydrographs, the 120 cfs (294 10^3^ m^3^/day ) $Q_{spill}$ threshold generated a plausible breakpoint between dry and wet season river behavior in all water years (e.g., water year 2018 in \autoref{fig:qspill_figs}, Panel B). Furthermore, this value corroborates local observations that an approximate value of 100 cfs represents "fully connected" river conditions (see Discussion section).  
 
