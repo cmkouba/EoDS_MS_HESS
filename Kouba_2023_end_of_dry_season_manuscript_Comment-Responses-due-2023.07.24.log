@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.31)  30 SEP 2023 11:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.31)  30 SEP 2023 11:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -581,57 +581,57 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 112.
 (c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 152.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 151.
 (c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 152.
+(Font)              scaled to size 8.54997pt on input line 151.
 [1
 
 {c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 <f01.png, id=127, 578.16pt x 505.89pt>
 File: f01.png Graphic file (type png)
 <use f01.png>
-Package pdftex.def Info: f01.png  used on input line 328.
+Package pdftex.def Info: f01.png  used on input line 327.
 (pdftex.def)             Requested size: 503.61377pt x 440.66109pt.
 <f02.png, id=128, 505.89pt x 361.35pt>
 File: f02.png Graphic file (type png)
 <use f02.png>
-Package pdftex.def Info: f02.png  used on input line 332.
+Package pdftex.def Info: f02.png  used on input line 331.
 (pdftex.def)             Requested size: 503.61377pt x 359.73358pt.
 [4] [5 <./f01.png (PNG copy)>] [6 <./f02.png>]
-Underfull \hbox (badness 1242) in paragraph at lines 409--409
+Underfull \hbox (badness 1242) in paragraph at lines 408--408
 \T1/ptm/m/n/9 groundwater storage via recharge; depleting
  []
 
 
-Underfull \hbox (badness 3000) in paragraph at lines 411--411
+Underfull \hbox (badness 3000) in paragraph at lines 410--410
 []|\T1/ptm/m/n/9 (B) Watershed filling from a low storage
  []
 
 
-Underfull \hbox (badness 4621) in paragraph at lines 411--411
+Underfull \hbox (badness 4621) in paragraph at lines 410--410
 \T1/ptm/m/n/9 basin, especially near the mountain front
  []
 
 
-Underfull \hbox (badness 7186) in paragraph at lines 411--411
+Underfull \hbox (badness 7186) in paragraph at lines 410--410
 \T1/ptm/m/n/9 - downstream from the bedrock-alluvium
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 413--413
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
 []|\T1/ptm/m/n/9 (C) Watershed draining from a high
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 413--413
+Underfull \hbox (badness 1603) in paragraph at lines 412--412
 \T1/ptm/m/n/9 storage level (hillslope interflow, snowmelt,
  []
 
 
-Underfull \hbox (badness 4108) in paragraph at lines 413--414
+Underfull \hbox (badness 4108) in paragraph at lines 412--413
 []|\T1/ptm/m/n/9 Winter baseflow and early
  []
 
@@ -639,55 +639,55 @@ Underfull \hbox (badness 4108) in paragraph at lines 413--414
 <f03.png, id=198, 505.89pt x 542.025pt>
 File: f03.png Graphic file (type png)
 <use f03.png>
-Package pdftex.def Info: f03.png  used on input line 517.
+Package pdftex.def Info: f03.png  used on input line 516.
 (pdftex.def)             Requested size: 503.61377pt x 539.60037pt.
 [9] [10 <./f03.png (PNG copy)>] [11] [12]
 <f04.png, id=262, 505.89pt x 505.89pt>
 File: f04.png Graphic file (type png)
 <use f04.png>
-Package pdftex.def Info: f04.png  used on input line 718.
+Package pdftex.def Info: f04.png  used on input line 717.
 (pdftex.def)             Requested size: 503.61377pt x 503.627pt.
 <f05.png, id=266, 505.89pt x 505.89pt>
 File: f05.png Graphic file (type png)
 <use f05.png>
-Package pdftex.def Info: f05.png  used on input line 741.
+Package pdftex.def Info: f05.png  used on input line 740.
 (pdftex.def)             Requested size: 503.61377pt x 503.627pt.
 [13] [14 <./f04.png>] [15 <./f05.png>]
 <f06.png, id=298, 505.89pt x 505.89pt>
 File: f06.png Graphic file (type png)
 <use f06.png>
-Package pdftex.def Info: f06.png  used on input line 769.
+Package pdftex.def Info: f06.png  used on input line 768.
 (pdftex.def)             Requested size: 503.61377pt x 503.627pt.
 <f07.png, id=302, 505.89pt x 505.89pt>
 File: f07.png Graphic file (type png)
 <use f07.png>
-Package pdftex.def Info: f07.png  used on input line 793.
+Package pdftex.def Info: f07.png  used on input line 792.
 (pdftex.def)             Requested size: 503.61377pt x 503.627pt.
 <f08.png, id=305, 505.89pt x 505.89pt>
 File: f08.png Graphic file (type png)
 <use f08.png>
-Package pdftex.def Info: f08.png  used on input line 812.
+Package pdftex.def Info: f08.png  used on input line 811.
 (pdftex.def)             Requested size: 503.61377pt x 503.627pt.
 
-LaTeX Warning: Float too large for page by 8.10468pt on input line 813.
+LaTeX Warning: Float too large for page by 8.10468pt on input line 812.
 
 [16] [17 <./f06.png>] [18 <./f07.png>] [19 <./f08.png (PNG copy)>]
-Overfull \hbox (1.52367pt too wide) in paragraph at lines 834--847
+Overfull \hbox (1.52367pt too wide) in paragraph at lines 833--846
 []\T1/ptm/m/n/10 In contrast to these four categories, October-April cumulative ET$[]$ is negatively correlated with $\OML/cmm/m/it/10 V[]$ \T1/ptm/m/n/10 and positively correlated
  []
 
 [20] [21] [22] [23] [24]
-Overfull \hbox (2.72061pt too wide) in paragraph at lines 1222--1233
+Overfull \hbox (2.72061pt too wide) in paragraph at lines 1221--1232
 []\T1/ptm/m/n/10 Multiple possible explanations could reconcile these two pieces of seemingly contradictory evidence. First, random variability
  []
 
 [25]
-Overfull \hbox (7.78104pt too wide) in paragraph at lines 1261--1277
+Overfull \hbox (7.78104pt too wide) in paragraph at lines 1260--1276
 \T1/ptm/m/n/10 This study proposed two locally-tailored hydrologic decision-support metrics for the Scott River watershed in northern California.
  []
 
 
-Overfull \hbox (1.71237pt too wide) in paragraph at lines 1278--1285
+Overfull \hbox (1.71237pt too wide) in paragraph at lines 1277--1284
 \T1/ptm/m/n/10 regional hydrologic dynamics, have provided and will continue to provide tools for supporting those choices and communicating
  []
 
@@ -695,79 +695,79 @@ Overfull \hbox (1.71237pt too wide) in paragraph at lines 1278--1285
 <f09.png, id=433, 433.62pt x 433.62pt>
 File: f09.png Graphic file (type png)
 <use f09.png>
-Package pdftex.def Info: f09.png  used on input line 1303.
+Package pdftex.def Info: f09.png  used on input line 1302.
 (pdftex.def)             Requested size: 503.61377pt x 503.64136pt.
 
-LaTeX Warning: Float too large for page by 8.11903pt on input line 1304.
+LaTeX Warning: Float too large for page by 8.11903pt on input line 1303.
 
 [27
 pdfTeX warning (ext4): destination with the same identifier (name{section.A}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1306 \newpage
+l.1305 \newpage
                ] [28 <./f09.png>]
 <f10.png, id=449, 505.89pt x 505.89pt>
 File: f10.png Graphic file (type png)
 <use f10.png>
-Package pdftex.def Info: f10.png  used on input line 1354.
+Package pdftex.def Info: f10.png  used on input line 1353.
 (pdftex.def)             Requested size: 503.61377pt x 503.627pt.
 
-LaTeX Warning: Float too large for page by 7.76717pt on input line 1355.
+LaTeX Warning: Float too large for page by 7.76717pt on input line 1354.
 
 [29] [30 <./f10.png>]
 <f11.png, id=461, 455.301pt x 505.89pt>
 File: f11.png Graphic file (type png)
 <use f11.png>
-Package pdftex.def Info: f11.png  used on input line 1386.
+Package pdftex.def Info: f11.png  used on input line 1385.
 (pdftex.def)             Requested size: 503.61377pt x 559.59157pt.
 
-LaTeX Warning: Float too large for page by 2.46951pt on input line 1387.
+LaTeX Warning: Float too large for page by 2.46951pt on input line 1386.
 
 
-Overfull \hbox (24.93655pt too wide) in paragraph at lines 1416--1433
+Overfull \hbox (24.93655pt too wide) in paragraph at lines 1415--1432
  []$[]$ 
  []
 
 <f12.png, id=462, 505.89pt x 542.025pt>
 File: f12.png Graphic file (type png)
 <use f12.png>
-Package pdftex.def Info: f12.png  used on input line 1436.
+Package pdftex.def Info: f12.png  used on input line 1435.
 (pdftex.def)             Requested size: 503.61377pt x 539.60037pt.
 <f13.png, id=463, 505.89pt x 469.755pt>
 File: f13.png Graphic file (type png)
 <use f13.png>
-Package pdftex.def Info: f13.png  used on input line 1440.
+Package pdftex.def Info: f13.png  used on input line 1439.
 (pdftex.def)             Requested size: 503.61377pt x 467.65367pt.
 [31] [32 <./f11.png>] [33 <./f12.png>] [34 <./f13.png>]
-Overfull \hbox (24.93655pt too wide) in paragraph at lines 1498--1515
+Overfull \hbox (24.93655pt too wide) in paragraph at lines 1497--1514
  []$[]$ 
  []
 
 <f14.png, id=486, 505.89pt x 542.025pt>
 File: f14.png Graphic file (type png)
 <use f14.png>
-Package pdftex.def Info: f14.png  used on input line 1518.
+Package pdftex.def Info: f14.png  used on input line 1517.
 (pdftex.def)             Requested size: 503.61377pt x 539.60037pt.
 <f15.png, id=487, 505.89pt x 542.025pt>
 File: f15.png Graphic file (type png)
 <use f15.png>
-Package pdftex.def Info: f15.png  used on input line 1522.
+Package pdftex.def Info: f15.png  used on input line 1521.
 (pdftex.def)             Requested size: 503.61377pt x 539.60037pt.
 <f16.png, id=488, 505.89pt x 469.755pt>
 File: f16.png Graphic file (type png)
 <use f16.png>
-Package pdftex.def Info: f16.png  used on input line 1526.
+Package pdftex.def Info: f16.png  used on input line 1525.
 (pdftex.def)             Requested size: 503.61377pt x 467.65367pt.
 [35] [36 <./f14.png>] [37 <./f15.png>] [38 <./f16.png>]
 <Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_vmin-1.pdf, id=510, 469.755pt x 325.215pt>
 File: Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_vmin-1.pdf Graphic file (type pdf)
 <use Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_vmin-1.pdf>
-Package pdftex.def Info: Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_vmin-1.pdf  used on input line 1544.
+Package pdftex.def Info: Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_vmin-1.pdf  used on input line 1543.
 (pdftex.def)             Requested size: 503.61377pt x 348.65645pt.
 <Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_pspsill-1.pdf, id=511, 469.755pt x 325.215pt>
 File: Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_pspsill-1.pdf Graphic file (type pdf)
 <use Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_pspsill-1.pdf>
-Package pdftex.def Info: Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_pspsill-1.pdf  used on input line 1548.
+Package pdftex.def Info: Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_pspsill-1.pdf  used on input line 1547.
 (pdftex.def)             Requested size: 503.61377pt x 348.65645pt.
 [39] (./Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24.bbl [40 <./Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_vmin-1.pdf>] [41 <./Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24_files/figure-latex/selected_model_diagnostics_pspsill-1.pdf>]
 Underfull \hbox (badness 2111) in paragraph at lines 66--71
@@ -798,7 +798,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  90i,10n,90p,961b,699s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24.pdf (44 pages, 2263690 bytes).
+Output written on Kouba_2023_end_of_dry_season_manuscript_Comment-Responses-due-2023.07.24.pdf (44 pages, 2263682 bytes).
 PDF statistics:
  690 PDF objects out of 1000 (max. 8388607)
  583 compressed objects within 6 object streams
