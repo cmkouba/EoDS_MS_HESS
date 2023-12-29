@@ -58,6 +58,7 @@ output:
     keep_tex: true
   bookdown::pdf_book:
     base_format: rticles::copernicus_article # for using bookdown features like \@ref()
+
 ---
 
 
@@ -899,7 +900,7 @@ The predictive $V_{min}$ model is based on observations from the full record, bu
 
 ### $P_{spill}$ predictor assessment and prediction formula
 
-The two single predictors of $P_{spill}$ (with the largest $R$ or least error or both) were October-April cumulative precipitation and the maximum snowpack (\autoref{fig:one_predictor_model_p_spill}, top two panels), the same parameters that provided the best prediction $V_{min}$. The LOOCV model errors are 850 mm and 718 mm, respectively. As in the $V_{min}$ model development, $ET_{0}$ was excluded from consideration due to short record length. The best two-predictor model was the combination of the two best single predictors, with an LOOCV error of 697 mm (\autoref{fig:two_predictor_model_p_spill}, upper left panel).  No three-predictor models produced lower LOOCV or $R^2$ values  (\autoref{tab:pspill_tab_3pred}), so no visualizations were made of three-predictor model results.
+The two single predictors of $P_{spill}$ (with the largest $R$ or least error or both) were October-April cumulative precipitation and the maximum snowpack (\autoref{fig:one_predictor_model_p_spill}, top two panels), the same parameters that provided the best prediction $V_{min}$. The LOOCV model errors are 850 mm and 718 mm, respectively. As in the $V_{min}$ model development, $ET_{0}$ was excluded from consideration due to short record length. The best two-predictor model was the combination of the two best single predictors, with an LOOCV error of 697 mm (\autoref{fig:two_predictor_model_p_spill}, upper left panel).  No three-predictor models produced lower LOOCV or higher $R^2$ values  (\autoref{tab:pspill_tab_3pred}), so no visualizations were made of three-predictor model results.
 
 Several combinations of correlated observation categories produced comparable model results, such as spring water levels with maximum snow, maximum snow timing, and cumulative precipitation (\autoref{fig:two_predictor_model_p_spill}, upper right and two middle panels). However, not all combinations of co-correlated data produced reasonable predictors; a model with a linear combination of maximum snowpack timing and March flow volumes performed relatively poorly (LOOCV error of 1,087 mm; \autoref{fig:two_predictor_model_p_spill}, lower right panel).
 
