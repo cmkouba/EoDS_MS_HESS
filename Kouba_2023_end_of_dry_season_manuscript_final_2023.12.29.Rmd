@@ -120,7 +120,7 @@ source(file.path(ms_dir,"02_Figure_Functions.R"))   # Load figure functions
 # settings to save figs to image files
 running_fig_num = 0
 img_res = 300
-update_watershed_figure = T # figure takes a few moments to render; no need to rerender unless an update is desired
+update_watershed_figure = F # figure takes a few moments to render; no need to rerender unless an update is desired
 
 ```
 
@@ -208,7 +208,7 @@ This study focuses on the transition from the dry season to the wet season, whic
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 if(!file.exists(fig_file_name) | update_watershed_figure==T){
   png(filename = fig_file_name, height = 7, width = 8, units = "in", res = img_res)
@@ -226,7 +226,7 @@ knitr::include_graphics(fig_file_name)
 # watershed_behavior_fig(wy = 1995)
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 5, width = 7, units = "in", res = img_res)
 # pdf(file = fig_file_name, height = 5, width = 7)
@@ -362,7 +362,7 @@ We used the Scott Valley Integrated Hydrologic Model (SVIHM) [@Tolley2019; @Fogl
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7.5, width = 7, units = "in", res = img_res)
 flow_to_aq_and_stream_fig()
@@ -485,7 +485,7 @@ p_spill_vs_baseflow_and_recon_timing = function(){
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7, width = 7, units = "in", res = img_res)
 p_spill_vs_baseflow_and_recon_timing()
@@ -507,7 +507,7 @@ The approximate threshold between these two hydrologic periods, denoted as $Q_{s
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7, width = 7, units = "in", res = img_res)
 
@@ -559,7 +559,7 @@ The timing of the midpoint of the 30-day minimum-flow period falls most commonly
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7, width = 7, units = "in", res = img_res)
 par(mfrow = c(3,1), mar = c(2, 5,3,5))
@@ -629,7 +629,7 @@ dsb_tab$dwr_wyt_lag1_col = wyt_cat$color[match(dsb_tab$dwr_wyt_lag1, wyt_cat$des
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 
 png(filename = fig_file_name, height = 7, width = 7, units = "in", res = img_res)
@@ -755,7 +755,7 @@ last_yr_indices = grep(pattern="last",keep_these_cols)
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("Fig",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7, width = 7, units = "in", res = img_res)
 cor_mat = corr_matrix_fig_ch3(keep_these_cols = keep_these_cols) # make plot and retrieve corr. matrix
@@ -1150,9 +1150,9 @@ Groundwater elevation measurements collected in the spring were evaluated as a p
 ```{r generate_gw_vs_fall_flows_corr_map, echo=FALSE, include=F}
 
 # save as png and include in Rmd
-running_fig_num = running_fig_num+1
+running_fig_num = 1 # Restart from appendix 
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 6, width = 6, units = "in", res = img_res)
 highlight_wells = get_high_corr_wells(show_map = T, corr_wells = keep_wells) # 
@@ -1181,7 +1181,7 @@ Additionally, in visual inspection of 78 years of Fort Jones hydrographs, the 12
 # watershed_behavior_fig(wy = 1995)
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7, width = 7, units = "in", res = img_res)
 
@@ -1265,7 +1265,7 @@ print.xtable(vmin1_xtable, comment = F,type = "latex", caption.placement = "top"
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7, width = 6.3, units = "in", res = img_res)
 one_predictor_model_plots(tab_for_glm = tab_for_glm)
@@ -1352,7 +1352,7 @@ print.xtable(vmin3_xtable, comment = F,type = "latex", caption.placement = "top"
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7.5, width = 7, units = "in", res = img_res)
 two_predictor_model_plots(tab_for_glm = tab_for_glm)
@@ -1369,7 +1369,7 @@ knitr::include_graphics(fig_file_name)
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 6.5, width = 7, units = "in", res = img_res)
 #make room for 2nd axis
@@ -1505,7 +1505,7 @@ ylabs = c("SWJ snow max", "FJRS Oct-Apr precip.",
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7.5, width = 7, units = "in", res = img_res)
 par(mfrow = c(3,2))
@@ -1546,7 +1546,7 @@ ylabs =  c("Snow max and Oct-Apr precip.",
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 7.5, width = 7, units = "in", res = img_res)
 par(mfrow = c(3,2))
@@ -1577,7 +1577,7 @@ knitr::include_graphics(fig_file_name)
 # save as png and include in Rmd
 running_fig_num = running_fig_num+1
 running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
-fig_file_name = paste0("f",running_fig_num_txt, ".png")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
 
 png(filename = fig_file_name, height = 6.5, width = 7, units = "in", res = img_res)
 #make room for 2nd axis
@@ -1602,7 +1602,7 @@ knitr::include_graphics(fig_file_name)
 
 Standard diagnostic plots for the selected predictive models for $V_{min}$ and $P_{spill}$. For $V_{min}$, these diagnostic plots highlight outlier record 42, which corresponds to the year 1983, when an early September storm followed a wet year. For $P_{spill}$, three lesser outliers are highlighted, corresponding to water years 1994, 2000 and 2004, in which the three highest values of $P_{spill}$ were observed. These outliers represent the basin in extreme hydrologic conditions, so are retained in the dataset even though they exert disproportionate leverage over the predictive models.
 
-```{r selected_model_diagnostics_vmin, echo=FALSE, fig.cap= "\\label{fig:vmin_selected_diagnostics} Diagnostic plots for the selected predictive models of V min." , out.width="100%", warning=F}
+```{r selected_model_diagnostics_vmin_save_fig, include=F, echo=FALSE, warning=F, message = F}
 
 # plot( vmin lm object)
 response = "min_fall_flow"
@@ -1613,12 +1613,29 @@ tab_for_glm_vmin = tab_for_glm[!is.na(tab_for_glm[,response] *
                                      tab_for_glm[,pred2]),]
 f1_vmin = paste(response," ~ ", paste(pred1,pred2,sep=" + "))
 lm_vmin = lm(f1_vmin, data = tab_for_glm_vmin) # for calculating R squared
+
+# Save png
+running_fig_num = running_fig_num+1 # Restart from appendix 
+running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
+
+png(filename = fig_file_name, height = 6, width = 7, units = "in", res = img_res)
 par(mfrow = c(2,2))
 plot(lm_vmin)
+dev.off()
 
 ```
 
-```{r selected_model_diagnostics_pspsill, echo=FALSE, fig.cap= "\\label{fig:vmin_selected_diagnostics} Diagnostic plots for the selected predictive models of P spill." , out.width="100%", warning=F}
+```{r selected_model_diagnostics_vmin, echo=FALSE, fig.cap= "\\label{fig:vmin_selected_diagnostics} Diagnostic plots for the selected predictive models of V min." , out.width="100%", warning=F}
+
+knitr::include_graphics(fig_file_name)
+
+```
+
+
+
+
+```{r selected_model_diagnostics_pspsill_save_plot, include=F, echo=FALSE, warning=F, message = F}
 
 # plot( pspill lm object)
 
@@ -1630,11 +1647,22 @@ tab_for_glm_pspill = tab_for_glm_p_spill[!is.na(tab_for_glm_p_spill[,response] *
                                      tab_for_glm_p_spill[,pred2]),]
 f1_pspill = paste(response," ~ ", paste(pred1,pred2,sep=" + "))
 lm_pspill = lm(f1_pspill, data = tab_for_glm_pspill) # for calculating R squared
+
+# Save png
+running_fig_num = running_fig_num + 1 # Restart from appendix 
+running_fig_num_txt = str_pad(running_fig_num, width = 2, side = "left", pad="0")
+fig_file_name = paste0("FigA",running_fig_num_txt, ".png")
+
+png(filename = fig_file_name, height = 6, width = 7, units = "in", res = img_res)
 par(mfrow = c(2,2))
 plot(lm_pspill)
+dev.off()
 
 ```
 
+```{r selected_model_diagnostics_pspsill, echo=FALSE, fig.cap= "\\label{fig:vmin_selected_diagnostics} Diagnostic plots for the selected predictive models of P spill." , out.width="100%", warning=F}
+knitr::include_graphics(fig_file_name)
+```
 
 \newpage
 
